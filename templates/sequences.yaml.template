@@ -1,0 +1,239 @@
+# Rhumb Workflow Protocol (RWP)
+# Sequence Type Configuration Template v0.25.1
+#
+# This template defines all built-in sequence types and their format strings.
+# Sequence types are used to generate identifiers for artifacts, phases, and
+# custom workflow elements within the Rhumb Workflow Protocol.
+#
+# Format String Syntax:
+#   {id}      → Current sequence number (auto-incremented)
+#   {prefix}  → Type-specific prefix (e.g., MP, P, REQ)
+#   {suffix}  → Optional phase/variant suffix (e.g., -A, -B, -C)
+#
+# Sequence Format Example:
+#   prefix: "MP"
+#   format: "{prefix}-{id:04d}"        # Produces: MP-0001, MP-0002, etc.
+#   next: 1                             # Next ID to assign
+#
+# Extension Point:
+#   Organizations may add custom_sequences for domain-specific IDs.
+#   See: https://rhumbprotocol.dev/spec/extension-format
+
+---
+
+# Rhumb Workflow Protocol Sequence Types
+#
+# CORE SEQUENCES (recommended for RWP conformance)
+
+sequences:
+  # Master Plans: large-scope work packages (e.g., "MP-0235")
+  # Usage: Multi-phase initiatives, cross-team projects, formal specifications
+  plan:
+    prefix: "MP"
+    format: "{prefix}-{id:04d}"
+    description: "Master Plan identifier"
+    example: "MP-0235"
+    next: 236  # Auto-increment starting from 236
+    immutable: true
+    scope: global
+    allowed_lifecycle: [planning, processing, completed]
+
+  # Phases: major work divisions within a plan (e.g., "P-01", "P-02-A")
+  # Usage: Breaking plans into sequential or parallel work units
+  # Sub-phases: "P-NN-A", "P-NN-B", "P-NN-C" for 30-45 minute crash-resilient units
+  phase:
+    prefix: "P"
+    format: "{prefix}-{id:02d}{suffix}"
+    description: "Phase identifier with optional sub-phase suffix"
+    examples:
+      - "P-01"      # Top-level phase
+      - "P-01-A"    # Sub-phase A (30-45 minutes)
+      - "P-01-B"    # Sub-phase B
+      - "P-01-C"    # Sub-phase C
+    suffix_pattern: "^(-[A-C])?$"  # Optional: -A, -B, or -C
+    suffix_meaning: "Sub-phase for crash resilience (A=first, B=middle, C=final)"
+    next: 1
+    immutable: false
+    scope: plan-local
+    allowed_lifecycle: [pending, active, completed, failed]
+    parent_type: plan
+
+  # Requirements: actionable, traceable work items (e.g., "REQ-0001")
+  # Usage: Formal requirements, RFC-style specifications, acceptance criteria
+  requirement:
+    prefix: "REQ"
+    format: "{prefix}-{id:04d}"
+    description: "Requirement identifier"
+    example: "REQ-0001"
+    next: 1
+    immutable: true
+    scope: global
+    allowed_lifecycle: [draft, approved, implemented, verified]
+
+  # Ideas: freeform concept capture (e.g., "IDEA-0001")
+  # Usage: Design exploration, proposal brainstorming, architectural concepts
+  idea:
+    prefix: "IDEA"
+    format: "{prefix}-{id:04d}"
+    description: "Idea identifier for architectural or conceptual work"
+    example: "IDEA-0001"
+    next: 1
+    immutable: true
+    scope: global
+    allowed_lifecycle: [draft, active, archived, promoted]
+
+  # Architecture Vision Document (e.g., "AVD-0001")
+  # Usage: High-level architecture, system design, cost analysis
+  architecture_vision:
+    prefix: "AVD"
+    format: "{prefix}-{id:04d}"
+    description: "Architecture Vision Document identifier"
+    example: "AVD-0001"
+    next: 1
+    immutable: true
+    scope: global
+    allowed_lifecycle: [draft, review, approved, deprecated]
+    parent_type: idea
+
+  # Architecture Component Specification (e.g., "ACS-0001")
+  # Usage: Component-level design, subsystem specification, API contracts
+  architecture_component:
+    prefix: "ACS"
+    format: "{prefix}-{id:04d}"
+    description: "Architecture Component Specification identifier"
+    example: "ACS-0001"
+    next: 1
+    immutable: true
+    scope: global
+    allowed_lifecycle: [draft, review, approved, deprecated]
+    parent_type: architecture_vision
+
+  # Research: exploratory investigation (e.g., "RSH-0001")
+  # Usage: Protocol research, security analysis, performance studies
+  research:
+    prefix: "RSH"
+    format: "{prefix}-{id:04d}"
+    description: "Research identifier"
+    example: "RSH-0001"
+    next: 1
+    immutable: true
+    scope: global
+    allowed_lifecycle: [active, complete, published]
+
+  # Backlog Items: unscheduled work (e.g., "BLG-0001")
+  # Usage: Roadmap items, future work, nice-to-have features
+  backlog:
+    prefix: "BLG"
+    format: "{prefix}-{id:04d}"
+    description: "Backlog item identifier"
+    example: "BLG-0001"
+    next: 1
+    immutable: false
+    scope: global
+    allowed_lifecycle: [backlog, scheduled, in-progress, done]
+
+  # Handoff Documents (generated: no manual ID assignment)
+  # Naming: HO-{plan_id}-{phase}-{timestamp}.md
+  # Example: HO-MP-0235-P-02-C-2026-03-04.md
+  handoff:
+    prefix: "HO"
+    format: "HO-{plan_id}-{phase}-{timestamp}"
+    description: "Phase completion handoff document (auto-named)"
+    example: "HO-MP-0235-P-02-C-2026-03-04.md"
+    auto_generated: true
+    immutable: true
+    scope: plan-local
+    timestamp_format: "YYYY-MM-DD"
+
+  # Audit Reports (generated: no manual ID assignment)
+  # Naming: AUD-{plan_id}-{phase}-{timestamp}.md or AUD-{plan_id}-FINAL-{timestamp}.md
+  # Example: AUD-MP-0235-P-03-2026-03-04.md
+  audit:
+    prefix: "AUD"
+    format: "AUD-{plan_id}-{phase}-{timestamp}"
+    description: "Audit report identifier (auto-named)"
+    examples:
+      - "AUD-MP-0235-P-03-2026-03-04.md"
+      - "AUD-MP-0235-FINAL-2026-03-04.md"
+    auto_generated: true
+    immutable: true
+    scope: plan-local
+    timestamp_format: "YYYY-MM-DD"
+
+# EXTENSION MECHANISM
+# Custom sequences may be added for domain-specific needs.
+# Extension template:
+#
+# custom_sequences:
+#   my_custom_type:
+#     prefix: "MCT"
+#     format: "{prefix}-{id:04d}"
+#     description: "Custom type description"
+#     example: "MCT-0001"
+#     next: 1
+#     scope: global|plan-local
+#     allowed_lifecycle: [list, of, states]
+
+custom_sequences: []  # Placeholder for domain-specific extensions
+
+# NAMING CONVENTIONS & VALIDATION
+
+naming_rules:
+  # All sequence IDs must match one of the patterns above
+  pattern: "^[A-Z]+(-[0-9]+)?(-[A-C])?$"
+  examples:
+    valid:
+      - "MP-0001"      # Plan
+      - "P-01-A"       # Phase with sub-phase
+      - "REQ-0042"     # Requirement
+      - "IDEA-0007"    # Idea
+      - "AVD-0003"     # Architecture Vision
+      - "ACS-0001"     # Architecture Component
+      - "RSH-0012"     # Research
+      - "BLG-0099"     # Backlog
+    invalid:
+      - "mp-0001"      # Lowercase prefix
+      - "MP_0001"      # Underscore instead of dash
+      - "MP-1"         # Insufficient padding
+      - "MP-000A"      # Letter in number field
+      - "P-01-D"       # Invalid sub-phase (D not allowed)
+
+  parsing:
+    # Variable-width prefix parsing algorithm
+    algorithm: |
+      1. Extract all leading uppercase letters as prefix (MP, P, REQ, AVD, ACS, RSH, BLG, HO, AUD)
+      2. Expect dash separator "-"
+      3. Extract numeric ID (4 digits, zero-padded: 0000-9999)
+      4. Optionally extract sub-phase suffix (-A, -B, -C)
+      Example parsing "REQ-0042":
+        prefix: "REQ"
+        number: "0042" (integer: 42)
+        subphase: null
+
+    regex_pattern: "^([A-Z]+)-([0-9]{4})(-[A-C])?$"
+    parser_source: "spec/sequence-parser.md"
+
+# VERSIONING & COMPATIBILITY
+
+versioning:
+  rwp_version: "0.25.1"
+  specification_url: "https://rhumbprotocol.dev/spec/sequences"
+  compatibility:
+    breaking_changes: []  # No breaking changes in v0.25.1
+    compatible_with: ["0.25.1"]  # Self-compatible during 0.x maturation
+    notes: "Sequence types remain advisory and may change in 0.x minor releases. They lock in at v1.0; new types added in subsequent 1.x versions remain backward compatible."
+
+# METADATA
+
+metadata:
+  created: "2026-03-04T05:15:00Z"
+  created_by: "Rhumb Workflow Protocol"
+  specification: "https://rhumbprotocol.dev/spec"
+  reference_implementation: "https://meridian.yakkl.com"
+  license: "Apache-2.0"
+
+---
+
+# Produced: 2026-03-04T05:15:00Z
+# By: Rhumb Workflow™ Protocol (RWP) - https://rhumbprotocol.dev
+# Copyright: Copyright © 2026 Rhumb Protocol Contributors. Licensed under Apache-2.0.

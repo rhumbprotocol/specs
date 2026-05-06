@@ -1,0 +1,44 @@
+═══════════════════════════════════════════════════════════════════════════════
+                      CONTINUING TO NEXT PHASE
+═══════════════════════════════════════════════════════════════════════════════
+
+CURRENT STATUS
+
+  Plan:           {{PLAN_ID}} - {{PLAN_TITLE}}
+  Completing:     {{CURRENT_PHASE_ID}} - {{CURRENT_PHASE_TITLE}}
+  Next Phase:     {{NEXT_PHASE_ID}} - {{NEXT_PHASE_TITLE}}
+
+  Current Phase Duration:  ~{{CURRENT_PHASE_DURATION}} minutes
+  Next Phase Duration:     ~{{NEXT_PHASE_DURATION}} minutes
+
+STATE UPDATED
+
+  ✓ {{CURRENT_PHASE_ID}} marked complete
+  ✓ Handoff created: handoffs/{{HANDOFF_FILENAME}}
+  ✓ execution.current_phase set to {{NEXT_PHASE_ID}}
+  ✓ state.yaml saved
+  ✓ Timestamp: {{COMPLETION_TIMESTAMP}}
+
+────────────────────────────────────────────────────────────────────────────
+
+NEXT PHASE PREVIEW
+
+  {{NEXT_PHASE_OBJECTIVE}}
+
+  Key Deliverables:
+    {{NEXT_PHASE_DELIVERABLES}}
+
+  Constraints:
+    {{NEXT_PHASE_CONSTRAINTS}}
+
+────────────────────────────────────────────────────────────────────────────
+
+Ready to begin {{NEXT_PHASE_ID}}?
+
+  → Type 'start' or 'next phase' to begin immediately
+  → Or type 'review' to examine the current phase's deliverables first
+
+───────────────────────────────────────────────────────────────────────────────
+Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}
+Homepage: https://rhumbprotocol.dev
+───────────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,15 @@
+# Negative fixture for INV-1 (plan_id mismatch).
+# state.yaml's plan_id intentionally differs from PLAN.md's plan_id.
+
+plan_id: RWP-STATE-1111
+title: "Plan ID Mismatch (negative fixture)"
+rwp_version: "0.25.1"
+
+execution:
+  status: in_progress
+  current_phase: P-01
+
+phases:
+  P-01:
+    title: "Sole phase"
+    status: in_progress

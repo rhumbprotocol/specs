@@ -1,0 +1,13 @@
+{
+  "overview": "Plan missing the required title field — fixture exercises required-property enforcement.",
+  "phases": [
+    {
+      "phase_id": "P-01",
+      "title": "Phase",
+      "objective": "Do the thing.",
+      "deliverables": ["x"],
+      "tasks": ["x"],
+      "verification": ["x"]
+    }
+  ]
+}

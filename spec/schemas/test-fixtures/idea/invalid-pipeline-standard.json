@@ -1,0 +1,13 @@
+{
+  "id": "IDEA-0022",
+  "type": "idea",
+  "title": "Invalid: pipeline uses legacy 'standard' value (KD-38.5 anti-regression — public values are direct, architecture, one_off)",
+  "status": "captured",
+  "classification": "public",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Tester", "role": "engineer" }
+  ],
+  "pipeline": "standard"
+}

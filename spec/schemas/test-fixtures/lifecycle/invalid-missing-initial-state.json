@@ -1,0 +1,12 @@
+{
+  "states": ["captured", "refining", "ready", "approved", "promoted", "parked", "discarded"],
+  "transitions": {
+    "captured": ["refining", "parked", "discarded"],
+    "refining": ["ready", "parked", "discarded"],
+    "ready": ["approved", "parked", "discarded"],
+    "approved": ["promoted", "discarded"],
+    "promoted": [],
+    "parked": ["refining", "ready", "approved", "discarded"],
+    "discarded": []
+  }
+}

@@ -1,0 +1,4 @@
+; GRM-2: sub-phase letter must be uppercase A-Z.
+; The TypeScript reference parser (util/sequence-parser.ts line 304)
+; accepts uppercase A-Z only; this validator follows that contract.
+P-01-a

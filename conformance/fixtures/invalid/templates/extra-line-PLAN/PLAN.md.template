@@ -1,0 +1,374 @@
+---
+# Rhumb Workflow Protocol: Plan Document
+
+plan_id: RWP-NNNN
+request_id: REQ-NNNNN | null             # Origin request that spawned this plan
+name: [Plan Title]
+classification: public | confidential
+status: planning | processing | completed | on_hold
+created: {{TIMESTAMP}}
+author: [AI/Human name]
+phases: NN
+current_phase: P-NN
+started: {{TIMESTAMP}}
+completed: {{TIMESTAMP}}
+parent: RWP-NNNN | null
+rwp_version: "0.25.1"                     # Rhumb Workflow Protocol version
+dependencies:
+  - RWP-NNNN
+  - RWP-NNNN
+packages:
+  - package-name-1
+  - package-name-2
+
+# =============================================================================
+# TRACKING (optional - customize to your workflow)
+# =============================================================================
+# Consider integrating with your issue tracker for better visibility.
+# All fields are optional. Use what helps your team, ignore the rest.
+
+tracking:
+  ticket: null              # JIRA-123, GH-456, LINEAR-789, etc.
+  epic: null                # Parent epic if applicable
+  external_url: null        # Link to external tracker
+  assigned_to: null         # Person or team
+  estimate: null            # Your format: points, t-shirt, time, etc.
+  actual: null              # Fill after completion for calibration
+  priority: null            # Your format: P0-P3, High/Med/Low, 1-5
+  labels: []                # Custom tags for filtering
+
+---
+
+# RWP-NNNN: [Plan Title]
+
+---
+
+## Executive Summary
+
+[2-3 sentence overview of what this plan accomplishes. Be specific about the problem being solved and the approach taken. Avoid vague language.]
+
+---
+
+## Problem Statement
+
+[What problem does this plan solve? Why is it needed? Include context about the current state and why change is necessary.]
+
+---
+
+## Task Hierarchy
+
+RWP uses a 4-level hierarchy for work decomposition:
+
+```
+P-01 (Phase)                    # Top-level phase
+P-02 (Phase)                    # Another top-level phase
+  └── P-02-A (Sub-phase)        # Optional sub-phase within P-02
+  └── P-02-B (Sub-phase)        # Another sub-phase
+        └── Task T-02-B-01      # Task within sub-phase (if needed)
+              └── MT-001        # Micro-task within task (if needed)
+P-03 (Phase)                    # Simple phase without sub-phases
+AUDIT                           # Special audit phase
+P-04 (Phase)
+  └── P-04-A (Sub-phase)
+  └── P-04-B (Sub-phase)
+```
+
+**When to use sub-phases**:
+- Complex phases that exceed ~60 minutes of work
+- Work that benefits from crash resilience (each sub-phase ~30 min)
+- Logically grouped work that should stay together
+
+**When to skip sub-phases**:
+- Simple phases that are naturally ~30-60 min
+- Straightforward work with clear single objectives
+
+---
+
+## Phase Breakdown
+
+### P-01: [Phase Title]
+
+**Depends On**: None
+**Parallel With**: None (or list parallel phases)
+**Estimated Duration**: 45 minutes
+
+**Objective**: [Clear, single-sentence objective for this phase]
+
+**Tasks**:
+1. [Explicit task with full file paths - e.g., "Create `/path/to/file.md` with X content"]
+2. [Another task with specific instructions]
+3. [Continue as needed]
+
+**Files to Create/Modify**:
+| File | Action | Description |
+|------|--------|-------------|
+| `/full/path/to/file` | Create/Modify | What changes |
+
+**Verification**:
+```bash
+# Shell commands to verify completion
+ls -la /path/to/file
+grep "expected content" /path/to/file
+```
+
+**Expected Results**:
+- [Bullet list of what should be true after phase completes]
+- [Be specific and verifiable]
+
+---
+
+### P-02: [Complex Phase Title]
+
+**Depends On**: P-01
+**Parallel With**: P-03 (if independent)
+**Estimated Duration**: 90 minutes (split into sub-phases)
+
+**Objective**: [Overall objective for this phase - sub-phases break down the work]
+
+> **Note**: This phase uses sub-phases for crash resilience.
+
+#### P-02-A: [First Sub-Phase Title] (~30 min)
+
+**Depends On**: P-01
+**Objective**: [Specific objective for this sub-phase]
+
+**Tasks**:
+1. [Task 1]
+2. [Task 2]
+
+**Files to Create/Modify**:
+| File | Action | Description |
+|------|--------|-------------|
+| `/full/path/to/file` | Create/Modify | What changes |
+
+**Verification**:
+```bash
+# Verification commands
+```
+
+**Expected Results**:
+- [Expected results for sub-phase A]
+
+---
+
+#### P-02-B: [Second Sub-Phase Title] (~30 min)
+
+**Depends On**: P-02-A
+**Objective**: [Specific objective for this sub-phase]
+
+**Tasks**:
+1. [Task 1]
+2. [Task 2]
+
+**Files to Create/Modify**:
+| File | Action | Description |
+|------|--------|-------------|
+| `/full/path/to/file` | Create/Modify | What changes |
+
+**Verification**:
+```bash
+# Verification commands
+```
+
+**Expected Results**:
+- [Expected results for sub-phase B]
+
+---
+
+#### P-02-C: [Third Sub-Phase Title] (~30 min)
+
+**Depends On**: P-02-B
+**Objective**: [Complete P-02 work]
+
+**Tasks**:
+1. [Final tasks for phase 2]
+
+**Expected Results**:
+- [Phase 2 complete]
+
+---
+
+### P-03: [Another Phase Title]
+
+**Depends On**: P-01 (can run parallel with P-02)
+**Parallel With**: P-02
+**Estimated Duration**: 45 minutes
+
+**Objective**: [Clear objective]
+
+**Tasks**:
+1. [Tasks for phase 3]
+
+**Files to Create/Modify**:
+| File | Action | Description |
+|------|--------|-------------|
+| `/full/path/to/file` | Create/Modify | What changes |
+
+**Verification**:
+```bash
+# Verification commands
+```
+
+**Expected Results**:
+- [Expected results]
+
+---
+
+### AUDIT: Post-Implementation Audit
+
+**Depends On**: P-02, P-03 (all prior phases)
+**Estimated Duration**: 30 minutes
+
+**Objective**: Verify all prior work meets quality standards
+
+**Audit Requirements**:
+- Consider running all tests
+- Consider verifying all expected files exist
+- Consider checking for lint/type errors
+- Consider reviewing all deliverables from P-01 through P-03
+- Document any deviations from plan
+
+**Verification**:
+```bash
+# Consider running these verification commands:
+# pnpm test
+# pnpm build
+# pnpm lint
+```
+
+**Audit Report**: `audits/AUD-[PLAN-ID]-YYYY-MM-DD.md`
+
+---
+
+### P-04: [Final Phase Title]
+
+**Depends On**: AUDIT
+**Estimated Duration**: 30 minutes
+**is_final**: true
+
+**Objective**: [Final documentation and cleanup]
+
+#### P-04-A: [Documentation Sub-Phase] (~30 min)
+
+**Tasks**:
+1. Update documentation
+2. Update package README
+3. Create FINAL.md
+
+**Expected Results**:
+- All documentation updated
+- FINAL.md created
+
+---
+
+## Phase Dependency Graph
+
+```
+P-01 (Foundation)
+  │
+  ├──── P-02 (Feature A) ─────────┐
+  │       ├── P-02-A              │
+  │       ├── P-02-B              │
+  │       └── P-02-C              │
+  │                               │
+  └──── P-03 (Feature B) ─────────┼──→ AUDIT
+                                  │
+                                  └──→ P-04 (Final)
+                                        └── P-04-A
+```
+
+---
+
+## Dependencies
+
+List all dependencies that must be satisfied before this plan can begin or continue.
+
+| Dependency | Type | Status | Notes |
+|------------|------|--------|-------|
+| [Dependency 1] | Plan/Package/External | Met/Unmet | [Why needed] |
+| [Dependency 2] | Plan/Package/External | Met/Unmet | [Why needed] |
+
+**Dependency Resolution**:
+- If dependencies are unmet, consider reviewing whether work should proceed
+- Document any overrides if you choose to proceed
+
+---
+
+## Files Reference
+
+### New Files
+
+| File | Purpose |
+|------|---------|
+| `/full/path/to/file1` | [What this file does] |
+| `/full/path/to/file2` | [What this file does] |
+
+### Modified Files
+
+| File | Changes |
+|------|---------|
+| `/full/path/to/existing1` | [What changes are made] |
+| `/full/path/to/existing2` | [What changes are made] |
+
+---
+
+## Success Criteria
+
+Define measurable criteria that indicate the plan has been successfully completed.
+
+1. [Specific, measurable criterion - e.g., "All X files exist in /path/"]
+2. [Another criterion - e.g., "Configuration validates without errors"]
+3. [Continue as needed]
+
+**Final Verification**:
+```bash
+# Commands to verify all success criteria are met
+# Consider running these after all phases complete
+```
+<!-- TODO: bash scripts need completed -->
+---
+
+## Risk Assessment
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| [Risk 1] | Low/Medium/High | Low/Medium/High | [How to mitigate] |
+| [Risk 2] | Low/Medium/High | Low/Medium/High | [How to mitigate] |
+
+---
+
+## Rollback Plan
+
+If this plan needs to be reverted:
+
+1. [Step to undo changes]
+2. [Another step]
+3. [Continue as needed]
+
+**Rollback Verification**:
+```bash
+# Commands to verify rollback completed successfully
+```
+
+---
+
+## Notes
+
+[Any additional context, decisions made, or information that might be helpful for future reference]
+
+---
+
+## Changelog
+
+| Date | Phase | Author | Changes |
+|------|-------|--------|---------|
+| YYYY-MM-DD | P-NN | [AI/Human] | [What changed] |
+| YYYY-MM-DD | P-NN-X | [AI/Human] | [Sub-phase change] |
+
+---
+
+Produced: {{TIMESTAMP}}
+By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
+Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.
+
+# Drift: this trailing comment was not in the canonical template.

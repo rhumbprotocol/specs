@@ -1,0 +1,15 @@
+{
+  "$schema": "https://rhumbprotocol.dev/schemas/plan.schema.json",
+  "title": "Minimal RWP Plan Fixture",
+  "overview": "Exercises every required field of plan.schema.json once.",
+  "phases": [
+    {
+      "phase_id": "P-01",
+      "title": "Bootstrap Phase",
+      "objective": "Stand up the initial scaffolding required by all later phases.",
+      "deliverables": ["scaffolding.md"],
+      "tasks": ["create scaffolding"],
+      "verification": ["scaffolding file exists"]
+    }
+  ]
+}

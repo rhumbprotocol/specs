@@ -1,0 +1,21 @@
+✓ HANDOFF CREATED
+
+Phase:      {{PHASE_ID}} - {{PHASE_TITLE}}
+File:       handoffs/{{HANDOFF_FILENAME}}
+Size:       ~{{HANDOFF_WORDS}} words
+Created:    {{CREATED_TIMESTAMP}}
+
+Includes:
+  • Phase summary and objectives
+  • Deliverables and quality metrics
+  • Rolling context from prior phases
+  • Design decisions and rationale
+  • Next phase prompt and setup
+
+Location:   .meridian/.private/handoffs/
+To review:  cat handoffs/{{HANDOFF_FILENAME}}
+
+───────────────────────────────────────────────────────────────────────────────
+Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}
+Homepage: https://rhumbprotocol.dev
+───────────────────────────────────────────────────────────────────────────────

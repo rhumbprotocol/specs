@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhumbprotocol.dev/schemas/v0.25.3/idea.schema.json",
+  "$comment": "First RWP schema authored against draft 2020-12 and the versioned $id convention (ACS-0040 KD-40.2 + KD-40.7). The five pre-existing schemas (handoff, intake, manifest, plan, state) ship under draft-07 and unversioned $ids; an ACS-0040 retrofit brings them forward in a separate plan. Authored under MP-0288 (ACS-0038 / AVD-0009 OPEN-row inheritance: Apache 2.0).",
+  "title": "RWP IDEA Schema",
+  "description": "JSON Schema for Rhumb Workflow Protocol (RWP) IDEA artifacts. IDEA is the universal capture artifact in RWP: every thought, feature request, bug report, architectural concept, or strategic initiative starts as an IDEA and progresses through the 7-state lifecycle (captured, refining, ready, approved, promoted, parked, discarded). Path selection happens at approved-time via the `pipeline` field, choosing among architecture (IDEA->AVD->ACS->MP), direct (IDEA->MP), or one_off (IDEA->execution). Per KD-38.6, lifecycle metadata fields are sparse: declared optional in this schema and conditionally required per state by the prose lifecycle spec (idea-lifecycle.spec.md) plus rhumb-validate Level-3 checks. Per KD-38.2, frontmatter is the source of truth on conflict with file location.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "title",
+    "status",
+    "classification",
+    "created",
+    "updated",
+    "authors"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^IDEA-[0-9]{4}$",
+      "description": "IDEA identifier in the form IDEA-NNNN (4-digit zero-padded). Must match the sequences.yaml authority for the implementation. Future extension to 5+ digits is a separate pattern revision."
+    },
+    "type": {
+      "const": "idea",
+      "description": "Artifact type discriminator. Always the literal string \"idea\" for this schema."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable IDEA title."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "captured",
+        "refining",
+        "ready",
+        "approved",
+        "promoted",
+        "parked",
+        "discarded"
+      ],
+      "description": "Lifecycle state per the 7-state enum (KD-38.6). Frontmatter is authoritative on conflict with file location (KD-38.2)."
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "confidential"
+      ],
+      "description": "Access classification. Public IDEAs are shareable artifacts; confidential IDEAs are restricted by the implementing organization."
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when the IDEA was first captured. Immutable after capture."
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of the most recent meaningful edit. Bump on every state transition or content change."
+    },
+    "authors": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Authors of the IDEA. Supports human + AI collaboration; minimum one entry. Suggested role values include architect, engineer, pm, assistant, reviewer, other; role is a free string to allow organization-specific values per KD-38.7 anti-over-prescription.",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "role"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Author name or handle."
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Author role. Suggested values: architect, engineer, pm, assistant, reviewer, other. Free string to permit organization-specific roles."
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Optional domain tags for indexing and search.",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "parent": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Optional upstream artifact reference. Typically IDEA-NNNN or REQ-NNNNN; free string to permit implementation-specific upstream IDs. null when the IDEA is freestanding."
+    },
+    "children": {
+      "type": "array",
+      "description": "Optional downstream artifact references populated as the IDEA progresses (e.g., AVD-NNNN, MP-NNNN). Free strings to permit implementation-specific downstream IDs.",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "pipeline": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "direct",
+        "architecture",
+        "one_off",
+        null
+      ],
+      "description": "Path-selection field decided at approved-time (KD-38.5). Values: architecture (IDEA->AVD->ACS->MP rigor path), direct (IDEA->MP fast path for directly-plannable work), one_off (IDEA->execution single-shot work). null means not yet routed. Default-to-architecture-when-ambiguous is the recommended posture."
+    },
+    "approved_by": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Approver name or handle. Populated when status transitions to approved. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "approved_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of approval. Populated when status transitions to approved. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "approval_policy": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Approval policy used (e.g., \"solo\" or \"review\"). Implementation-specific. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "promoted_to": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Downstream artifact identifier (e.g., AVD-NNNN or MP-NNNN). Populated when status transitions to promoted. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "promoted_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of promotion. Populated when status transitions to promoted. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "promoted_pipeline": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "direct",
+        "architecture",
+        "one_off",
+        null
+      ],
+      "description": "Pipeline path actually taken at promotion. Same enum as pipeline. Populated when status transitions to promoted. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "parked_as": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Free-string label for the parked classification (e.g., \"roadmap\", \"backlog\", or implementation-specific). Per KD-38.7, the directory layout for parked IDEAs is implementation-specific and not normative; the string value carried here is what matters for state-machine validity."
+    },
+    "parked_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Why the IDEA was parked. Populated when status transitions to parked. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "parked_until": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "Optional ISO-8601 timestamp until which the IDEA is parked; null means open-ended parking. ISO-8601 only; legacy quarter-shorthand (e.g., 2026-Q3) is not accepted."
+    },
+    "discarded_by": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Discarder name or handle. Populated when status transitions to discarded. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "discarded_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of discard. Populated when status transitions to discarded. Optional in schema; required-by-state per the prose lifecycle spec."
+    },
+    "discarded_reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Why the IDEA was discarded. Populated when status transitions to discarded. Optional in schema; required-by-state per the prose lifecycle spec (per KD-38.6, this field is required-when-discarded by the validator, not by JSON Schema's required[] which cannot conditionally require)."
+    }
+  }
+}

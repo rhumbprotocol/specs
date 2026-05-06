@@ -1,0 +1,16 @@
+{
+  "states": ["captured", "refining", "ready", "approved", "promoted", "parked", "discarded"],
+  "initial_state": "captured",
+  "transitions": {
+    "captured": ["refining"],
+    "refining": ["ready"],
+    "ready": ["approved"],
+    "approved": ["promoted"],
+    "promoted": [],
+    "parked": [],
+    "discarded": []
+  },
+  "meridian_extensions": {
+    "tier_target": "individual"
+  }
+}

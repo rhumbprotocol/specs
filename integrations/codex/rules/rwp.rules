@@ -1,0 +1,61 @@
+# RWP (Rhumb Workflow Protocol) rules for Codex
+# https://rhumbprotocol.dev
+# Protocol spec: docs/PROTOCOL.md
+# Reference implementation: YAKKL Meridian (https://meridian.yakkl.com)
+#
+# These rules provide safety guardrails for RWP plan workflows.
+# Format: Starlark using prefix_rule().
+
+# Prevent accidental deletion of plan directories
+prefix_rule(
+    pattern = ["rm", ["-rf", "-fr", "-r"]],
+    decision = "prompt",
+    justification = "Deleting plan directories may remove RWP artifacts and handoff documents.",
+    match = ["rm -rf .meridian", "rm -r plans/"],
+)
+
+# Prompt before git operations that could affect plan state
+prefix_rule(
+    pattern = ["git", ["reset", "checkout"]],
+    decision = "prompt",
+    justification = "Git reset or checkout may discard uncommitted RWP plan changes.",
+    match = ["git reset --hard", "git checkout -- ."],
+)
+
+# Prompt before modifying plan state files directly
+prefix_rule(
+    pattern = ["sed", ["-i"]],
+    decision = "prompt",
+    justification = "Direct edits to RWP YAML files may break plan state tracking. Consider using the plan workflow commands instead.",
+    match = ["sed -i 's/status: processing/status: completed/' state.yaml"],
+)
+
+# RWP Workflow Conventions (advisory)
+#
+# The following conventions are recommended when working with RWP plans:
+#
+# 1. Plan artifacts:
+#    - Consider creating all 6 required files when committing a plan
+#    - PLAN.md, INTAKE.yaml, MASTERPLAN.yaml, manifest.yaml, state.yaml, dependencies.yaml
+#
+# 2. Handoff documents:
+#    - Consider creating a handoff document after each phase completion
+#    - Handoff naming: HO-{PLAN_ID}-P-{NN}-{DATE}.md
+#    - Prompt naming: HO-{PLAN_ID}-P-{NN}-TO-P-{MM}-PROMPT.md
+#
+# 3. Audit checkpoints:
+#    - Consider scheduling audits every 3rd phase
+#    - A final audit at plan completion helps verify deliverables
+#
+# 4. Timestamps:
+#    - RWP uses ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ)
+#
+# 5. Plan IDs:
+#    - Format: MP-{NNNN} with zero-padded sequence numbers
+#
+# 6. RWP Version:
+#    - Include rwp_version field in YAML artifacts for compatibility tracking
+
+# Reference Implementation: YAKKL Meridian - https://meridian.yakkl.com
+# Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+# Created by YAKKL Inc. - https://yakkl.com

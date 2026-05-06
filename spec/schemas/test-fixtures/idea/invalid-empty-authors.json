@@ -1,0 +1,10 @@
+{
+  "id": "IDEA-0018",
+  "type": "idea",
+  "title": "Invalid: authors array is empty (minItems: 1)",
+  "status": "captured",
+  "classification": "public",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": []
+}

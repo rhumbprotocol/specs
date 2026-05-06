@@ -1,0 +1,11 @@
+{
+  "id": "IDEA-0014",
+  "type": "idea",
+  "title": "Invalid: missing required classification field",
+  "status": "captured",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Tester", "role": "engineer" }
+  ]
+}

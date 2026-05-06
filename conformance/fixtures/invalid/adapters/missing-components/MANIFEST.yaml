@@ -1,0 +1,11 @@
+# ADP-6 negative fixture: top-level `components:` block missing.
+# The validator must emit an AdapterShapeMismatch with message
+# prefix "ADP-6" mentioning "missing".
+
+integration:
+  name: "Missing-Components Adapter"
+  platform: "missing-components-platform"
+  rwp_version: "1.0.0-rc.1"
+  version: "0.1.0"
+
+# components: ... (intentionally omitted)

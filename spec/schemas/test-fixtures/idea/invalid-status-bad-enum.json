@@ -1,0 +1,12 @@
+{
+  "id": "IDEA-0020",
+  "type": "idea",
+  "title": "Invalid: status enum value out of set",
+  "status": "in_progress",
+  "classification": "public",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Tester", "role": "engineer" }
+  ]
+}

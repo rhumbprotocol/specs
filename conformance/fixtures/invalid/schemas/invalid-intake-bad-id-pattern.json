@@ -1,0 +1,28 @@
+{
+  "id": "INT-001",
+  "title": "Intake with three-digit suffix — pattern requires INT-NNNN (four digits).",
+  "captured": "2026-04-30T22:00:00Z",
+  "pain_points": [
+    {
+      "id": "PP-01",
+      "description": "x",
+      "impact": "low"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-01",
+      "type": "functional",
+      "description": "x",
+      "acceptance": "x"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "CON-01",
+      "type": "technical",
+      "description": "x"
+    }
+  ],
+  "success_criteria": ["x"]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "IDEA-0002",
+  "type": "idea",
+  "title": "Approved IDEA — per-state required fields populated",
+  "status": "approved",
+  "classification": "public",
+  "created": "2026-04-15T10:00:00Z",
+  "updated": "2026-05-01T16:00:00Z",
+  "authors": [
+    { "name": "A. Architect", "role": "architect" },
+    { "name": "Codex", "role": "assistant" }
+  ],
+  "tags": ["lifecycle", "example"],
+  "pipeline": "architecture",
+  "approved_by": "Hans Jones",
+  "approved_at": "2026-05-01T16:00:00Z",
+  "approval_policy": "solo"
+}

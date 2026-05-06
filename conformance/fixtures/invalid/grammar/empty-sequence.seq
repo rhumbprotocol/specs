@@ -1,0 +1,4 @@
+; GRM-4: a .seq file containing only whitespace and comments has no
+; sequence content. The grammar requires at least one phase-id.
+;
+; (this file intentionally has no non-comment tokens)

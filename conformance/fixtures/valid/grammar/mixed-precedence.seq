@@ -1,0 +1,4 @@
+; Mixed sequence demonstrating operator precedence and grouping.
+; AND binds tighter than OR; parens override precedence.
+; Reads: P-01 first, then P-02 and P-03 in parallel, then P-04.
+P-01, (P-02 + P-03), P-04

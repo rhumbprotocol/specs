@@ -1,0 +1,12 @@
+{
+  "id": "IDEA-0001",
+  "type": "idea",
+  "title": "Sample IDEA — universal capture baseline",
+  "status": "captured",
+  "classification": "public",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Jane Doe", "role": "engineer" }
+  ]
+}

@@ -1,0 +1,133 @@
+# Rhumb Workflow Protocol: Plan State Template
+# Real-time tracking of plan execution progress
+#
+# This file tracks the current state of a plan as it executes.
+# Update this file as phases complete to maintain accurate progress state.
+#
+# Usage:
+#   1. Create a copy of this template as state.yaml in your plan directory
+#   2. Update execution status and phase states as work progresses
+#   3. Create phase objects for each phase in your plan
+#   4. Update timestamps in ISO 8601 format
+
+# Plan identifier and metadata
+plan_id: RWP-NNNN
+request_id: REQ-NNNNN | null
+title: "{Plan Title}"
+rwp_version: "0.25.1"
+
+# High-level execution status and timeline
+execution:
+  status: planning  # planning | in_progress | completed | paused | failed
+  current_phase: P-NN  # Currently active phase
+  started_at: "{ISO 8601 timestamp}"
+  completed_at: null  # Filled when plan completes
+  last_heartbeat: "{ISO 8601 timestamp}"  # When state was last updated
+  heartbeat_timeout_minutes: 30  # Minutes before considering phase stale
+
+# Phase-by-phase tracking
+phases: {}
+  # P-01:
+  #   title: "Phase 1 Title"
+  #   status: pending  # pending | in_progress | completed | failed | skipped
+  #   started_at: null
+  #   completed_at: null
+  #   estimated_duration_minutes: 45
+  #   actual_duration_minutes: null
+  #
+  # P-02:
+  #   title: "Phase 2 Title"
+  #   status: pending
+  #   started_at: null
+  #   completed_at: null
+  #   estimated_duration_minutes: 90
+  #   actual_duration_minutes: null
+  #   sub_phases:
+  #     P-02-A:
+  #       title: "Sub-Phase 2-A Title"
+  #       status: pending
+  #       started_at: null
+  #       completed_at: null
+  #       estimated_duration_minutes: 30
+  #       actual_duration_minutes: null
+  #     P-02-B:
+  #       title: "Sub-Phase 2-B Title"
+  #       status: pending
+  #       started_at: null
+  #       completed_at: null
+  #       estimated_duration_minutes: 30
+  #       actual_duration_minutes: null
+  #
+  # AUDIT:
+  #   title: "Post-Implementation Audit"
+  #   status: pending
+  #   started_at: null
+  #   completed_at: null
+  #   estimated_duration_minutes: 30
+  #   actual_duration_minutes: null
+  #   is_audit: true
+
+# Audit schedule and checkpoint tracking
+audit_schedule:
+  enabled: true
+  checkpoints: []
+  # Sample checkpoint entry:
+  # - id: AUD-01
+  #   phase: P-03
+  #   status: pending  # pending | in_progress | completed | skipped
+  #   scheduled_after: P-03
+  #   started_at: null
+  #   completed_at: null
+  #   report_file: "audits/AUD-01-YYYY-MM-DD.md"
+
+# Error tracking
+errors:
+  total_count: 0
+  current: []
+  # Sample error entry:
+  # - phase: P-02-A
+  #   error_code: file_create_failed
+  #   message: "Failed to create file at /path/to/file"
+  #   recovery_action: "Manual intervention required"
+  #   timestamp: "{ISO 8601}"
+
+# Handoff document tracking
+handoffs:
+  last_handoff: null
+  pending_handoff: false
+  handoff_files: []
+  # Sample handoff entry:
+  # - file: "handoffs/HO-RWP-NNNN-P-01-A-2026-03-04.md"
+  #   phase: P-01-A
+  #   created_at: "{ISO 8601}"
+
+# Delivery tracking
+deliverables:
+  total_expected: 0
+  completed: 0
+  in_progress: 0
+  pending: 0
+  items: []
+  # Sample deliverable entry:
+  # - id: D-001
+  #   name: "Feature Implementation"
+  #   status: pending  # pending | in_progress | completed | blocked
+  #   target_phase: P-02-A
+  #   location: "packages/package-name/"
+  #   created_at: null
+  #   completed_at: null
+
+# Summary statistics
+statistics:
+  phases_completed: 0
+  phases_in_progress: 0
+  phases_pending: 0
+  estimated_total_duration_minutes: 0
+  actual_elapsed_minutes: 0
+  percentage_complete: 0
+
+---
+
+Produced: {{TIMESTAMP}}
+By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
+Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

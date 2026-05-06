@@ -1,0 +1,376 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rhumbprotocol.dev/schemas/state.schema.json",
+  "$comment": "See docs/PROTOCOL.md 'Lifecycle & State Machine' section for specification details",
+  "type": "object",
+  "title": "RWP State Schema",
+  "description": "JSON Schema for Rhumb Workflow Protocol (RWP) State artifacts (state.yaml). Tracks real-time execution status, phase progress, errors, and audit trail.",
+  "required": ["plan_id", "execution"],
+  "additionalProperties": false,
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "description": "Reference to parent plan identifier"
+    },
+    "state_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "description": "Schema version (e.g., 1.0)"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when state was created"
+    },
+    "execution": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": true,
+      "description": "Current workflow execution state",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["not_started", "in_progress", "completed", "error"],
+          "description": "Overall workflow status"
+        },
+        "current_phase": {
+          "type": "string",
+          "pattern": "^P-[0-9]{2}(-[A-C])?$",
+          "description": "Currently executing phase"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of workflow start"
+        },
+        "completed_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of workflow completion"
+        },
+        "last_heartbeat": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of last heartbeat"
+        },
+        "heartbeat_timeout_minutes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Timeout threshold for heartbeat detection"
+        },
+        "executor": {
+          "type": "string",
+          "description": "Executor agent/tool (e.g., meridian-agent-v1.2.0)"
+        },
+        "executor_host": {
+          "type": "string",
+          "description": "Host where executor is running"
+        },
+        "executor_pid": {
+          "type": "integer",
+          "description": "Process ID of executor"
+        }
+      }
+    },
+    "phases": {
+      "type": "object",
+      "description": "Status tracking for each phase",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "additionalProperties": true,
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Phase title"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "completed", "error"],
+            "description": "Current phase status"
+          },
+          "started_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when phase started"
+          },
+          "completed_at": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when phase completed"
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Actual duration in minutes"
+          },
+          "estimated_duration_minutes": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Estimated duration"
+          },
+          "progress_percent": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Progress percentage (0-100)"
+          },
+          "tasks": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Task list with completion status"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Dependent phases"
+          },
+          "handoff_created": {
+            "type": "boolean",
+            "description": "Has handoff document been created?"
+          },
+          "handoff_path": {
+            "type": "string",
+            "description": "Path to handoff document"
+          },
+          "handoff_validated": {
+            "type": "boolean",
+            "description": "Has handoff been validated?"
+          },
+          "handoff_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Handoff quality score"
+          },
+          "handoff_validator": {
+            "type": "string",
+            "description": "Tool/person who validated handoff"
+          },
+          "deliverables_verified": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of verified deliverables"
+          },
+          "tests_passed": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of passing tests"
+          },
+          "tests_failed": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of failing tests"
+          },
+          "notes": {
+            "type": "string",
+            "description": "General notes about the phase"
+          },
+          "estimated_completion": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Estimated completion if in progress"
+          },
+          "executor_notes": {
+            "type": "string",
+            "description": "Notes from executor about progress"
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "description": "Error tracking and recovery information",
+      "additionalProperties": true,
+      "properties": {
+        "occurred": {
+          "type": "boolean",
+          "description": "Has an error occurred?"
+        },
+        "phase": {
+          "type": ["string", "null"],
+          "description": "Phase where error occurred"
+        },
+        "task": {
+          "type": ["string", "null"],
+          "description": "Task where error occurred"
+        },
+        "message": {
+          "type": ["string", "null"],
+          "description": "Error message"
+        },
+        "timestamp": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO 8601 error timestamp"
+        },
+        "recoverable": {
+          "type": ["boolean", "null"],
+          "description": "Can the error be recovered?"
+        },
+        "resolution_attempted": {
+          "type": ["string", "null"],
+          "description": "Resolution strategy tried"
+        }
+      }
+    },
+    "audit_trail": {
+      "type": "object",
+      "description": "Summary of audit activity",
+      "additionalProperties": true,
+      "properties": {
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        },
+        "last_updater": {
+          "type": "string",
+          "description": "Who/what last updated state"
+        },
+        "update_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of updates"
+        },
+        "events_logged": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total events in history"
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "description": "Immutable append-only event log",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "event"],
+        "additionalProperties": true,
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 event timestamp"
+          },
+          "event": {
+            "type": "string",
+            "enum": ["execution_started", "phase_started", "phase_completed", "heartbeat", "error_observed", "error_recovered", "phase_paused"],
+            "description": "Type of event"
+          },
+          "phase": {
+            "type": ["string", "null"],
+            "description": "Associated phase"
+          },
+          "executor": {
+            "type": "string",
+            "description": "Executor that logged event"
+          },
+          "details": {
+            "type": "string",
+            "description": "Event details"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["info", "warning", "error"],
+            "description": "Event severity"
+          },
+          "verification": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Verification results if applicable"
+          },
+          "recovery": {
+            "type": "string",
+            "description": "Recovery action if error"
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Execution statistics and metrics",
+      "additionalProperties": true,
+      "properties": {
+        "total_phases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completed_phases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "in_progress_phases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pending_phases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "phases_with_errors": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "average_phase_duration_minutes": {
+          "type": "number",
+          "minimum": 0
+        },
+        "total_execution_time_minutes": {
+          "type": "number",
+          "minimum": 0
+        },
+        "planned_total_time_minutes": {
+          "type": "number",
+          "minimum": 0
+        },
+        "variance_percent": {
+          "type": "number"
+        },
+        "error_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "recovery_attempts": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "$examples": [
+    {
+      "plan_id": "P-0001",
+      "state_version": "1.0",
+      "created": "2026-03-04T08:00:00Z",
+      "execution": {
+        "status": "in_progress",
+        "current_phase": "P-02-A",
+        "started_at": "2026-03-04T08:00:00Z",
+        "last_heartbeat": "2026-03-04T12:30:00Z",
+        "executor": "meridian-agent-v1.2.0"
+      },
+      "phases": {
+        "P-01": {
+          "status": "completed",
+          "started_at": "2026-03-04T08:00:00Z",
+          "completed_at": "2026-03-04T09:00:00Z",
+          "duration_minutes": 60,
+          "handoff_created": true,
+          "deliverables_verified": 4,
+          "tests_passed": 24,
+          "tests_failed": 0
+        }
+      },
+      "history": [
+        {
+          "timestamp": "2026-03-04T08:00:00Z",
+          "event": "execution_started",
+          "executor": "meridian-agent-v1.2.0",
+          "details": "Workflow execution began"
+        }
+      ]
+    }
+  ]
+}

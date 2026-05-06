@@ -1,0 +1,3 @@
+; GRM-2: phase number must be exactly two digits.
+; The grammar requires P- followed by 2DIGIT (ABNF rule phase-number).
+P-1

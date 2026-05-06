@@ -1,0 +1,11 @@
+{
+  "type": "idea",
+  "title": "Invalid: missing required id field",
+  "status": "captured",
+  "classification": "public",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Tester", "role": "engineer" }
+  ]
+}

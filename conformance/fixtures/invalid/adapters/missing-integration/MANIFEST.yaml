@@ -1,0 +1,9 @@
+# ADP-1 negative fixture: top-level `integration:` block missing.
+# The validator must emit an AdapterShapeMismatch with message
+# prefix "ADP-1".
+
+# integration: ... (intentionally omitted)
+
+components: {}
+notes:
+  - "The validator should ignore unrelated top-level keys."

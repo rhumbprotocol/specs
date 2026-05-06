@@ -1,0 +1,95 @@
+# Rhumb Workflow Protocol: Intake
+# Example: Bug Fix - Submit Button Allows Double-Click Double-Submission
+
+id: INT-0001
+captured: "2026-04-25T09:30:00Z"
+title: "Submit Button Allows Double-Click Double-Submission"
+summary: "Users who double-click the form submit button cause the form to be submitted twice, producing duplicate records server-side. The button does not disable on the first click."
+classification: public
+rwp_version: "0.25.1"
+
+pain_points:
+  - id: PP-01
+    description: "Users report duplicate records appearing in the database after submitting forms"
+    impact: high
+    frequency: occasional
+    affected_areas:
+      - "Contact form (src/components/forms/ContactForm)"
+      - "Order checkout (src/components/checkout/OrderForm)"
+      - "Any form using the SubmitButton component"
+    examples:
+      - "Support ticket #4821: customer received two confirmation emails for one order"
+      - "Database audit found 47 duplicate contact-form submissions in the last 30 days, all from the same IP+user-agent within a 200ms window"
+
+requirements:
+  - id: REQ-01
+    description: "Submit button must disable immediately on first click and remain disabled until the server response is received"
+    type: functional
+    verification: "Click submit; verify button becomes disabled before second click can register"
+    priority: P1
+
+  - id: REQ-02
+    description: "Visual indication of in-flight submission (spinner or equivalent) so users know the click was received"
+    type: ux
+    verification: "Click submit; verify a spinner appears within 100ms of the click"
+    priority: P1
+
+  - id: REQ-03
+    description: "Button re-enables on response (success or error) so the user can retry on failure"
+    type: functional
+    verification: "Trigger a server error; verify button becomes enabled again with a retry-friendly state"
+    priority: P1
+
+  - id: REQ-04
+    description: "Regression test that simulates double-click and asserts exactly one network request"
+    type: testing
+    verification: "Run regression test in CI; confirm it fails on the pre-fix build and passes on the post-fix build"
+    priority: P1
+
+constraints:
+  - id: CON-01
+    description: "Fix must apply to all forms using the shared SubmitButton component, not require per-form changes"
+    type: scope
+    rationale: "Single-source fix prevents the same bug from recurring in future forms"
+    negotiable: false
+
+  - id: CON-02
+    description: "No new external dependencies"
+    type: technical
+    rationale: "The fix is a small behavioral change - adding a dependency for it would be disproportionate"
+    negotiable: false
+
+deliverable:
+  type: bug_fix
+  name: "Disable Submit on Click"
+  description: "Modify the shared SubmitButton component to disable on click, show a spinner, and re-enable on response. Add a regression test that simulates double-click and asserts single submission."
+  success_criteria:
+    - description: "Double-click on SubmitButton produces exactly one network request"
+      verification: "Regression test asserts requestCount === 1 after simulated double-click"
+      measurable: true
+    - description: "Spinner appears within 100ms of click"
+      verification: "Visual inspection + DOM assertion in component test"
+      measurable: true
+    - description: "Button re-enables on server response (success or error)"
+      verification: "Mock both success and error responses; verify button state in each"
+      measurable: true
+    - description: "Existing form integrations continue to work without per-form changes"
+      verification: "Run full test suite for ContactForm and OrderForm"
+      measurable: true
+  target_location: "src/components/forms/SubmitButton/"
+
+custom_fields: {}
+
+metadata:
+  request_id: null
+  original_plan: RWP-0001
+  classification: public
+  parent_plan: null
+  sub_plans: []
+  dependencies_met: []
+  dependencies_unmet: []
+
+---
+
+Produced: 2026-04-25T09:30:00Z
+By: Rhumb Protocol Contributors - https://rhumbprotocol.dev

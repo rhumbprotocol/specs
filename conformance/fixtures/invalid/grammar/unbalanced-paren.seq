@@ -1,0 +1,3 @@
+; GRM-3: opening paren without matching close.
+; The primary-expr "(" logical-expr ")" production requires a paired close.
+(P-01, P-02

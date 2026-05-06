@@ -1,0 +1,12 @@
+{
+  "id": "IDEA-0021",
+  "type": "idea",
+  "title": "Invalid: classification enum value out of set",
+  "status": "captured",
+  "classification": "restricted",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Tester", "role": "engineer" }
+  ]
+}

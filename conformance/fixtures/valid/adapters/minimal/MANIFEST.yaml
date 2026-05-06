@@ -1,0 +1,11 @@
+# Minimal valid adapter manifest — fixture for ACS-0015 §5 line 433
+# ("Minimal valid manifest per adapter"). Demonstrates the smallest
+# manifest that satisfies all six ADP-N invariants.
+
+integration:
+  name: "Minimal Test Adapter"
+  platform: "minimal-platform"
+  rwp_version: "1.0.0-rc.1"
+  version: "0.1.0"
+
+components: {}

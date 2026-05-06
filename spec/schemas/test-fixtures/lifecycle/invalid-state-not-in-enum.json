@@ -1,0 +1,13 @@
+{
+  "states": ["captured", "refining", "ready", "approved", "in_progress", "parked", "discarded"],
+  "initial_state": "captured",
+  "transitions": {
+    "captured": ["refining"],
+    "refining": ["in_progress"],
+    "ready": [],
+    "approved": [],
+    "in_progress": [],
+    "parked": [],
+    "discarded": []
+  }
+}

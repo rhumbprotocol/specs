@@ -1,0 +1,20 @@
+{
+  "id": "IDEA-0003",
+  "type": "idea",
+  "title": "Promoted IDEA — promoted_* fields populated",
+  "status": "promoted",
+  "classification": "public",
+  "created": "2026-04-15T10:00:00Z",
+  "updated": "2026-05-01T17:00:00Z",
+  "authors": [
+    { "name": "A. Architect", "role": "architect" }
+  ],
+  "pipeline": "architecture",
+  "children": ["AVD-0001", "MP-0001"],
+  "approved_by": "Hans Jones",
+  "approved_at": "2026-05-01T16:00:00Z",
+  "approval_policy": "solo",
+  "promoted_to": "AVD-0001",
+  "promoted_at": "2026-05-01T17:00:00Z",
+  "promoted_pipeline": "architecture"
+}

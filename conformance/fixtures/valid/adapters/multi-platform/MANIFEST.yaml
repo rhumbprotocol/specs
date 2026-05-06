@@ -1,0 +1,16 @@
+# Valid adapter manifest for a different `platform` value — fixture
+# demonstrating that `platform` is opaque to the validator. The
+# validator does not enumerate accepted platform names; it accepts any
+# non-empty string. New platforms can be onboarded without bumping
+# rhumb-validate.
+
+integration:
+  name: "Generic Workflow Adapter"
+  platform: "any-llm-cli"
+  rwp_version: "1.0.0-rc.1"
+  version: "1.4.2"
+
+components:
+  rules:
+    - name: workflow-rules
+      path: rules/workflow.rules

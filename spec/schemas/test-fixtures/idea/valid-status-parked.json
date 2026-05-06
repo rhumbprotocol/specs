@@ -1,0 +1,16 @@
+{
+  "id": "IDEA-0004",
+  "type": "idea",
+  "title": "Parked IDEA — parked_* fields populated",
+  "status": "parked",
+  "classification": "confidential",
+  "created": "2026-03-01T09:00:00Z",
+  "updated": "2026-04-20T14:00:00Z",
+  "authors": [
+    { "name": "P. Manager", "role": "pm" }
+  ],
+  "tags": ["roadmap"],
+  "parked_as": "roadmap",
+  "parked_reason": "Capacity-constrained for the current quarter; defer to next planning cycle",
+  "parked_until": "2026-09-01T00:00:00Z"
+}

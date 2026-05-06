@@ -1,0 +1,11 @@
+{
+  "id": "IDEA-0016",
+  "type": "idea",
+  "title": "Invalid: missing required updated field",
+  "status": "captured",
+  "classification": "public",
+  "created": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Tester", "role": "engineer" }
+  ]
+}
