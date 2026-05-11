@@ -119,7 +119,7 @@ When the user says "create it", "looks good", or `/plan commit`:
 #### 4.1 Create plan directory structure following RWP conventions:
 
 ```
-{plan_directory}/MP-{NNNN}-{short-name}/
+{plan_directory}/MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}/
   PLAN.md                              # RWP Plan template
   INTAKE.yaml                          # RWP Intake template
   MASTERPLAN.yaml                      # RWP Masterplan template
@@ -144,8 +144,8 @@ Consider using RWP templates from the `templates/` directory:
 | manifest.yaml | `MANIFEST-PLAN.yaml.template` |
 | state.yaml | `PLAN-STATE.yaml.template` |
 | dependencies.yaml | `DEPENDENCIES.yaml.template` |
-| Start prompt | `display/START-PROMPT.md.template` |
-| Phase prompts | `display/PROMPT.md.template` |
+| Start prompt | `START-PROMPT.md.template` |
+| Phase prompts | `PROMPT.md.template` |
 
 #### 4.3 Audit Schedule
 

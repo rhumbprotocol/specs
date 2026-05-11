@@ -1,9 +1,9 @@
 # Negative fixture for INV-3 + INV-4 (handoff file references that don't
 # resolve on disk).
 
-plan_id: RWP-MISSINGHO-3333
+plan_id: MP-3333-missing-handoff
 title: "Missing Handoff File (negative fixture)"
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 
 execution:
   status: in_progress
@@ -15,9 +15,9 @@ phases:
     status: completed
 
 handoffs:
-  last_handoff: "handoffs/HO-RWP-MISSINGHO-3333-P-01-2026-04-30.md"
+  last_handoff: "handoffs/HO-MP-3333-missing-handoff-P-01-2026-04-30.md"
   pending_handoff: false
   handoff_files:
-    - file: "handoffs/HO-RWP-MISSINGHO-3333-P-01-2026-04-30.md"
+    - file: "handoffs/HO-MP-3333-missing-handoff-P-01-2026-04-30.md"
       phase: P-01
       created_at: "2026-04-30T12:00:00Z"

@@ -25,62 +25,11 @@ These are not packaged for distribution yet. They are reference code intended
 to be read alongside the spec.
 
 ---
-
-## Planned: `rhumbproto` validator CLI
-
-The validator is a planned CLI utility that will validate RWP artifacts
-against the published schemas and conformance levels. It is not yet
-implemented; this section captures the design intent so contributors and
-implementors can follow along.
-
-### Design intent
-
-```
-util/
-├── README.md                       (this file)
-├── sequence-parser.ts              (existing)
-├── sequence-parser.test.ts         (existing)
-├── uuid-generator.ts               (existing)
-├── uuid-generator.test.ts          (existing)
-└── cli/                            (planned)
-    ├── rhumbproto.ts               (CLI entry point)
-    ├── validators/
-    │   ├── schema-meta.ts          (validates spec/schemas/* against the
-    │   │                            JSON Schema metaschema)
-    │   ├── template-conformance.ts (validates each template against its
-    │   │                            corresponding schema)
-    │   ├── artifact.ts             (validates user PLAN/INTAKE/state/manifest
-    │   │                            files against the published schemas)
-    │   └── conformance-level.ts    (runs conformance-levels.md checks)
-    └── README.md                   (CLI usage docs)
-```
-
-### Intended commands
-
-```bash
-# Validate one file against its inferred schema
-rhumbproto validate <path>
-
-# Validate everything in a directory
-rhumbproto validate <directory>
-
-# Validate the spec repo's own schemas and templates
-rhumbproto validate --spec-self
-
-# Run conformance-level checks at a given level
-rhumbproto conform <directory> --level <1|2|3>
-
-# Print version and supported schemas
-rhumbproto info
-```
-
 ### Distribution plan
 
 | Channel | Package name | When |
 |---------|--------------|------|
-| npm | `@rhumbprotocol/validator` | After the CLI surface stabilizes |
-| GitHub Action | `rhumbprotocol/validate-action` | Co-released with the npm package, for CI use |
-| Rust port | `rhumbproto` (crates.io) | Optional, only if non-Node implementations request it |
+| Rust | `rhumb` (crates.io) | Optional, only if implementations want it |
 
 A GitHub Action wrapping the validator means contributors and downstream
 consumers can drop one workflow step into their CI to validate every PR
@@ -101,7 +50,8 @@ The same rules in [CONTRIBUTING.md](../CONTRIBUTING.md) and
 
 For reference-implementation code specifically:
 
-- Code must compile and pass its tests on Node.js 20 LTS or newer.
+- Code must compile and pass its tests on Node.js 20 LTS or newer if Typescript.
+- Or, If Code is in Rust it must compile and pass its tests in Rust which means the latest Rust - Cargo
 - New utilities require a spec section that defines the format the utility
   consumes or produces. Reference implementations follow the spec; they do
   not extend it.

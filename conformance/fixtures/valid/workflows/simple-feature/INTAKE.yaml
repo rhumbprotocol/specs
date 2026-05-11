@@ -6,7 +6,7 @@ captured: "2026-03-01T10:00:00Z"
 title: "Add Dark Mode Toggle to Settings Page"
 summary: "Users want dark mode. Add a toggle in the settings page that switches between light and dark themes, persisting the preference in localStorage."
 classification: public
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 
 pain_points:
   - id: PP-01
@@ -72,7 +72,7 @@ custom_fields: {}
 
 metadata:
   request_id: null
-  original_plan: RWP-0042
+  original_plan: MP-0042-dark-mode-toggle
   classification: public
   parent_plan: null
   sub_plans: []

@@ -1,22 +1,22 @@
 ---
 # Rhumb Workflow Protocol: Plan Document
 
-plan_id: RWP-NNNN
+plan_id: MP-NNNN-short-name
 request_id: REQ-NNNNN | null             # Origin request that spawned this plan
 name: [Plan Title]
 classification: public | confidential
-status: planning | processing | completed | on_hold
+status: planning | in_progress | paused | completed | failed
 created: {{TIMESTAMP}}
 author: [AI/Human name]
 phases: NN
 current_phase: P-NN
 started: {{TIMESTAMP}}
 completed: {{TIMESTAMP}}
-parent: RWP-NNNN | null
-rwp_version: "0.25.1"                     # Rhumb Workflow Protocol version
+parent: MP-NNNN-short-name | null
+rwp_version: "{{RWP_VERSION}}"                     # Rhumb Workflow Protocol version
 dependencies:
-  - RWP-NNNN
-  - RWP-NNNN
+  - MP-NNNN-short-name
+  - MP-NNNN-short-name
 packages:
   - package-name-1
   - package-name-2
@@ -39,7 +39,7 @@ tracking:
 
 ---
 
-# RWP-NNNN: [Plan Title]
+# MP-NNNN-short-name: [Plan Title]
 
 ---
 
@@ -325,7 +325,7 @@ Define measurable criteria that indicate the plan has been successfully complete
 # Commands to verify all success criteria are met
 # Consider running these after all phases complete
 ```
-<!-- TODO: bash scripts need completed -->
+<!-- bash scripts can go here if needed or anything else -->
 ---
 
 ## Risk Assessment
@@ -366,7 +366,6 @@ If this plan needs to be reverted:
 | YYYY-MM-DD | P-NN-X | [AI/Human] | [Sub-phase change] |
 
 ---
-
 Produced: {{TIMESTAMP}}
 By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
 Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

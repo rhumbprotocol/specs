@@ -14,10 +14,10 @@
 #   4. Define audit checkpoints
 
 # Plan identification
-plan_id: RWP-NNNN
+plan_id: MP-NNNN-short-name
 request_id: REQ-NNNNN | null
 title: "{Plan Title}"
-rwp_version: "0.25.1"
+rwp_version: "{{RWP_VERSION}}"
 created: "{ISO 8601}"
 
 # ============================================================================
@@ -187,27 +187,27 @@ audit_schedule:
 
 handoffs:
   - phase: P-01
-    handoff_file: "handoffs/HO-RWP-NNNN-P-01-2026-MM-DD.md"
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-01-2026-MM-DD.md"
     created_at: null
     status: pending
 
   - phase: P-02-A
-    handoff_file: "handoffs/HO-RWP-NNNN-P-02-A-2026-MM-DD.md"
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-02-A-2026-MM-DD.md"
     created_at: null
     status: pending
 
   - phase: P-02-B
-    handoff_file: "handoffs/HO-RWP-NNNN-P-02-B-2026-MM-DD.md"
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-02-B-2026-MM-DD.md"
     created_at: null
     status: pending
 
   - phase: P-02-C
-    handoff_file: "handoffs/HO-RWP-NNNN-P-02-C-2026-MM-DD.md"
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-02-C-2026-MM-DD.md"
     created_at: null
     status: pending
 
   - phase: P-03
-    handoff_file: "handoffs/HO-RWP-NNNN-P-03-2026-MM-DD.md"
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-03-2026-MM-DD.md"
     created_at: null
     status: pending
 
@@ -227,7 +227,6 @@ summary:
   overall_status: planning  # planning | in_progress | on_hold | completed | failed
 
 ---
-
 Produced: {{TIMESTAMP}}
 By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
 Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

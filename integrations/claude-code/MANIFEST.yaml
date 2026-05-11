@@ -9,7 +9,7 @@
 integration:
   name: "Rhumb Workflow Protocol (RWP)"
   platform: "claude-code"
-  rwp_version: "0.25.1"
+  rwp_version: "0.26.0"
   version: "0.1.0"
   description: "RWP plan management integration for Claude Code"
 
@@ -50,12 +50,12 @@ templates:
     - "MANIFEST-PLAN.yaml.template"
     - "PLAN-STATE.yaml.template"
     - "DEPENDENCIES.yaml.template"
-    - "display/START-PROMPT.md.template"
-    - "display/PROMPT.md.template"
+    - "START-PROMPT.md.template"
+    - "PROMPT.md.template"
     - "display/PLAN-DRAFT-DISPLAY.md.template"
     - "display/PLAN-COMMIT-DISPLAY.md.template"
     - "display/PHASE-COMPLETE-DISPLAY.md.template"
-    - "display/HANDOFF-COMPLETE-DISPLAY.md.template"
+    - "display/SUBPHASE-COMPLETE-DISPLAY.md.template"
 
 schemas:
   referenced:

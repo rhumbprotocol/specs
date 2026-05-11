@@ -1,7 +1,8 @@
 # GitHub Org Profile Staging
 
-This directory stages the contents of the `rhumbprotocol/.github` repository,
-which controls what visitors see at https://github.com/rhumbprotocol.
+This directory mirrors the org profile content now staged in `.github/`.
+The deploy target is the `rhumbprotocol/.github` repository, which controls
+what visitors see at https://github.com/rhumbprotocol.
 
 ## How GitHub Org Profiles Work
 
@@ -18,13 +19,13 @@ github.com/rhumbprotocol/.github
 ## To Deploy
 
 1. Create the repository: `rhumbprotocol/.github` (must be public).
-2. Copy the `profile/` subdirectory from this staging location into that repo.
+2. Copy `.github/profile/` and `.github/assets/` into that repo.
 3. Commit and push to `main`.
 4. Visit https://github.com/rhumbprotocol to verify the README renders.
 
 ## Why This Is Staged Here
 
-The `rhumbprotocol/.github` repository does not yet exist. This staging
-directory keeps the content version-controlled alongside the spec and lets
-us iterate before the org profile goes live. Once the `.github` repo exists,
-this directory may be removed or kept as a mirror copy, at your discretion.
+The `rhumbprotocol/.github` repository may be managed separately from the
+specification repository. Keeping this mirror in `specs` makes the org profile
+reviewable with the protocol source, while `.github/` contains the files GitHub
+uses directly when this repository itself is viewed.

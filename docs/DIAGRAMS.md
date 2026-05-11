@@ -10,8 +10,9 @@ and specifications in this repository.
 |---|---|---|
 | Artifact constellation | Shows the five core files around the RWP contract | `docs/GETTING-STARTED.md`, `docs/PROTOCOL.md`, `templates/`, `spec/schemas/` |
 | IDEA lifecycle state machine | Shows concept state transitions from capture through promotion, parking, or discard | `spec/lifecycle/idea-lifecycle.spec.md`, `spec/schemas/idea.schema.json`, `spec/schemas/lifecycle.schema.json` |
-| Architecture path | Shows `IDEA -> AVD -> ACS -> MP` as the path from concept to executable work | `templates/IDEA.md.template`, `templates/architecture/AVD-TEMPLATE.md`, `templates/architecture/ACS-TEMPLATE.md`, `templates/PLAN.md.template` |
+| Architecture path | Shows `IDEA -> AVD -> ACS -> MP` as the path from concept to executable work | `templates/IDEA.md.template`, `templates/AVD.md.template`, `templates/ACS.md.template`, `templates/PLAN.md.template` |
 | Conformance ladder | Shows Minimal, Standard, and Full adoption depth | `spec/conformance-levels.md`, `conformance/` |
+| Implementation profiles | Shows Core File-Tree Profile versus Meridian Reference Profile | `docs/IMPLEMENTATION-PROFILES.md`, Meridian `meridian-ops/src/paths.rs` |
 | Portability map | Shows adapters as consumers of the protocol, not owners of it | `integrations/`, `docs/PROTOCOL.md` |
 
 ## Artifact Constellation
@@ -63,6 +64,20 @@ The conformance ladder presents adoption depth without overstating support:
 | Minimal | Plan and state continuity |
 | Standard | Intake, manifest, handoff, and sub-phase support |
 | Full | Audit, UUID, lifecycle, schema, and validator-backed workflow support |
+
+## Implementation Profiles
+
+The implementation profile diagram must show that directory layout is not core
+RWP:
+
+| Profile | Diagram Emphasis |
+|---|---|
+| Core File-Tree | `rwp/plans/<plan-id>/` with all plan artifacts together |
+| Meridian Reference | `.meridian/.private/{runtime,data,knowledge}` split, with plan artifacts under `knowledge/plans/<lifecycle>/` |
+| Custom | Any layout that preserves artifact semantics and validation behavior |
+
+The Meridian profile view must label plan-level `state.yaml` separately from
+workspace-level `.private/runtime/STATE.yaml`.
 
 ## Portability Map
 

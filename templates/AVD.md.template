@@ -10,7 +10,7 @@ author: "Author Name"
 parent: null
 children: []
 tags: []
-rwp_version: 0.25.1
+rwp_version: "{{RWP_VERSION}}"
 ---
 
 # Architecture Vision Document: {Title}
@@ -304,9 +304,6 @@ List unresolved decisions or areas requiring further exploration. These invite c
 - **Consumer group management**: How should downstream systems manage parallel consumption without duplicates?
 
 ---
-
----
-
 Produced: {{TIMESTAMP}}
 By: Rhumb Workflow Protocol™ (RWP) - https://rhumbprotocol.dev
 Reference Implementation: YAKKL® Meridian™ - https://meridian.yakkl.com

@@ -16,12 +16,12 @@
       "properties": {
         "filename": {
           "type": "string",
-          "pattern": "^HO-.*-[0-9]{4}-[0-9]{2}-[0-9]{2}\\.md$",
-          "description": "Standard handoff filename (e.g., HO-MP-0235-P-01-C-2026-03-04.md)"
+          "pattern": "^HO-MP-[0-9]{4}-[a-z0-9]+(?:-[a-z0-9]+)*-P-[0-9]{2}(-[A-Z])?-[0-9]{4}-[0-9]{2}-[0-9]{2}\\.md$",
+          "description": "Standard handoff filename (e.g., HO-MP-0235-rhumb-workflow-protocol-P-01-C-2026-03-04.md)"
         },
         "phase": {
           "type": "string",
-          "pattern": "^P-[0-9]{2}(-[A-C])?$",
+          "pattern": "^P-[0-9]{2}(-[A-Z])?$",
           "description": "Phase identifier"
         },
         "date": {
@@ -48,7 +48,7 @@
       "properties": {
         "phase": {
           "type": "string",
-          "pattern": "^P-[0-9]{2}(-[A-C])?$",
+          "pattern": "^P-[0-9]{2}(-[A-Z])?$",
           "description": "Phase identifier"
         },
         "phase_title": {
@@ -57,7 +57,7 @@
         },
         "status": {
           "type": "string",
-          "enum": ["COMPLETED", "PARTIAL", "BLOCKED", "ERROR"],
+          "enum": ["completed", "partial", "blocked", "failed"],
           "description": "Completion status"
         },
         "duration_minutes": {

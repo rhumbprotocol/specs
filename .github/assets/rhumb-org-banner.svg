@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" role="img" aria-label="Rhumb Protocol organization banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#071116"/>
+      <stop offset=".5" stop-color="#0d1b2a"/>
+      <stop offset="1" stop-color="#16323b"/>
+    </linearGradient>
+    <radialGradient id="glow-l" cx="0" cy=".5" r=".55">
+      <stop stop-color="#23a7a6" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#23a7a6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-r" cx="1" cy=".4" r=".55">
+      <stop stop-color="#d04f2f" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#d04f2f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mark-bearing" x1="56" y1="127" x2="117" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f6b73"/>
+      <stop offset=".58" stop-color="#23a7a6"/>
+      <stop offset="1" stop-color="#d04f2f"/>
+    </linearGradient>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <circle cx="0" cy="0" r="1" fill="#f7f1e4" fill-opacity=".10"/>
+    </pattern>
+    <clipPath id="banner-pole-mask">
+      <path d="M0 0H128V128H0Z M64 64 m-3.4 0 a3.4 3.4 0 1 0 6.8 0 a3.4 3.4 0 1 0 -6.8 0 Z" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1500" height="500" fill="url(#bg)"/>
+  <rect width="1500" height="500" fill="url(#grid)"/>
+  <rect width="1500" height="500" fill="url(#glow-l)"/>
+  <rect width="1500" height="500" fill="url(#glow-r)"/>
+
+  <g stroke="#f7f1e4" stroke-linecap="round">
+    <g stroke-opacity=".18" stroke-width="2">
+      <line x1="1230" y1="248" x2="1230" y2="108"/>
+      <line x1="1230" y1="248" x2="1329" y2="149"/>
+      <line x1="1230" y1="248" x2="1370" y2="248"/>
+      <line x1="1230" y1="248" x2="1329" y2="347"/>
+      <line x1="1230" y1="248" x2="1230" y2="388"/>
+      <line x1="1230" y1="248" x2="1131" y2="347"/>
+      <line x1="1230" y1="248" x2="1090" y2="248"/>
+      <line x1="1230" y1="248" x2="1131" y2="149"/>
+    </g>
+    <circle cx="1230" cy="248" r="140" fill="none" stroke-opacity=".22" stroke-width="2.5"/>
+    <circle cx="1230" cy="248" r="92" fill="none" stroke-opacity=".14" stroke-width="2"/>
+    <circle cx="1230" cy="248" r="44" fill="none" stroke-opacity=".10" stroke-width="1.5"/>
+  </g>
+
+  <path d="M1370.00 248.00C1362.64 270.65 1349.98 291.11 1332.28 307.05C1317.34 320.49 1299.46 330.10 1279.81 334.28C1263.23 337.80 1246.12 337.27 1230.00 332.04C1216.40 327.62 1204.12 320.02 1194.55 309.39C1186.48 300.43 1180.72 289.70 1178.21 277.90C1176.10 267.95 1176.41 257.68 1179.56 248.00C1182.21 239.84 1186.77 232.47 1193.15 226.72C1198.53 221.88 1204.97 218.42 1212.05 216.91C1218.03 215.64 1224.19 215.83 1230.00 217.72C1234.90 219.31 1239.32 222.05 1242.77 225.88C1245.68 229.11 1247.76 232.98 1248.66 237.23C1249.42 240.81 1249.31 244.51 1248.18 248.00C1247.22 250.94 1245.58 253.60 1243.28 255.67C1241.34 257.41 1239.02 258.66 1236.47 259.20C1234.31 259.66 1232.09 259.59 1230.00 258.91"
+        fill="none" stroke="#f7f1e4" stroke-opacity=".22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(96 112) scale(1.21875)">
+    <rect x="2" y="2" width="124" height="124" rx="28" fill="#0d1b2a"/>
+    <rect x="6" y="6" width="116" height="116" rx="24" fill="none" stroke="#f7f1e4" stroke-opacity=".10" stroke-width="1.5"/>
+    <g stroke="#f7f1e4" stroke-opacity=".22" stroke-width="1.25" stroke-linecap="round">
+      <line x1="64" y1="64" x2="64" y2="20"/>
+      <line x1="64" y1="64" x2="95.11" y2="32.89"/>
+      <line x1="64" y1="64" x2="108" y2="64"/>
+      <line x1="64" y1="64" x2="95.11" y2="95.11"/>
+      <line x1="64" y1="64" x2="64" y2="108"/>
+      <line x1="64" y1="64" x2="32.89" y2="95.11"/>
+      <line x1="64" y1="64" x2="20" y2="64"/>
+      <line x1="64" y1="64" x2="32.89" y2="32.89"/>
+    </g>
+    <circle cx="64" cy="64" r="46" fill="none" stroke="#f7f1e4" stroke-opacity=".30" stroke-width="1.5"/>
+    <circle cx="64" cy="64" r="24" fill="none" stroke="#f7f1e4" stroke-opacity=".14" stroke-width="1"/>
+    <path clip-path="url(#banner-pole-mask)"
+          d="M110.00 64.00C106.98 71.29 102.33 77.71 96.07 82.52C91.03 86.38 85.20 88.99 78.91 89.82C73.84 90.48 68.72 89.95 64.00 88.00C60.20 86.42 56.85 84.00 54.34 80.73C52.32 78.10 50.96 75.06 50.53 71.78C50.18 69.13 50.46 66.46 51.48 64.00C52.30 62.02 53.57 60.27 55.27 58.96C56.64 57.91 58.23 57.20 59.94 56.97C61.32 56.79 62.71 56.94 64.00 57.47C65.03 57.90 65.95 58.56 66.63 59.45C67.18 60.16 67.55 60.99 67.67 61.88C67.76 62.60 67.69 63.33 67.41 64.00C67.18 64.54 66.84 65.02 66.38 65.37C66.00 65.66 65.57 65.85 65.10 65.91C64.73 65.96 64.35 65.92 64.00 65.78C63.72 65.66 63.47 65.48 63.28 65.24C63.13 65.04 63.03 64.82 63.00 64.58C62.98 64.38 63.00 64.18 63.07 64.00"
+          fill="none" stroke="url(#mark-bearing)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="110" cy="64" r="3.6" fill="#f7f1e4"/>
+    <circle cx="110" cy="64" r="1.7" fill="#0f6b73"/>
+    <circle cx="64" cy="64" r="3.4" fill="#c89b3c"/>
+    <circle cx="64" cy="64" r="1.4" fill="#0d1b2a"/>
+  </g>
+
+  <text x="290" y="200" fill="#f7f1e4" font-family="Georgia, &quot;Times New Roman&quot;, serif" font-size="92" font-weight="700" letter-spacing="-4">Rhumb Protocol</text>
+  <text x="292" y="262" fill="#9bcfd1" font-family="&quot;Avenir Next&quot;, &quot;Segoe UI&quot;, sans-serif" font-size="21" font-weight="800" letter-spacing="4.5">OPEN AI WORKFLOW PROTOCOL</text>
+  <text x="292" y="320" fill="#f7f1e4" fill-opacity=".75" font-family="&quot;Avenir Next&quot;, &quot;Segoe UI&quot;, sans-serif" font-size="26">Portable plans, state, manifests, handoffs, and audit trails.</text>
+  <text x="292" y="412" fill="#f7f1e4" fill-opacity=".48" font-family="&quot;Avenir Next&quot;, &quot;Segoe UI&quot;, sans-serif" font-size="18" font-weight="600" letter-spacing="3">RWP v0.26.0 · APACHE-2.0 · RHUMBPROTOCOL.DEV</text>
+</svg>

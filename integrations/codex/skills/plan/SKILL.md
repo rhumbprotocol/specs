@@ -85,7 +85,7 @@ When the user approves, create the RWP plan directory with all artifacts:
 #### Directory Structure
 
 ```
-{plan_directory}/MP-{NNNN}-{short-name}/
+{plan_directory}/MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}/
   PLAN.md
   INTAKE.yaml
   MASTERPLAN.yaml
@@ -108,7 +108,7 @@ After creating all files:
 ## RWP Conventions
 
 ### Plan IDs
-- Format: `MP-{NNNN}` (zero-padded sequence number)
+- Format: `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` (zero-padded sequence number)
 
 ### Phase IDs
 - Traditional: `P-01`, `P-02`, `P-03`
@@ -118,7 +118,7 @@ After creating all files:
 - ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`
 
 ### RWP Version
-- Include `rwp_version: "0.25.1"` in YAML artifacts
+- Include `rwp_version: "0.26.0"` in YAML artifacts
 
 ### Audit Checkpoints
 - Consider audits every 3rd phase (P-03, P-06, P-09...)

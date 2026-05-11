@@ -152,7 +152,7 @@ before parsing.
 ### Text (default)
 
 ```text
-rhumb-validate 0.1.0 (RWP 0.25.1)
+rhumb-validate 0.1.0 (RWP 0.26.0)
 target: .meridian/
 started: 2026-05-01T12:34:56.789012Z    completed: 2026-05-01T12:34:57.012345Z    duration: 223 ms
 
@@ -181,7 +181,7 @@ Top-level fields: `rhumb_validate_version`, `rwp_version`, `started_at`,
 ```json
 {
   "rhumb_validate_version": "0.1.0",
-  "rwp_version": "0.25.1",
+  "rwp_version": "0.26.0",
   "started_at": "2026-05-01T12:34:56.789012Z",
   "completed_at": "2026-05-01T12:34:57.012345Z",
   "target_path": ".meridian/",
@@ -224,7 +224,7 @@ are required, and how mark-use claims can be machine-audited — see
 
 | Issue type                         | Where to report                                                |
 |------------------------------------|----------------------------------------------------------------|
-| Validator false positive           | Open an issue at <https://github.com/rhumbprotocol/rhumb-protocol> |
+| Validator false positive           | Open an issue at <https://github.com/rhumbprotocol/specs> |
 | Validator false negative           | Same — include the artifact contents and the missed check.     |
 | Fixture corpus gap                 | Pull request against `packages/rhumb-protocol/conformance/fixtures/`. |
 | Trademark / mark-use question      | See TRADEMARK.md §9 for the policy contact.                    |

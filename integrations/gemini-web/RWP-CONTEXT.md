@@ -34,7 +34,7 @@ During **processing**, work progresses through phases. Audits occur at scheduled
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Plan ID | `MP-{NNNN}` | `MP-0042` |
+| Plan ID | `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` | `MP-0042-dark-mode-toggle` |
 | Phase | `P-{NN}` | `P-03` |
 | Sub-phase | `P-{NN}-{A/B/C}` | `P-03-B` |
 | Audit | `AUD-{NN}` or `FINAL` | `AUD-02` |
@@ -46,7 +46,7 @@ ISO 8601: `2026-01-28T20:45:00Z`
 
 ### Version Field
 
-All YAML artifacts include: `rwp_version: "0.25.1"`
+All YAML artifacts include: `rwp_version: "0.26.0"`
 
 ## Artifacts
 
@@ -106,7 +106,7 @@ Users may ask for RWP-style planning with:
 ### Minimal Plan
 
 ```markdown
-# MP-{NNNN} - {Title}
+# MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name} - {Title}
 
 ## Objective
 {What this plan achieves.}
@@ -124,8 +124,8 @@ Users may ask for RWP-style planning with:
 ### Requirements Intake
 
 ```yaml
-rwp_version: "0.25.1"
-plan_id: MP-{NNNN}
+rwp_version: "0.26.0"
+plan_id: MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}
 title: "{Title}"
 
 pain_points:
@@ -146,7 +146,7 @@ constraints:
 ### Session Handoff
 
 ```markdown
-# Handoff - MP-{NNNN} Phase P-{NN}
+# Handoff - MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name} Phase P-{NN}
 
 ## Completed
 - {Summary of completed work}
@@ -177,7 +177,7 @@ If creating a Gemini Gem for RWP planning, consider these behavioral guidelines:
 - RWP Specification: https://rhumbprotocol.dev
 - RWP JSON Schemas: Available for artifact validation
 - Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
-- Source: https://github.com/rhumbprotocol
+- Source: https://github.com/rhumbprotocol/specs
 
 ---
 

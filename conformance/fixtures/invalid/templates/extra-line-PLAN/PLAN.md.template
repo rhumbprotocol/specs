@@ -1,7 +1,7 @@
 ---
 # Rhumb Workflow Protocol: Plan Document
 
-plan_id: RWP-NNNN
+plan_id: MP-NNNN-short-name
 request_id: REQ-NNNNN | null             # Origin request that spawned this plan
 name: [Plan Title]
 classification: public | confidential
@@ -12,11 +12,11 @@ phases: NN
 current_phase: P-NN
 started: {{TIMESTAMP}}
 completed: {{TIMESTAMP}}
-parent: RWP-NNNN | null
-rwp_version: "0.25.1"                     # Rhumb Workflow Protocol version
+parent: MP-NNNN-short-name | null
+rwp_version: "0.26.0"                     # Rhumb Workflow Protocol version
 dependencies:
-  - RWP-NNNN
-  - RWP-NNNN
+  - MP-NNNN-short-name
+  - MP-NNNN-short-name
 packages:
   - package-name-1
   - package-name-2
@@ -39,7 +39,7 @@ tracking:
 
 ---
 
-# RWP-NNNN: [Plan Title]
+# MP-NNNN-short-name: [Plan Title]
 
 ---
 

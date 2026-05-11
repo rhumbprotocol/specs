@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright (c) 2026 Rhumb Protocol Contributors
 #
-# RWP version: 0.25.3
+# RWP version: "{{RWP_VERSION}}"
 # IDEA Template — Universal capture artifact for the Rhumb Workflow Protocol
 #
 # DESIGN PROVENANCE
@@ -60,7 +60,7 @@
 
 id: IDEA-NNNN
 type: idea
-title: "[IDEA Title]"
+title: "[{{IDEA_TITLE}}]"
 status: captured                      # captured | refining | ready | approved | promoted | parked | discarded
 classification: public                # public | confidential
 created: {{TIMESTAMP}}
@@ -180,7 +180,6 @@ is most credible and durable?]
 Tags: [idea]
 
 ---
-
 Produced: {{TIMESTAMP}}
 By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
 Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

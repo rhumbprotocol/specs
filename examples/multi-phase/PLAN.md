@@ -2,7 +2,7 @@
 
 ---
 
-plan_id: RWP-0087
+plan_id: MP-0087-api-rate-limiter
 request_id: REQ-00312
 name: API Rate Limiter Service
 classification: confidential
@@ -14,7 +14,7 @@ current_phase: P-02-B
 started: 2026-02-15T10:00:00Z
 completed: null
 parent: null
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 dependencies: []
 packages:
   - rate-limiter
@@ -36,7 +36,7 @@ tracking:
 
 ---
 
-# RWP-0087: API Rate Limiter Service
+# MP-0087-api-rate-limiter: API Rate Limiter Service
 
 ---
 
@@ -251,7 +251,7 @@ pnpm test
 pnpm run benchmark
 ```
 
-**Audit Report**: `audits/AUD-RWP-0087-2026-02-20.md`
+**Audit Report**: `audits/AUD-MP-0087-api-rate-limiter-2026-02-20.md`
 
 ---
 

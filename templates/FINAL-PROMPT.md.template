@@ -1,0 +1,21 @@
+# RWP Finalization Prompt: {{PLAN_ID}}
+
+You are closing `{{PLAN_ID}}` under Rhumb Workflow Protocol `{{RWP_VERSION}}`.
+
+## Inputs
+
+- Plan: `{{PLAN_PATH}}`
+- State: `{{STATE_PATH}}`
+- Manifest: `{{MANIFEST_PATH}}`
+- Handoffs: `{{HANDOFF_PATHS}}`
+- Audits: `{{AUDIT_PATHS}}`
+
+## Work
+
+1. Confirm all phases are complete or explicitly deferred.
+2. Confirm verification evidence is present and not contradicted by the repository state.
+3. Summarize completed scope, open follow-up, and residual risks.
+4. Write `FINAL.md` using the RWP final report template.
+
+Do not mark the plan complete if critical verification is missing.
+

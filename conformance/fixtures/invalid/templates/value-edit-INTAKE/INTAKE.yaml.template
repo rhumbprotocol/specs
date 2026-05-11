@@ -28,7 +28,7 @@ summary: "{Brief description of the work}"
 classification: public  # public | confidential
 
 # RWP Version
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 
 # =============================================================================
 # PAIN POINTS
@@ -164,7 +164,7 @@ custom_fields: {}
 
 metadata:
   request_id: REQ-NNNNN | null  # Origin request that spawned this plan
-  original_plan: RWP-NNNN  # Plan ID this intake belongs to
+  original_plan: MP-NNNN-short-name  # Plan ID this intake belongs to
   classification: public  # public | confidential
   parent_plan: null  # Parent plan if this is a sub-plan
   sub_plans: []  # List of sub-plan IDs

@@ -1,0 +1,45 @@
+name: Specification change
+description: Propose a protocol, schema, lifecycle, template, or conformance change.
+title: "spec: "
+labels: ["spec", "triage"]
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: State the exact protocol change.
+    validations:
+      required: true
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Compatibility
+      options:
+        - Backward-compatible clarification
+        - Backward-compatible addition
+        - Breaking pre-1.0 change
+        - Unsure
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Affected artifacts
+      description: List affected schemas, templates, examples, validator categories, integrations, or docs.
+    validations:
+      required: true
+  - type: textarea
+    id: meridian
+    attributes:
+      label: Meridian Reference Profile impact
+      description: Explain whether Meridian compatibility is unaffected, improved, or requires follow-up.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation plan
+      description: What tests, fixtures, or validator changes prove this change?
+    validations:
+      required: true
+

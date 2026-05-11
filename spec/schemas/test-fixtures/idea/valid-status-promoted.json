@@ -10,7 +10,7 @@
     { "name": "A. Architect", "role": "architect" }
   ],
   "pipeline": "architecture",
-  "children": ["AVD-0001", "MP-0001"],
+  "children": ["AVD-0001", "MP-0001-example-plan"],
   "approved_by": "Hans Jones",
   "approved_at": "2026-05-01T16:00:00Z",
   "approval_policy": "solo",

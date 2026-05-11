@@ -23,7 +23,7 @@ The Rhumb Workflow Protocol is an open-source specification licensed under Apach
 
 Before contributing, familiarize yourself with the core specification:
 
-- [Protocol Specification](./docs/PROTOCOL.md) - Full RWP v0.25.1 spec
+- [Protocol Specification](./docs/PROTOCOL.md) - Full RWP v0.26.0 spec
 - [Getting Started Guide](./docs/GETTING-STARTED.md) - Practical introduction
 
 ### 2. Understand the Repository Structure
@@ -201,5 +201,5 @@ The YAKKL trademarks (including "Rhumb Protocol"&trade; and "AI Workflow"&trade;
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.25.1
+Rhumb Workflow Protocol (RWP) v0.26.0
 https://rhumbprotocol.dev

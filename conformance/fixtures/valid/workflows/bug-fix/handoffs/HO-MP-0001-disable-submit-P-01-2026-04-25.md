@@ -4,7 +4,7 @@ title: "Fix and Verify"
 created: 2026-04-25T11:30:00Z
 status: completed
 quality_score: 98
-rwp_version: 0.25.1
+rwp_version: 0.26.0
 ---
 
 # Handoff: P-01 - Fix and Verify
@@ -94,10 +94,10 @@ created the bug in the first place. Component-level fix means new forms inherit 
 
 This plan is complete. The fix is in production-ready state.
 
-**Optional follow-up considerations** (not part of RWP-0001 scope):
+**Optional follow-up considerations** (not part of MP-0001-disable-submit scope):
 
 - Audit other shared interactive components (e.g., `Link`, `Card[onClick]`) for similar
-  double-click vulnerabilities - could be a separate RWP-NNNN bug-sweep workflow.
+  double-click vulnerabilities - could be a separate MP-NNNN-short-name bug-sweep workflow.
 - Document the disable-on-click pattern in the team's component-design guidelines so it's
   applied to any future custom-built button.
 
