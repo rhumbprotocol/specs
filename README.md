@@ -42,7 +42,8 @@ RWP provides integration adapters for major AI platforms:
 ## Documentation
 
 - **[Getting Started](./docs/GETTING-STARTED.md)** - Practical guide to adopting RWP
-- **[Protocol Specification](./docs/PROTOCOL.md)** - Full RWP v0.25.1 specification (2000+ lines)
+- **[Protocol Specification](./docs/PROTOCOL.md)** - Full RWP v0.26.0 specification (2000+ lines)
+- **[Implementation Profiles](./docs/IMPLEMENTATION-PROFILES.md)** - Core RWP versus file-tree profiles, including the Meridian reference profile
 - **[Extensions Guide](./docs/EXTENSIONS.md)** - Extending RWP with custom fields, artifacts, and integrations
 - **[FAQ](./docs/FAQ.md)** - Frequently asked questions about adoption, implementation, and compatibility
 - **[Diagram Guide](./docs/DIAGRAMS.md)** - Public diagram set for artifacts, lifecycle, architecture path, conformance, and portability
@@ -64,8 +65,9 @@ RWP provides integration adapters for major AI platforms:
 ```
 rhumbprotocol/
 ├── docs/
-│   ├── PROTOCOL.md                    # Full RWP v0.25.1 specification
+│   ├── PROTOCOL.md                    # Full RWP v0.26.0 specification
 │   ├── GETTING-STARTED.md             # Practical adoption guide
+│   ├── IMPLEMENTATION-PROFILES.md     # Core profile + Meridian reference profile
 │   ├── EXTENSIONS.md                  # Extension patterns & custom artifacts
 │   └── FAQ.md                         # Frequently asked questions
 ├── spec/
@@ -205,7 +207,19 @@ For mark-use enquiries, written-agreement requests, or infringement reports, con
 
 ---
 
-**Rhumb Workflow Protocol (RWP) v0.25.3**
+**Rhumb Workflow Protocol (RWP) v0.26.0**
+
+## Version Source of Truth
+
+The protocol version is stored in [`VERSION`](./VERSION). For breaking protocol-shape changes during the pre-1.0 period, bump MINOR, for example `0.25.4` to `0.26.0`. PATCH is only for backward-compatible corrections.
+
+After changing `VERSION`, run:
+
+```bash
+node scripts/sync-version.mjs
+```
+
+This syncs the conformance crate, public site config, and Meridian RWP version constants. Commit the synced files with the changelog entry.
 Produced: 2026-05-02T16:00:00Z
 By: YAKKL® Meridian™- https://meridian.yakkl.com
 Copyright: Copyright © 2026 YAKKL Inc. All Rights Reserved.

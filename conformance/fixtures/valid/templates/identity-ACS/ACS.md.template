@@ -10,7 +10,7 @@ author: "Author Name"
 parent: AVD-NNNN
 children: []
 tags: []
-rwp_version: 0.25.1
+rwp_version: {{RWP_VERSION}}
 ---
 
 # Architecture Component Specification: {Component}
@@ -378,9 +378,6 @@ POST /pipelines/{pipeline_id}/reprocess-range
 - **Performance**: What's the maximum throughput on a single processor instance? When do we need horizontal scaling?
 
 ---
-
----
-
 Produced: {{TIMESTAMP}}
 By: Rhumb Workflow Protocol™ (RWP) - https://rhumbprotocol.dev
 Reference Implementation: YAKKL® Meridian™ - https://meridian.yakkl.com

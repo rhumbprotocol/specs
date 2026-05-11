@@ -123,7 +123,7 @@ The [sequence grammar](../spec/sequence.grammar) defines the full syntax.
 The state file tracks execution progress:
 
 ```yaml
-plan_id: "MP-0042"
+plan_id: "MP-0042-dark-mode-toggle"
 execution:
   status: "in_progress"
   current_phase: "P-02-A"
@@ -305,5 +305,5 @@ RWP doesn't enforce automated state updates - it's your responsibility (or your 
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.25.1
+Rhumb Workflow Protocol (RWP) v0.26.0
 https://rhumbprotocol.dev

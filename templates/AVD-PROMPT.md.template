@@ -1,0 +1,21 @@
+# RWP AVD Prompt: {{AVD_ID}}
+
+Create or revise an Architecture Vision Document using `AVD.md.template`.
+
+## Inputs
+
+- Idea or request: `{{IDEA_OR_REQUEST_PATH}}`
+- Parent plan: `{{PLAN_ID}}`
+- Target audience: `{{AUDIENCE}}`
+- Constraints: `{{CONSTRAINTS}}`
+
+## Work
+
+1. Explain the problem and why the architecture matters.
+2. Define goals, constraints, and explicit non-goals.
+3. Describe the system shape with at least one clear diagram.
+4. Identify major components, data flows, risks, costs, and open questions.
+5. Link downstream ACS or MP artifacts only when the relationship is real.
+
+Output a complete AVD. Do not substitute marketing copy for architecture.
+

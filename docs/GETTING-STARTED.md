@@ -13,8 +13,12 @@ The **Rhumb Workflow Protocol** (RWP) is a formal, open-source protocol for stru
 - **Platform adapters** - Integration guides for Claude Code, Codex, Gemini CLI, and browser-based AI tools
 
 RWP is protocol-level - it defines *what* artifacts look like and *how* they relate, not *how* your tool implements them internally.
+Directory trees are implementation profiles. A tool can store RWP artifacts in
+`rwp/`, `.workflow/`, `.meridian/`, a database-backed workspace, or another
+layout if it can preserve and validate the same artifact contract.
 
 For the full specification, see [PROTOCOL.md](./PROTOCOL.md).
+For file-tree guidance, see [IMPLEMENTATION-PROFILES.md](./IMPLEMENTATION-PROFILES.md).
 
 ---
 
@@ -63,7 +67,7 @@ Phase identifiers follow a structured format:
 - `P-01` - Phase 1
 - `P-01-A` - Sub-phase A of phase 1
 - `AUD-01` - Audit checkpoint 1
-- `HO-MP-0001-P-01-A` - Handoff for plan MP-0001, sub-phase P-01-A
+- `HO-MP-0001-example-plan-P-01-A` - Handoff for plan MP-0001-example-plan, sub-phase P-01-A
 
 For the full grammar, see [spec/sequence.grammar](../spec/sequence.grammar).
 
@@ -71,13 +75,18 @@ For the full grammar, see [spec/sequence.grammar](../spec/sequence.grammar).
 
 ## Your First RWP Workflow
 
+This walkthrough uses the Core File-Tree Profile: a simple plan directory with
+the protocol artifacts together. Meridian uses a richer reference profile under
+`.meridian/.private/knowledge/plans/<lifecycle>/`, but that layout is not
+required for every RWP adopter.
+
 ### Step 1: Capture Requirements
 
 Create an intake document describing what you want to build:
 
 ```yaml
 # INTAKE.yaml
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 id: "intake-my-feature"
 title: "Add user authentication"
 created: "2026-03-01T10:00:00Z"
@@ -138,8 +147,8 @@ As you execute each phase, update the state artifact:
 
 ```yaml
 # state.yaml
-rwp_version: "0.25.1"
-plan_id: "MP-0001"
+rwp_version: "0.26.0"
+plan_id: "MP-0001-example-plan"
 execution:
   status: in_progress
   current_phase: P-02
@@ -225,6 +234,26 @@ Browse templates: [templates/](../templates/)
 
 ---
 
+## Implementation Profiles
+
+Use profiles to be explicit about storage layout:
+
+| Profile | Use When | Root Shape |
+|---------|----------|------------|
+| Core File-Tree Profile | You want the simplest portable RWP project layout | `rwp/plans/<plan-id>/...` |
+| Meridian Reference Profile | You want compatibility with the reference implementation | `.meridian/.private/{runtime,data,knowledge}` |
+| Custom Profile | Your tool has its own storage model | Any layout that preserves RWP artifacts and validation behavior |
+
+In the Meridian Reference Profile, plan artifacts live under lifecycle buckets
+such as `.meridian/.private/knowledge/plans/planning/` and
+`.meridian/.private/knowledge/plans/processing/`. The plan-level `state.yaml`
+inside a plan directory is not the same artifact as Meridian's workspace-level
+`.meridian/.private/runtime/STATE.yaml`.
+
+Read: [Implementation Profiles](./IMPLEMENTATION-PROFILES.md)
+
+---
+
 ## JSON Schemas
 
 RWP provides JSON schemas for validating YAML artifacts:
@@ -270,5 +299,5 @@ For details, see [spec/conformance-levels.md](../spec/conformance-levels.md).
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.25.1
+Rhumb Workflow Protocol (RWP) v0.26.0
 https://rhumbprotocol.dev

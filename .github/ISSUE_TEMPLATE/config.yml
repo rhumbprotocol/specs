@@ -1,0 +1,9 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Rhumb Protocol discussions
+    url: https://github.com/rhumbprotocol/specs/discussions
+    about: Use discussions for open-ended ideas, questions, and implementation design.
+  - name: Trademark or legal question
+    url: https://github.com/rhumbprotocol/specs/blob/main/TRADEMARK.md
+    about: Read the trademark policy before opening legal or mark-use questions.
+

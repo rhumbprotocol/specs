@@ -11,7 +11,7 @@ use RWP while remaining protocol-compliant.
 | `INTAKE.yaml` | Intake | Captures the problem and requirements |
 | `PLAN.md` | Plan | 2-phase plan with tasks and verification |
 | `state.yaml` | State | Tracks execution progress |
-| `handoffs/HO-RWP-0042-P-01-2026-03-01.md` | Handoff | Session boundary document |
+| `handoffs/HO-MP-0042-dark-mode-toggle-P-01-2026-03-01.md` | Handoff | Session boundary document |
 
 ## Why This Example
 
@@ -36,4 +36,4 @@ from the [Protocol Specification](../../docs/PROTOCOL.md).
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.25.1 - https://rhumbprotocol.dev
+Rhumb Workflow Protocol (RWP) v0.26.0 - https://rhumbprotocol.dev

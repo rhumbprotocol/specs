@@ -18,8 +18,8 @@ MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]
 
 Examples:
 
-- `0.25.1` - Current RWP version (pre-1.0)
-- `0.26.0` - A future minor release; may include breaking changes (see [Pre-1.0 Stability](#pre-10-stability))
+- `0.26.0` - Current RWP version (pre-1.0)
+- `0.27.0` - A future minor release; may include breaking changes (see [Pre-1.0 Stability](#pre-10-stability))
 - `1.0.0` - The first stable release (target; not yet shipped)
 - `1.1.0` - A future minor update under stable semantics (backward compatible)
 - `2.0.0` - A future major update (breaking changes)
@@ -38,10 +38,10 @@ Examples:
 ### Current Version
 
 ```
-0.25.1
+0.26.0
 ```
 
-**Status**: Pre-1.0, advisory. The protocol is shaping toward a stable v1.0. Until v1.0 ships, MINOR releases (e.g., `0.25.1` → `0.26.0`) are permitted to introduce breaking changes; PATCH releases (`0.25.1` → `0.25.2`) remain backward compatible within a MINOR series.
+**Status**: Pre-1.0, advisory. The protocol is shaping toward a stable v1.0. Until v1.0 ships, MINOR releases (e.g., `0.26.0` → `0.27.0`) are permitted to introduce breaking changes; PATCH releases (`0.26.0` → `0.26.1`) remain backward compatible within a MINOR series.
 
 ## Pre-1.0 Stability
 
@@ -51,8 +51,8 @@ The compatibility commitment during 0.x is therefore narrower than post-1.0:
 
 | Bump type | 0.x behavior | Post-1.0 behavior |
 |-----------|--------------|-------------------|
-| PATCH (`0.25.1` → `0.25.2`) | Backward compatible. Safe to upgrade. | Backward compatible. Safe to upgrade. |
-| MINOR (`0.25.1` → `0.26.0`) | **May break**. Treat as a major bump for compatibility purposes. | Backward compatible. Safe to upgrade. |
+| PATCH (`0.26.0` → `0.26.1`) | Backward compatible. Safe to upgrade. | Backward compatible. Safe to upgrade. |
+| MINOR (`0.26.0` → `0.27.0`) | **May break**. Treat as a major bump for compatibility purposes. | Backward compatible. Safe to upgrade. |
 | MAJOR (`0.x` → `1.0`) | Stability boundary. Migration guide required. | Breaking changes. Migration guide required. |
 
 v1.0 is the boundary at which RWP commits to standard SemVer compatibility rules going forward.
@@ -64,7 +64,7 @@ v1.0 is the boundary at which RWP commits to standard SemVer compatibility rules
 ```yaml
 ---
 title: "Build Analytics Platform"
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 created: "2026-04-27T08:00:00Z"
 ---
 ```
@@ -74,25 +74,25 @@ created: "2026-04-27T08:00:00Z"
 ```yaml
 id: INT-0001
 title: "Build Real-Time Analytics Platform"
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 captured: "2026-04-27T09:00:00Z"
 ```
 
 ### In manifest.yaml
 
 ```yaml
-plan_id: P-0001
+plan_id: MP-0001-analytics-platform
 manifest_version: "1.0"  # Schema version (independent of RWP version)
-rwp_version: "0.25.1"    # Protocol version
+rwp_version: "0.26.0"    # Protocol version
 created: "2026-04-27T08:00:00Z"
 ```
 
 ### In state.yaml
 
 ```yaml
-plan_id: P-0001
+plan_id: MP-0001-analytics-platform
 state_version: "1.0"     # Schema version
-rwp_version: "0.25.1"    # Protocol version
+rwp_version: "0.26.0"    # Protocol version
 created: "2026-04-27T08:00:00Z"
 ```
 
@@ -103,7 +103,7 @@ Handoff documents don't require explicit version declaration in most cases, but 
 ```markdown
 # Handoff: P-01 → P-02
 
-**RWP Version**: 0.25.1
+**RWP Version**: 0.26.0
 
 ## Summary
 ...
@@ -119,12 +119,12 @@ The matrix below applies to RWP's pre-1.0 phase. Once v1.0 ships, the compatibil
 
 | Artifact Version | Implementation Supports | Result |
 |------------------|-------------------------|--------|
-| `0.25.1` | `0.25.1` | ✓ Full support |
-| `0.25.1` | `0.25.2` | ✓ Full support (patch within same minor) |
-| `0.25.1` | `0.26.0` | ✗ May fail - pre-1.0 minor bumps may break |
-| `0.25.1` | `1.0.0` | Migration required - see release notes |
-| `0.26.0` | `0.25.1` | ✗ Implementation predates artifact's minor |
-| `1.0.0` | `0.25.1` | ✗ Major version mismatch |
+| `0.26.0` | `0.26.0` | ✓ Full support |
+| `0.26.1` | `0.26.0` | ✓ Full support (patch within same minor) |
+| `0.27.0` | `0.26.0` | ✗ May fail - pre-1.0 minor bumps may break |
+| `0.26.0` | `1.0.0` | Migration required - see release notes |
+| `0.26.1` | `0.26.0` | ✗ Implementation predates artifact's patch only if a tool requires exact patch; RWP does not |
+| `1.0.0` | `0.26.0` | ✗ Major version mismatch |
 
 ### Validation Strategy
 
@@ -157,10 +157,10 @@ def is_compatible(artifact_version: str, impl_version: str) -> bool:
     return iv.minor >= av.minor
 
 # Usage
-assert is_compatible("0.25.1", "0.25.1")           # Same minor in 0.x
-assert is_compatible("0.25.1", "0.25.2")           # Patch bump within 0.25.x
-assert not is_compatible("0.25.1", "0.26.0")       # 0.x minor bumps may break
-assert not is_compatible("0.25.1", "1.0.0")        # Major version mismatch
+assert is_compatible("0.26.0", "0.26.0")           # Same minor in 0.x
+assert is_compatible("0.26.1", "0.26.0")           # Patch bump within 0.26.x
+assert not is_compatible("0.27.0", "0.26.0")       # 0.x minor bumps may break
+assert not is_compatible("0.26.0", "1.0.0")        # Major version mismatch
 ```
 
 **TypeScript**:
@@ -186,10 +186,10 @@ function isCompatible(artifactVersion: string, implVersion: string): boolean {
 }
 
 // Usage
-console.assert(isCompatible("0.25.1", "0.25.1"));        // Same minor in 0.x
-console.assert(isCompatible("0.25.1", "0.25.2"));        // Patch bump within 0.25.x
-console.assert(!isCompatible("0.25.1", "0.26.0"));       // 0.x minor bumps may break
-console.assert(!isCompatible("0.25.1", "1.0.0"));        // Major version mismatch
+console.assert(isCompatible("0.26.0", "0.26.0"));        // Same minor in 0.x
+console.assert(isCompatible("0.26.1", "0.26.0"));        // Patch bump within 0.26.x
+console.assert(!isCompatible("0.27.0", "0.26.0"));       // 0.x minor bumps may break
+console.assert(!isCompatible("0.26.0", "1.0.0"));        // Major version mismatch
 ```
 
 ## Version History & Roadmap
@@ -198,7 +198,7 @@ console.assert(!isCompatible("0.25.1", "1.0.0"));        // Major version mismat
 
 | Version | Status | Notes |
 |---------|--------|-------|
-| **0.25.1** | Current | Pre-1.0; advisory; subject to MINOR-bump breakage during 0.x maturation. |
+| **0.26.0** | Current | Pre-1.0; advisory; subject to MINOR-bump breakage during 0.x maturation. |
 
 ### Planned Versions
 
@@ -215,7 +215,7 @@ console.assert(!isCompatible("0.25.1", "1.0.0"));        // Major version mismat
 
 While the protocol is pre-1.0, MINOR bumps may include breaking changes. Each MINOR release will document its breaking changes in [CHANGELOG.md](../CHANGELOG.md) and provide a migration note in the release entry.
 
-Within a single MINOR series (e.g., `0.25.1` → `0.25.2`), upgrades are backward compatible. PATCH bumps fix bugs and clarify behavior; they do not change schemas or lifecycle semantics.
+Within a single MINOR series (e.g., `0.26.0` → `0.26.1`), upgrades are backward compatible. PATCH bumps fix bugs and clarify behavior; they do not change schemas or lifecycle semantics.
 
 ### Within 0.x: Upgrading Between PATCH Releases
 
@@ -231,24 +231,24 @@ When v1.0 ships, a dedicated migration guide will document any required changes.
 
 ```yaml
 # Always declare RWP version in top-level artifacts.
-plan_id: P-0001
-rwp_version: "0.25.1"
+plan_id: MP-0001-analytics-platform
+rwp_version: "0.26.0"
 created: "2026-04-27T08:00:00Z"
 ```
 
 ```yaml
 # Schema versions are declared independently of the protocol version.
 manifest_version: "1.0"        # Manifest schema version
-rwp_version: "0.25.1"          # Protocol version
+rwp_version: "0.26.0"          # Protocol version
 ```
 
 ### Not Recommended
 
 ```yaml
 # Avoid non-standard version formats.
-rwp_version: "v0"              # Should be "0.25.1"
-rwp_version: "0"               # Should be "0.25.1"
-rwp_version: "0.25"            # Should be "0.25.1"
+rwp_version: "v0"              # Should be "0.26.0"
+rwp_version: "0"               # Should be "0.26.0"
+rwp_version: "0.25"            # Should be "0.26.0"
 ```
 
 ```yaml
@@ -292,7 +292,7 @@ Implementations should declare their conformance level and supported versions:
 # In tool configuration or metadata
 rwp_conformance: "standard"    # minimal | standard | advanced
 rwp_version_support:           # Versions the tool fully supports
-  - "0.25.1"
+  - "0.26.0"
 ```
 
 ## Schema Versioning
@@ -304,14 +304,14 @@ Each artifact type has its own **schema version**, declared independently of the
 ```yaml
 # Example: manifest.yaml
 manifest_version: "1.0"        # Manifest schema version
-rwp_version: "0.25.1"          # RWP protocol version
+rwp_version: "0.26.0"          # RWP protocol version
 ```
 
 This separation allows individual schemas to evolve at different paces from the protocol itself. A schema may add optional fields without requiring a protocol-version bump, and a protocol release may ship without changing every schema.
 
 | RWP Version | Manifest Schema | State Schema | Plan Schema |
 |-------------|-----------------|--------------|-------------|
-| `0.25.1` | `1.0` | `1.0` | `1.0` |
+| `0.26.0` | `1.0` | `1.0` | `1.0` |
 
 Future RWP versions will document their corresponding schema versions in their release entries in [CHANGELOG.md](../CHANGELOG.md).
 
@@ -325,7 +325,7 @@ Future RWP versions will document their corresponding schema versions in their r
 
 | Date | Version | Changes |
 |------|---------|---------|
-| 2026-04-27 | 0.25.1 | Current version reference; pre-1.0 stability rules clarified. |
+| 2026-04-27 | 0.26.0 | Current version reference; pre-1.0 stability rules clarified. |
 
 ---
 

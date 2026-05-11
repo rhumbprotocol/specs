@@ -6,7 +6,7 @@ captured: "2026-02-15T09:00:00Z"
 title: "API Rate Limiter Service"
 summary: "Build a distributed rate limiting service for the public API. The current naive per-instance approach causes inconsistent enforcement, allows burst abuse, and lacks visibility into usage patterns."
 classification: confidential
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 
 pain_points:
   - id: PP-01
@@ -140,7 +140,7 @@ custom_fields:
 
 metadata:
   request_id: REQ-00312
-  original_plan: RWP-0087
+  original_plan: MP-0087-api-rate-limiter
   classification: confidential
   parent_plan: null
   sub_plans: []

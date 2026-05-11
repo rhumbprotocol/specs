@@ -11,10 +11,10 @@
 #   4. Update timestamps in ISO 8601 format
 
 # Plan identifier and metadata
-plan_id: RWP-NNNN
+plan_id: MP-NNNN-short-name
 request_id: REQ-NNNNN | null
 title: "{Plan Title}"
-rwp_version: "0.25.1"
+rwp_version: "{{RWP_VERSION}}"
 
 # High-level execution status and timeline
 execution:
@@ -97,7 +97,7 @@ handoffs:
   pending_handoff: false
   handoff_files: []
   # Sample handoff entry:
-  # - file: "handoffs/HO-RWP-NNNN-P-01-A-2026-03-04.md"
+  # - file: "handoffs/HO-MP-NNNN-short-name-P-01-A-2026-03-04.md"
   #   phase: P-01-A
   #   created_at: "{ISO 8601}"
 
@@ -127,7 +127,6 @@ statistics:
   percentage_complete: 0
 
 ---
-
 Produced: {{TIMESTAMP}}
 By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
 Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

@@ -1,0 +1,37 @@
+---
+plan_id: MP-NNNN-short-name
+title: "{{PLAN_TITLE}}"
+status: completed
+created: "{{TIMESTAMP}}"
+completed: "{{TIMESTAMP}}"
+rwp_version: "{{RWP_VERSION}}"
+---
+
+# Final Report: {{PLAN_TITLE}}
+
+## Executive Summary
+
+Summarize what was built, changed, or decided. State whether the plan met its success criteria.
+
+## Completed Scope
+
+- {{COMPLETED_ITEM}}
+
+## Verification
+
+| Command or Check | Result | Evidence |
+|---|---|---|
+| `{{VERIFY_COMMAND}}` | {{RESULT}} | {{EVIDENCE}} |
+
+## Open Follow-Up
+
+- {{FOLLOW_UP_ITEM}}
+
+## Artifacts
+
+- Plan: `{{PLAN_PATH}}`
+- State: `{{STATE_PATH}}`
+- Manifest: `{{MANIFEST_PATH}}`
+- Handoffs: `{{HANDOFF_PATHS}}`
+- Audits: `{{AUDIT_PATHS}}`
+

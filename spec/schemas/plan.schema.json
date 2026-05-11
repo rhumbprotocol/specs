@@ -5,9 +5,14 @@
   "type": "object",
   "title": "RWP Plan Schema",
   "description": "JSON Schema for Rhumb Workflow Protocol (RWP) Plan artifacts (PLAN.md). Validates the structure of master workflow documents.",
-  "required": ["title", "overview", "phases"],
+  "required": ["plan_id", "title", "overview", "phases"],
   "additionalProperties": false,
   "properties": {
+    "plan_id": {
+      "type": "string",
+      "pattern": "^MP-[0-9]{4}-[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Canonical RWP plan identifier using MP-NNNN-short-name format"
+    },
     "title": {
       "type": "string",
       "description": "Human-readable plan title",
@@ -63,7 +68,7 @@
         "properties": {
           "phase_id": {
             "type": "string",
-            "pattern": "^P-[0-9]{2}(-[A-C])?$",
+            "pattern": "^P-[0-9]{2}(-[A-Z])?$",
             "description": "Phase identifier (e.g., P-01, P-01-A)"
           },
           "title": {

@@ -25,6 +25,7 @@ describe('RWP Schema Validation', () => {
 
     it('should validate a minimal valid plan', () => {
       const minimalPlan = {
+        plan_id: 'MP-0001-quick-task',
         title: 'Quick Task',
         overview: 'A quick infrastructure task',
         created_at: '2026-03-04T10:00:00Z',
@@ -47,6 +48,7 @@ describe('RWP Schema Validation', () => {
 
     it('should validate a comprehensive plan with all fields', () => {
       const comprehensivePlan = {
+        plan_id: 'MP-0002-infrastructure-modernization',
         title: 'Q1 Infrastructure Modernization',
         overview: 'Comprehensive modernization of our infrastructure stack',
         created_at: '2026-01-15T09:00:00Z',
@@ -119,15 +121,19 @@ describe('RWP Schema Validation', () => {
 
     it('should validate plan with custom fields', () => {
       const planWithCustomFields = {
+        plan_id: 'MP-0003-infrastructure-upgrade',
         title: 'Infrastructure Upgrade',
         overview: 'Modernize deployment pipeline',
         created_at: '2026-01-15T09:00:00Z',
-        phases: [],
-        // Custom fields
-        'x-billing-cost-center': 'ENG-2026-Q1',
-        'x-billing-estimated-cost-usd': 45000,
-        'x-security-requires-review': true,
-        'x-security-compliance-frameworks': ['sox2', 'hipaa']
+        phases: [
+          { phase_id: 'P-01', title: 'Upgrade', objective: 'obj', deliverables: [], tasks: [], verification: [] }
+        ],
+        custom_fields: {
+          'x-billing-cost-center': 'ENG-2026-Q1',
+          'x-billing-estimated-cost-usd': 45000,
+          'x-security-requires-review': true,
+          'x-security-compliance-frameworks': ['sox2', 'hipaa']
+        }
       };
 
       const valid = validatePlan(planWithCustomFields);
@@ -137,6 +143,7 @@ describe('RWP Schema Validation', () => {
 
     it('should reject plan missing required fields', () => {
       const invalidPlan = {
+        plan_id: 'MP-0004-missing-title',
         // missing 'title'
         overview: 'A plan without a title',
         created_at: '2026-03-04T10:00:00Z',
@@ -151,13 +158,15 @@ describe('RWP Schema Validation', () => {
 
     it('should validate phase_id pattern', () => {
       const planWithValidPhaseIds = {
+        plan_id: 'MP-0005-valid-phase-ids',
         title: 'Test',
         overview: 'Test plan',
         created_at: '2026-03-04T10:00:00Z',
         phases: [
           { phase_id: 'P-01', title: 'Phase 1', objective: 'obj', deliverables: [], tasks: [], verification: [] },
           { phase_id: 'P-02-A', title: 'Phase 2A', objective: 'obj', deliverables: [], tasks: [], verification: [] },
-          { phase_id: 'P-02-B', title: 'Phase 2B', objective: 'obj', deliverables: [], tasks: [], verification: [] }
+          { phase_id: 'P-02-B', title: 'Phase 2B', objective: 'obj', deliverables: [], tasks: [], verification: [] },
+          { phase_id: 'P-02-Z', title: 'Phase 2Z', objective: 'obj', deliverables: [], tasks: [], verification: [] }
         ]
       };
 
@@ -165,6 +174,7 @@ describe('RWP Schema Validation', () => {
       expect(valid).toBe(true);
 
       const planWithInvalidPhaseId = {
+        plan_id: 'MP-0006-invalid-phase-id',
         title: 'Test',
         overview: 'Test plan',
         created_at: '2026-03-04T10:00:00Z',
@@ -323,7 +333,7 @@ describe('RWP Schema Validation', () => {
         id: 'MAN-2026-PLATFORM',
         name: 'Platform Modernization Manifest',
         description: 'Complete list of artifacts for Q1 platform work',
-        version: '0.25.1',
+        version: '0.26.0',
         created_at: '2026-01-01T00:00:00Z',
         updated_at: '2026-03-04T15:30:00Z',
         artifacts: [
@@ -333,7 +343,7 @@ describe('RWP Schema Validation', () => {
             title: 'Performance Issues'
           },
           {
-            artifact_id: 'MP-0001',
+            artifact_id: 'MP-0001-q1-infrastructure',
             artifact_type: 'plan',
             title: 'Q1 Infrastructure Plan'
           }
@@ -351,7 +361,7 @@ describe('RWP Schema Validation', () => {
 
     it('should validate a minimal state', () => {
       const minimalState = {
-        plan_id: 'MP-0001',
+        plan_id: 'MP-0001-q1-infrastructure',
         execution: {
           status: 'in_progress',
           current_phase: 'P-01'
@@ -370,11 +380,13 @@ describe('RWP Schema Validation', () => {
 
     it('should validate state with detailed tracking', () => {
       const detailedState = {
-        plan_id: 'MP-0001',
+        plan_id: 'MP-0001-q1-infrastructure',
         request_id: 'INT-0001',
+        title: 'Detailed state tracking',
+        rwp_version: '0.26.0',
         execution: {
-          status: 'in_progress',
-          current_phase: 'P-02-A',
+          status: 'paused',
+          current_phase: 'P-02-Z',
           started_at: '2026-03-04T02:15:00Z',
           completed_at: null,
           last_heartbeat: '2026-03-04T04:45:00Z',
@@ -386,8 +398,8 @@ describe('RWP Schema Validation', () => {
             started_at: '2026-03-04T02:15:00Z',
             completed_at: '2026-03-04T02:45:00Z'
           },
-          'P-02-A': {
-            status: 'in_progress',
+          'P-02-Z': {
+            status: 'failed',
             started_at: '2026-03-04T04:00:00Z',
             completed_at: null
           }

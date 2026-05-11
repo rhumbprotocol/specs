@@ -243,7 +243,7 @@ Failures:
       line 3, column 1:
       (P-01, P-02
       ^
-  [workflow] /path/to/artifacts/MP-0042/state.yaml — INV-1 PLAN.md frontmatter is missing plan_id
+  [workflow] /path/to/artifacts/MP-0042-dark-mode-toggle/state.yaml — INV-1 PLAN.md frontmatter is missing plan_id
 ```
 
 ### Remediation playbook
@@ -271,7 +271,7 @@ The validator's report distinguishes two versions:
 
 - `rhumb_validate_version` — the validator's own crate version, e.g. `0.1.0`.
 - `rwp_version` — the protocol version this build of the validator was
-  compiled against, e.g. `0.25.1`.
+  compiled against, e.g. `0.26.0`.
 
 A change to `rwp_version` means the protocol itself moved; a change to
 `rhumb_validate_version` means only the tool moved (e.g., a bug fix
@@ -314,7 +314,7 @@ in the change.
 
 | Issue type                                  | Where                                                                  |
 |---------------------------------------------|------------------------------------------------------------------------|
-| Validator false positive / negative         | <https://github.com/rhumprotocol/specs> issue tracker                  |
+| Validator false positive / negative         | <https://github.com/rhumbprotocol/specs> issue tracker                 |
 | Fixture corpus gap                          | PR against `packages/rhumb-protocol/conformance/fixtures/`             |
 | Spec ambiguity                              | Issue tracker, with a worked example showing the ambiguity             |
 | Trademark / mark-use question               | TRADEMARK.md §10 (policy contact)                                      |

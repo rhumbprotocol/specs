@@ -29,7 +29,7 @@ phase-id           = phase-number [ "-" sub-phase ]
 
 phase-number       = "P-" 2DIGIT     ; e.g., P-01, P-02, ..., P-99
 
-sub-phase          = 1ALPHA           ; e.g., A, B, C
+sub-phase          = %x41-5A          ; uppercase A-Z in validators/parsers
 
 ; === Comments (informational, not parsed) ===
 comment            = ";" *( %x20-7E )  ; semicolon to end of line
@@ -80,12 +80,12 @@ ALPHA              = %x41-5A / %x61-7A ; A-Z / a-z
 ;
 ; Valid examples:
 ; - P-01, P-02, P-03, ..., P-99 (two-digit phase numbers)
-; - P-01-A, P-01-B, P-01-C (sub-phases)
+; - P-01-A, P-01-B, P-01-C, P-01-Z (sub-phases)
 ; - Mixed: P-01, P-02-A, P-03
 ;
 ; Invalid examples:
 ; - P-1 (must use two digits)
-; - P-01-D (only A, B, C allowed for sub-phases)
+; - P-01-a (sub-phase letters must be uppercase)
 ; - p-01 (lowercase not allowed)
 ; - P-100 (only two-digit phase numbers)
 ;

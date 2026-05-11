@@ -33,11 +33,11 @@ When the user wants to create a plan:
     *   **INTAKE.yaml**: Use `INTAKE.yaml.template`. Capture pain points, requirements, and constraints from the conversation.
     *   **MASTERPLAN.yaml**: Use `MASTERPLAN.yaml.template`. Break down phases into tasks with estimated durations.
     *   **manifest.yaml**: Use `MANIFEST-PLAN.yaml.template`. Pre-calculate expected file paths for handoffs, prompts, and audits.
-    *   **state.yaml**: Use `PLAN-STATE.yaml.template`. Initialize execution status as `not_started`.
+    *   **state.yaml**: Use `PLAN-STATE.yaml.template`. Initialize execution status as `planning`.
     *   **dependencies.yaml**: Use `DEPENDENCIES.yaml.template`. Map phase dependencies and any external blockers.
 
 5.  **Create Start Prompt**:
-    *   Generate `handoffs/HO-MP-NNNN-START-P-01-PROMPT.md` using `display/START-PROMPT.md.template`.
+    *   Generate `handoffs/HO-MP-NNNN-START-P-01-PROMPT.md` using `START-PROMPT.md.template`.
     *   Include plan overview, P-01 tasks, and a completion checklist.
 
 6.  **Confirm**:
@@ -57,7 +57,7 @@ planning -> processing -> completed
 ## RWP Conventions
 
 ### Plan IDs
-- Format: `MP-{NNNN}` with zero-padded sequence numbers
+- Format: `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` with zero-padded sequence numbers
 
 ### Phase IDs
 - Traditional: `P-01`, `P-02`, `P-03`
@@ -75,7 +75,7 @@ planning -> processing -> completed
 - A final audit at plan completion helps verify all deliverables
 
 ### RWP Version
-- Include `rwp_version: "0.25.1"` in YAML artifacts for protocol compatibility
+- Include `rwp_version: "0.26.0"` in YAML artifacts for protocol compatibility
 
 ## RWP Templates Reference
 
@@ -87,8 +87,8 @@ planning -> processing -> completed
 | `MANIFEST-PLAN.yaml.template` | File path manifest |
 | `PLAN-STATE.yaml.template` | Execution state tracking |
 | `DEPENDENCIES.yaml.template` | Dependency mapping |
-| `display/START-PROMPT.md.template` | Initial phase prompt |
-| `display/PROMPT.md.template` | Continuation prompts |
+| `START-PROMPT.md.template` | Initial phase prompt |
+| `PROMPT.md.template` | Continuation prompts |
 
 ## Phase Execution
 

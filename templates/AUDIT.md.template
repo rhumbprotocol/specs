@@ -1,0 +1,55 @@
+---
+audit_id: AUD-NN
+plan_id: MP-NNNN-short-name
+phase_range: "P-XX through P-YY"
+type: full
+created: "{{TIMESTAMP}}"
+status: pending
+classification: public | confidential
+rwp_version: "{{RWP_VERSION}}"
+---
+
+# Audit: {{AUDIT_ID}} - {{PHASE_RANGE}}
+
+## Scope
+
+Describe exactly which phases, sub-phases, artifacts, and decisions are being audited. Name the source plan, state file, handoffs, and verification evidence that define the audit boundary.
+
+## Criteria
+
+| Criterion | Required Evidence | Result |
+|---|---|---|
+| Deliverables exist | File paths, generated assets, schemas, or docs listed in the plan | Pending |
+| Contract matches RWP | Artifact names, IDs, statuses, and versions match the current protocol | Pending |
+| Verification ran | Commands and results are recorded without hiding failures | Pending |
+| Decisions are traceable | Key decisions include rationale and alternatives | Pending |
+| Handoff is usable | Next executor can continue without re-discovery | Pending |
+
+## Findings
+
+### Critical
+
+- None recorded yet.
+
+### Major
+
+- None recorded yet.
+
+### Minor
+
+- None recorded yet.
+
+## Evidence
+
+```bash
+{{VERIFY_COMMANDS}}
+```
+
+## Decision
+
+Audit result: PASS | PASS_WITH_NOTES | FAIL
+
+Required follow-up:
+
+- {{FOLLOW_UP_ITEM}}
+

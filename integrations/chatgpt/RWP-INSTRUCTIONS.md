@@ -36,7 +36,7 @@ Plans start as drafts during **planning**, become active during **processing** (
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Plan ID | `MP-{NNNN}` | `MP-0042` |
+| Plan ID | `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` | `MP-0042-dark-mode-toggle` |
 | Phase | `P-{NN}` | `P-03` |
 | Sub-phase | `P-{NN}-{A/B/C}` | `P-03-B` |
 | Audit | `AUD-{NN}` or `FINAL` | `AUD-02` |
@@ -48,7 +48,7 @@ ISO 8601 format: `2026-01-28T20:45:00Z`
 
 ### RWP Version
 
-YAML artifacts include `rwp_version: "0.25.1"` for protocol compatibility.
+YAML artifacts include `rwp_version: "0.26.0"` for protocol compatibility.
 
 ## Core Artifacts
 
@@ -107,7 +107,7 @@ Here is a minimal RWP plan structure for reference:
 ### PLAN.md
 
 ```markdown
-# MP-{NNNN} - {Plan Title}
+# MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name} - {Plan Title}
 
 ## Objective
 {What this plan achieves and why it matters.}
@@ -131,8 +131,8 @@ Here is a minimal RWP plan structure for reference:
 ### INTAKE.yaml
 
 ```yaml
-rwp_version: "0.25.1"
-plan_id: MP-{NNNN}
+rwp_version: "0.26.0"
+plan_id: MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}
 title: "{Plan Title}"
 
 pain_points:
@@ -153,10 +153,10 @@ constraints:
 ### Handoff Prompt
 
 ```markdown
-# Continuation Prompt - MP-{NNNN} Phase P-{NN}
+# Continuation Prompt - MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name} Phase P-{NN}
 
 ## Context
-Plan: MP-{NNNN} - {Title}
+Plan: MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name} - {Title}
 Last completed: P-{NN} - {Phase title}
 Next phase: P-{MM} - {Phase title}
 
@@ -188,7 +188,7 @@ If building a Custom GPT for RWP-aware planning, consider including this documen
 - RWP Specification: https://rhumbprotocol.dev
 - RWP JSON Schemas: Available for artifact validation
 - Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
-- Source: https://github.com/rhumbprotocol
+- Source: https://github.com/rhumbprotocol/specs
 
 ---
 

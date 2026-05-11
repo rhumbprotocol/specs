@@ -1,0 +1,53 @@
+name: Validator failure
+description: Report a rhumb-validate failure or suspected false positive/negative.
+title: "validator: "
+labels: ["validator", "conformance", "triage"]
+body:
+  - type: textarea
+    id: command
+    attributes:
+      label: Command
+      description: Paste the exact rhumb-validate command.
+      render: bash
+      placeholder: cargo run --manifest-path conformance/Cargo.toml -- --all --target conformance/fixtures/valid
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Paste the complete validator output, including exit code if known.
+      render: text
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - schema
+        - template
+        - workflow
+        - adapter
+        - grammar
+        - multi-category
+        - unknown
+    validations:
+      required: true
+  - type: textarea
+    id: target
+    attributes:
+      label: Target artifact tree
+      description: Describe the target tree and whether it is Core RWP, Meridian Reference Profile, or another implementation profile.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I verified the target does not include intentionally invalid fixtures.
+          required: true
+        - label: I checked the current RWP version in `VERSION`.
+          required: true
+
