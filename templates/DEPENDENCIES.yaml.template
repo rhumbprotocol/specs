@@ -8,12 +8,12 @@
 #
 # Optional but recommended for all plans
 
-plan_id: {PLAN_ID}  # e.g., RWP-0001
-request_id: {REQUEST_ID}
-title: "{PLAN_TITLE}"
-rwp_version: "0.25.1"
-created: "{TIMESTAMP_ISO8601}"
-updated: "{TIMESTAMP_ISO8601}"
+plan_id: "{{PLAN_ID}}"  # e.g., MP-0001-disable-submit
+request_id: "{{REQUEST_ID}}"
+title: "{{PLAN_TITLE}}"
+rwp_version: "{{RWP_VERSION}}"
+created: "{{TIMESTAMP_ISO8601}}"
+updated: "{{TIMESTAMP_ISO8601}}"
 
 # ============================================================================
 # BLOCKING DEPENDENCIES (Hard Block)
@@ -26,16 +26,16 @@ updated: "{TIMESTAMP_ISO8601}"
 
 blocked_by:
   # Example 1: Block on entire plan
-  # - id: RWP-0064
+  # - id: MP-0064-example
   #   type: plan_completion
   #   required_phase: null
   #   reason: "Extension beta should complete before mobile bindings"
 
   # Example 2: Block on specific phase (cross-plan coordination)
-  # - id: RWP-0178
+  # - id: MP-0178-example
   #   type: phase_completion
   #   required_phase: P-02
-  #   reason: "Need protocol specification from RWP-0178 P-02 for our P-04"
+  #   reason: "Need protocol specification from MP-0178-example P-02 for our P-04"
   #   affects_our_phases: [P-04, P-05]
   []
 
@@ -47,8 +47,8 @@ blocked_by:
 
 blocks:
   # Example:
-  # - RWP-0068
-  # - RWP-0070
+  # - MP-0068-example
+  # - MP-0070-example
   []
 
 # ============================================================================
@@ -59,7 +59,7 @@ blocks:
 
 depends_on:
   # Example:
-  # - id: RWP-0111
+  # - id: MP-0111-example
   #   status: completed
   #   reason: "Established validation patterns"
   []
@@ -75,41 +75,41 @@ phase_deps:
   # Sequential within logical phase:
   P-01-A:
     depends_on: []
-    title: "{Phase 1 Sub-A Title}"
+    title: "{{Phase 1 Sub-A Title}}"
   P-01-B:
     depends_on: [P-01-A]
-    title: "{Phase 1 Sub-B Title}"
+    title: "{{Phase 1 Sub-B Title}}"
   P-01-C:
     depends_on: [P-01-B]
-    title: "{Phase 1 Sub-C Title}"
+    title: "{{Phase 1 Sub-C Title}}"
 
   # Parallel logical phases (different tracks can run simultaneously):
   P-02-A:
     depends_on: [P-01-C]
     parallel_with: [P-03-A]
-    title: "{Phase 2 Sub-A Title}"
+    title: "{{Phase 2 Sub-A Title}}"
   P-02-B:
     depends_on: [P-02-A]
-    title: "{Phase 2 Sub-B Title}"
+    title: "{{Phase 2 Sub-B Title}}"
 
   P-03-A:
     depends_on: [P-01-C]
     parallel_with: [P-02-A]
-    title: "{Phase 3 Sub-A Title}"
+    title: "{{Phase 3 Sub-A Title}}"
   P-03-B:
     depends_on: [P-03-A]
-    title: "{Phase 3 Sub-B Title}"
+    title: "{{Phase 3 Sub-B Title}}"
 
   # Merge sub-phase (waits for parallel tracks):
   P-04-A:
     depends_on: [P-02-B, P-03-B]
-    title: "{Phase 4 Merge Sub-A Title}"
+    title: "{{Phase 4 Merge Sub-A Title}}"
 
   # Audit checkpoint sub-phase:
   P-04-C:
     depends_on: [P-04-B]
     audit_checkpoint: true
-    title: "{Phase 4 Audit Checkpoint}"
+    title: "{{Phase 4 Audit Checkpoint}}"
 
 # ============================================================================
 # CROSS-PLAN COORDINATION
@@ -118,18 +118,18 @@ phase_deps:
 # Used for parallel plan execution with staggered phase dependencies.
 
 cross_plan_coordination:
-  # Example: Bidirectional coordination with RWP-0178
-  # - plan: RWP-0178
+  # Example: Bidirectional coordination with MP-0178-example
+  # - plan: MP-0178-example
   #   our_phases_they_need: [P-01]     # They wait for our P-01
   #   their_phases_we_need: [P-02]     # We wait for their P-02
   #   status: coordinating             # coordinating | complete
   #
   # Visualization:
-  #   RWP-0177: P-01 ──────────────────→ P-04 (needs RWP-0178 P-02)
+  #   MP-0177-example: P-01 ──────────────────→ P-04 (needs MP-0178-example P-02)
   #              ↓                        ↑
-  #   RWP-0178: P-01 → P-02 → P-03 ───────┘
+  #   MP-0178-example: P-01 → P-02 → P-03 ───────┘
   #                    ↑      ↓
-  #                    └── (needs RWP-0177 P-01)
+  #                    └── (needs MP-0177-example P-01)
   []
 
 # ============================================================================
@@ -140,10 +140,9 @@ cross_plan_coordination:
 computed:
   status: ready  # ready | blocked | completed
   unmet_blockers: []
-  last_checked: "{TIMESTAMP_ISO8601}"
+  last_checked: "{{TIMESTAMP_ISO8601}}"
 
 ---
-
 Produced: {{TIMESTAMP_ISO8601}}
 By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
 Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

@@ -1,0 +1,50 @@
+handoff_id: HO-{{PLAN_ID}}-{{PHASE_ID}}-{{DATE}}
+plan_id: {{PLAN_ID}}
+phase_id: {{PHASE_ID}}
+title: "{{PHASE_TITLE}}"
+status: "{{STATUS}}"
+rwp_version: "{{RWP_VERSION}}"
+created: "{{TIMESTAMP}}"
+created_by: "{{AUTHOR}}"
+
+summary:
+  objective: "{{PHASE_OBJECTIVE}}"
+  outcome: "{{PHASE_OUTCOME}}"
+  quality_score: {{QUALITY_SCORE}}
+  duration_minutes: {{DURATION_MINUTES}}
+
+deliverables:
+  completed:
+    - path: "{{DELIVERABLE_PATH}}"
+      description: "{{DELIVERABLE_DESCRIPTION}}"
+      verification:
+        - "{{VERIFICATION_RESULT}}"
+  deferred: []
+
+changes:
+  files_created: []
+  files_modified: []
+  files_deleted: []
+
+decisions:
+  - decision: "{{DECISION}}"
+    rationale: "{{RATIONALE}}"
+    alternatives_considered: []
+
+risks:
+  open: []
+  mitigated: []
+
+verification:
+  commands:
+    - command: "{{VERIFY_COMMAND}}"
+      result: "{{VERIFY_RESULT}}"
+  evidence:
+    - "{{EVIDENCE_PATH_OR_SUMMARY}}"
+
+next:
+  phase_id: "{{NEXT_PHASE_ID}}"
+  prompt_file: "{{NEXT_PROMPT_PATH}}"
+  setup_notes:
+    - "{{NEXT_AGENT_CONTEXT}}"
+

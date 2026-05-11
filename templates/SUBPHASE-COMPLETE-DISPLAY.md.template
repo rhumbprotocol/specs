@@ -1,0 +1,25 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    ✓ SUB-PHASE COMPLETE: {{SUBPHASE_ID}}
+                         {{SUBPHASE_TITLE}}
+═══════════════════════════════════════════════════════════════════════════════
+
+COMPLETED IN
+  {{DURATION_MINUTES}} minutes
+
+DELIVERABLES
+{{DELIVERABLE_LIST}}
+
+VERIFICATION
+{{VERIFICATION_SUMMARY}}
+
+NEXT
+  {{NEXT_PHASE_ID}}: {{NEXT_PHASE_TITLE}}
+
+HANDOFF
+  {{HANDOFF_PATH}}
+
+───────────────────────────────────────────────────────────────────────────────
+Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}
+Homepage: https://rhumbprotocol.dev
+───────────────────────────────────────────────────────────────────────────────
+

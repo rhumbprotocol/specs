@@ -67,7 +67,7 @@ RWP recommends audits at regular intervals (e.g., every 3rd phase) and a final a
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Plan ID | `MP-{NNNN}` | `MP-0042` |
+| Plan ID | `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` | `MP-0042-dark-mode-toggle` |
 | Phase | `P-{NN}` | `P-03` |
 | Sub-phase | `P-{NN}-{A/B/C}` | `P-03-B` |
 | Audit | `AUD-{NN}` or `FINAL` | `AUD-02` |
@@ -81,7 +81,7 @@ RWP uses ISO 8601 format for all timestamps: `2026-01-28T20:45:00Z`
 All YAML artifacts include an `rwp_version` field for protocol compatibility tracking:
 
 ```yaml
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 ```
 
 ## How to Use RWP in Claude.ai
@@ -99,7 +99,7 @@ Since browser-based chat cannot create files directly, the workflow is conversat
 
 - "Create an RWP plan for building a REST API with authentication"
 - "Draft an INTAKE.yaml for migrating our database to PostgreSQL"
-- "I'm starting phase P-02-A of plan MP-0015. Here's the handoff prompt: [paste prompt]"
+- "I'm starting phase P-02-A of plan MP-0015-example-project. Here's the handoff prompt: [paste prompt]"
 - "Generate an audit checklist for phases P-01 through P-03"
 
 ## RWP Plan Structure Example
@@ -108,8 +108,8 @@ Here's a minimal plan structure for reference:
 
 ```yaml
 # INTAKE.yaml
-rwp_version: "0.25.1"
-plan_id: MP-0001
+rwp_version: "0.26.0"
+plan_id: MP-0001-example-plan
 title: "Example Project Plan"
 
 pain_points:
@@ -131,7 +131,7 @@ constraints:
 ```markdown
 # PLAN.md
 
-## MP-0001 - Example Project Plan
+## MP-0001-example-plan - Example Project Plan
 
 ### Objective
 Automate the deployment pipeline to reduce manual errors.
@@ -154,7 +154,7 @@ RWP plans are typically stored in a plans directory within your project:
 .plans/
   planning/           # Plans being drafted
   processing/         # Plans being executed
-    MP-0001/
+    MP-0001-example-plan/
       PLAN.md
       INTAKE.yaml
       MASTERPLAN.yaml
@@ -189,7 +189,7 @@ Available templates:
 - RWP Specification: https://rhumbprotocol.dev
 - RWP JSON Schemas: Available for validation of YAML/JSON artifacts
 - Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
-- Source: https://github.com/rhumbprotocol
+- Source: https://github.com/rhumbprotocol/specs
 
 ---
 

@@ -51,19 +51,56 @@ use crate::{Category, CategoryResult, Failure, FailureKind};
 // ---------------------------------------------------------------------------
 // Embedded canonical templates
 //
-// 17 templates per ACS-0015 §3 and §5 corpus layout. Identified by full
-// filename (not extension) because four of the seventeen do not carry the
-// `.template` suffix (`ACS-TEMPLATE.md`, `AVD-TEMPLATE.md`,
-// `HANDOFF-TEMPLATE.md`, `PHASE-AUDIT.md`). Filename-allowlist matching is
-// explicit and survives future templates being added without changing the
-// discovery logic.
+// Canonical RWP templates. Identified by full filename because RWP template
+// names are the public contract; directory placement is an implementation
+// detail for repositories that embed the protocol templates.
 // ---------------------------------------------------------------------------
 
 const TEMPLATES: &[(&str, &str)] = &[
-    // Top-level templates (9)
+    // Top-level templates
+    (
+        "ACS-PROMPT.md.template",
+        include_str!("../../../templates/ACS-PROMPT.md.template"),
+    ),
+    (
+        "ACS.md.template",
+        include_str!("../../../templates/ACS.md.template"),
+    ),
+    (
+        "AUDIT-PROMPT.md.template",
+        include_str!("../../../templates/AUDIT-PROMPT.md.template"),
+    ),
+    (
+        "AUDIT.md.template",
+        include_str!("../../../templates/AUDIT.md.template"),
+    ),
+    (
+        "AVD-PROMPT.md.template",
+        include_str!("../../../templates/AVD-PROMPT.md.template"),
+    ),
+    (
+        "AVD.md.template",
+        include_str!("../../../templates/AVD.md.template"),
+    ),
     (
         "DEPENDENCIES.yaml.template",
         include_str!("../../../templates/DEPENDENCIES.yaml.template"),
+    ),
+    (
+        "FINAL-PROMPT.md.template",
+        include_str!("../../../templates/FINAL-PROMPT.md.template"),
+    ),
+    (
+        "FINAL.md.template",
+        include_str!("../../../templates/FINAL.md.template"),
+    ),
+    (
+        "HANDOFF.yaml.template",
+        include_str!("../../../templates/HANDOFF.yaml.template"),
+    ),
+    (
+        "IDEA.md.template",
+        include_str!("../../../templates/IDEA.md.template"),
     ),
     (
         "INTAKE.yaml.template",
@@ -97,20 +134,7 @@ const TEMPLATES: &[(&str, &str)] = &[
         "START-PROMPT.md.template",
         include_str!("../../../templates/START-PROMPT.md.template"),
     ),
-    // architecture/ (2)
-    (
-        "ACS-TEMPLATE.md",
-        include_str!("../../../templates/architecture/ACS-TEMPLATE.md"),
-    ),
-    (
-        "AVD-TEMPLATE.md",
-        include_str!("../../../templates/architecture/AVD-TEMPLATE.md"),
-    ),
-    // display/ (4)
-    (
-        "HANDOFF-COMPLETE-DISPLAY.md.template",
-        include_str!("../../../templates/display/HANDOFF-COMPLETE-DISPLAY.md.template"),
-    ),
+    // display/
     (
         "PHASE-COMPLETE-DISPLAY.md.template",
         include_str!("../../../templates/display/PHASE-COMPLETE-DISPLAY.md.template"),
@@ -123,14 +147,9 @@ const TEMPLATES: &[(&str, &str)] = &[
         "PLAN-DRAFT-DISPLAY.md.template",
         include_str!("../../../templates/display/PLAN-DRAFT-DISPLAY.md.template"),
     ),
-    // reference/ (2)
     (
-        "HANDOFF-TEMPLATE.md",
-        include_str!("../../../templates/reference/HANDOFF-TEMPLATE.md"),
-    ),
-    (
-        "PHASE-AUDIT.md",
-        include_str!("../../../templates/reference/PHASE-AUDIT.md"),
+        "SUBPHASE-COMPLETE-DISPLAY.md.template",
+        include_str!("../../../templates/SUBPHASE-COMPLETE-DISPLAY.md.template"),
     ),
 ];
 
@@ -242,7 +261,7 @@ fn discover_template_files(
     )
 }
 
-/// Return the matching canonical template key (one of the 17 names) for a
+/// Return the matching canonical template key for a
 /// candidate path, by full-filename match. Returns `None` for any file
 /// whose name is not in the allowlist — these are silently skipped.
 fn canonical_name_for(path: &Path) -> Option<&'static str> {
@@ -366,11 +385,10 @@ mod tests {
     }
 
     #[test]
-    fn embedded_template_count_is_seventeen() {
-        // ACS-0015 §3 line 114 + §5 corpus layout: 17 canonical templates.
+    fn embedded_template_count_is_twenty_three() {
         // Locks the count so anyone adding/removing a template has to
         // update the spec and the validator together.
-        assert_eq!(TEMPLATES.len(), 17);
+        assert_eq!(TEMPLATES.len(), 23);
     }
 
     #[test]
@@ -442,8 +460,8 @@ mod tests {
             Some("PLAN.md.template"),
         );
         assert_eq!(
-            canonical_name_for(Path::new("/tmp/foo/ACS-TEMPLATE.md")),
-            Some("ACS-TEMPLATE.md"),
+            canonical_name_for(Path::new("/tmp/foo/ACS.md.template")),
+            Some("ACS.md.template"),
         );
         // Substring of an allowlisted name must NOT match.
         assert_eq!(canonical_name_for(Path::new("PLAN.md")), None);
@@ -569,8 +587,8 @@ mod tests {
             result.failures
         );
         assert_eq!(
-            result.passed, 17,
-            "expected 17 templates discovered + passed under canonical tree, got {}",
+            result.passed, 23,
+            "expected 23 templates discovered + passed under canonical tree, got {}",
             result.passed
         );
         Ok(())

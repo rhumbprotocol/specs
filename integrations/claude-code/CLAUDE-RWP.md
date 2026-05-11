@@ -67,8 +67,8 @@ RWP provides foundation templates for all artifact types. Templates use advisory
 | `MANIFEST-PLAN.yaml.template` | File path manifest |
 | `PLAN-STATE.yaml.template` | Execution state tracking |
 | `DEPENDENCIES.yaml.template` | Dependency mapping |
-| `display/START-PROMPT.md.template` | Initial phase prompt |
-| `display/PROMPT.md.template` | Continuation phase prompts |
+| `START-PROMPT.md.template` | Initial phase prompt |
+| `PROMPT.md.template` | Continuation phase prompts |
 
 ## RWP Conventions
 
@@ -76,8 +76,8 @@ RWP provides foundation templates for all artifact types. Templates use advisory
 - RWP uses ISO 8601 format for all timestamps (e.g., `2026-01-28T20:45:00Z`)
 
 ### Plan IDs
-- Format: `MP-{NNNN}` where NNNN is a zero-padded sequence number
-- Example: `MP-0042`, `MP-0235`
+- Format: `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` where NNNN is a zero-padded sequence number
+- Example: `MP-0042-dark-mode-toggle`, `MP-0235-rhumb-workflow-protocol`
 
 ### Phase IDs
 - Traditional: `P-01`, `P-02`, `P-03`
@@ -85,7 +85,7 @@ RWP provides foundation templates for all artifact types. Templates use advisory
 
 ### RWP Version
 - RWP artifacts include an `rwp_version` field for protocol compatibility
-- Current version: `0.25.1`
+- Current version: `0.26.0`
 
 ## References
 

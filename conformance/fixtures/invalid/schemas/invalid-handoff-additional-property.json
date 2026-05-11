@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "filename": "HO-MP-0276-P-02-2026-04-30.md",
+    "filename": "HO-MP-0276-conformance-P-02-2026-04-30.md",
     "phase": "P-02",
     "date": "2026-04-30"
   },
   "summary": {
     "phase": "P-02",
-    "status": "COMPLETED"
+    "status": "completed"
   },
   "unexpected_top_level_field": "schema declares additionalProperties: false at root"
 }

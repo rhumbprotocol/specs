@@ -10,6 +10,7 @@
   "properties": {
     "plan_id": {
       "type": "string",
+      "pattern": "^MP-[0-9]{4}-[a-z0-9]+(?:-[a-z0-9]+)*$",
       "description": "Reference to parent plan identifier"
     },
     "manifest_version": {
@@ -63,7 +64,7 @@
           },
           "phase": {
             "type": "string",
-            "pattern": "^P-[0-9]{2}(-[A-C])?$",
+            "pattern": "^P-[0-9]{2}(-[A-Z])?$",
             "description": "Phase that created this file"
           },
           "language": {
@@ -145,7 +146,7 @@
           },
           "phase": {
             "type": "string",
-            "pattern": "^P-[0-9]{2}(-[A-C])?$",
+            "pattern": "^P-[0-9]{2}(-[A-Z])?$",
             "description": "Phase that created this directory"
           },
           "file_count": {
@@ -187,7 +188,7 @@
           },
           "status": {
             "type": "string",
-            "enum": ["completed", "in_progress", "not_started", "blocked"],
+            "enum": ["pending", "in_progress", "completed", "failed", "skipped"],
             "description": "Current status of deliverables"
           },
           "verified": {
@@ -234,7 +235,7 @@
   },
   "$examples": [
     {
-      "plan_id": "P-0001",
+      "plan_id": "MP-0001-example-plan",
       "manifest_version": "1.0",
       "created": "2026-03-04T08:00:00Z",
       "updated": "2026-03-04T12:00:00Z",

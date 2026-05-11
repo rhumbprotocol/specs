@@ -1,5 +1,6 @@
 {
   "$schema": "https://rhumbprotocol.dev/schemas/plan.schema.json",
+  "plan_id": "MP-0276-conformance",
   "title": "Minimal RWP Plan Fixture",
   "overview": "Exercises every required field of plan.schema.json once.",
   "phases": [

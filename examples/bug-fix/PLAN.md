@@ -2,7 +2,7 @@
 
 ---
 
-plan_id: RWP-0001
+plan_id: MP-0001-disable-submit
 request_id: null
 name: Disable Submit on Click - Fix Double-Submission
 classification: public
@@ -14,14 +14,14 @@ current_phase: P-01
 started: 2026-04-25T09:45:00Z
 completed: 2026-04-25T11:30:00Z
 parent: null
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 dependencies: []
 packages:
   - frontend-app
 
 ---
 
-# RWP-0001: Disable Submit on Click - Fix Double-Submission
+# MP-0001-disable-submit: Disable Submit on Click - Fix Double-Submission
 
 ---
 

@@ -8,6 +8,23 @@ While `MAJOR == 0`, the protocol follows the SemVer pre-1.0 convention: MINOR re
 
 ---
 
+## [0.26.0] - 2026-05-06
+
+### Changed - Greenfield RWP Shape
+
+- Canonical plan identifiers now use `MP-NNNN-short-name`, for example `MP-0250-setup-examples`.
+- Removed greenfield-incompatible status aliases from the state schema. Current workflow status is `planning | in_progress | paused | completed | failed`; phase status is `pending | in_progress | completed | failed | skipped`.
+- Replaced old Meridian-shaped template names with top-level RWP template names: `AVD.md.template`, `ACS.md.template`, `HANDOFF.yaml.template`, `AUDIT.md.template`, prompt companions, finalization templates, and `SUBPHASE-COMPLETE-DISPLAY.md.template`.
+- Added `VERSION` as the protocol version source of truth and `scripts/sync-version.mjs` to sync the conformance crate, website config, and Meridian RWP constants.
+
+### Removed
+
+- Removed canonical use of `AVD-TEMPLATE.md`, `ACS-TEMPLATE.md`, `HANDOFF-TEMPLATE.md`, `PHASE-AUDIT.md`, and `HANDOFF-COMPLETE-DISPLAY.md.template`.
+
+This is a breaking MINOR release under RWP's pre-1.0 versioning rule.
+
+---
+
 ## [0.25.4] - 2026-05-02
 
 ### Changed — Trademark Policy
@@ -166,5 +183,5 @@ The `rwp_version` field in artifacts indicates which protocol version they confo
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.25.4
+Rhumb Workflow Protocol (RWP) v0.26.0
 https://rhumbprotocol.dev

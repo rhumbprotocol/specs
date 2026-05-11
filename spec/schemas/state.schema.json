@@ -10,7 +10,21 @@
   "properties": {
     "plan_id": {
       "type": "string",
+      "pattern": "^MP-[0-9]{4}-[a-z0-9]+(?:-[a-z0-9]+)*$",
       "description": "Reference to parent plan identifier"
+    },
+    "request_id": {
+      "type": ["string", "null"],
+      "description": "Optional reference to the originating intake/request artifact"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable plan title mirrored for state readers"
+    },
+    "rwp_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "RWP protocol version used by this state artifact"
     },
     "state_version": {
       "type": "string",
@@ -30,12 +44,12 @@
       "properties": {
         "status": {
           "type": "string",
-          "enum": ["not_started", "in_progress", "completed", "error"],
+          "enum": ["planning", "in_progress", "paused", "completed", "failed"],
           "description": "Overall workflow status"
         },
         "current_phase": {
           "type": "string",
-          "pattern": "^P-[0-9]{2}(-[A-C])?$",
+          "pattern": "^P-[0-9]{2}(-[A-Z])?$",
           "description": "Currently executing phase"
         },
         "started_at": {
@@ -86,7 +100,7 @@
           },
           "status": {
             "type": "string",
-            "enum": ["pending", "in_progress", "completed", "error"],
+            "enum": ["pending", "in_progress", "completed", "failed", "skipped"],
             "description": "Current phase status"
           },
           "started_at": {
@@ -103,6 +117,11 @@
             "type": "integer",
             "minimum": 0,
             "description": "Actual duration in minutes"
+          },
+          "actual_duration_minutes": {
+            "type": ["integer", "null"],
+            "minimum": 0,
+            "description": "Actual duration in minutes, matching the state template field name"
           },
           "estimated_duration_minutes": {
             "type": "integer",
@@ -174,9 +193,19 @@
           "executor_notes": {
             "type": "string",
             "description": "Notes from executor about progress"
+          },
+          "sub_phases": {
+            "type": "object",
+            "description": "Nested sub-phase status entries",
+            "additionalProperties": true
           }
         }
       }
+    },
+    "audit_schedule": {
+      "type": "object",
+      "description": "Audit schedule and checkpoint tracking",
+      "additionalProperties": true
     },
     "error": {
       "type": "object",
@@ -213,6 +242,21 @@
           "description": "Resolution strategy tried"
         }
       }
+    },
+    "errors": {
+      "type": "object",
+      "description": "Template-compatible error summary and active error list",
+      "additionalProperties": true
+    },
+    "handoffs": {
+      "type": "object",
+      "description": "Handoff document tracking",
+      "additionalProperties": true
+    },
+    "deliverables": {
+      "type": "object",
+      "description": "Deliverable completion tracking",
+      "additionalProperties": true
     },
     "audit_trail": {
       "type": "object",
@@ -337,11 +381,16 @@
           "minimum": 0
         }
       }
+    },
+    "statistics": {
+      "type": "object",
+      "description": "Template-compatible summary statistics",
+      "additionalProperties": true
     }
   },
   "$examples": [
     {
-      "plan_id": "P-0001",
+      "plan_id": "MP-0001-example-plan",
       "state_version": "1.0",
       "created": "2026-03-04T08:00:00Z",
       "execution": {

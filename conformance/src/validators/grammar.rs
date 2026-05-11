@@ -48,20 +48,12 @@
 // External implementers can grep CI logs for `GRM-3` to locate
 // parser-level errors without scanning all GrammarViolation entries.
 //
-// Sub-phase letter range (decision flagged in handoff):
-//   sequence.grammar §1ALPHA defines sub-phase as any single letter
-//   A-Z / a-z (per RFC 5234 ALPHA class). The grammar file's
-//   English-language §"Phase ID Constraints" comment claims "only
-//   A, B, C allowed for sub-phases" — that's purely illustrative,
-//   not normative. The TypeScript reference parser
-//   (util/sequence-parser.ts line 304) accepts UPPERCASE A-Z only
-//   via the regex `^P-(\d{2})(?:-([A-Z]))?$`. This validator follows
-//   the TS reference (uppercase A-Z only) for parity. The formal
-//   ABNF and the TS reference disagree by case-sensitivity; the
-//   English comment disagrees with both. That tri-way mismatch is a
-//   real OQ for the rhumb-protocol spec authors — flagged in the
-//   P-06 handoff as a follow-up for spec amendment, not resolved
-//   here.
+// Sub-phase letter range:
+//   sequence.grammar, the TypeScript reference parser, and this
+//   validator now converge on uppercase A-Z only via the pattern
+//   `P-NN[-X]`, where X is one uppercase letter. Older schema/prose
+//   references to A-C were illustrative drift, not the intended
+//   validator behavior.
 //
 // Discovery:
 //   The walker (validators::walk::walk_dir) yields every regular

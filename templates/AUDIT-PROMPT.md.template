@@ -1,0 +1,24 @@
+# RWP Audit Prompt: {{AUDIT_ID}}
+
+You are auditing `{{PLAN_ID}}` for phases `{{PHASE_RANGE}}` under Rhumb Workflow Protocol `{{RWP_VERSION}}`.
+
+## Inputs
+
+- Plan: `{{PLAN_PATH}}`
+- State: `{{STATE_PATH}}`
+- Manifest: `{{MANIFEST_PATH}}`
+- Handoffs: `{{HANDOFF_PATHS}}`
+- Expected deliverables: `{{DELIVERABLE_LIST}}`
+
+## Audit Work
+
+1. Confirm every listed artifact exists and is readable.
+2. Validate IDs, phase IDs, statuses, filenames, and `rwp_version` values against RWP.
+3. Run the verification commands from the plan or explain why a command cannot run.
+4. Compare handoff claims against actual files and command evidence.
+5. Write findings into `AUDIT.md` with severity, evidence, and required follow-up.
+
+## Output Contract
+
+Return only the completed audit summary and the exact files/commands inspected. Do not invent missing evidence.
+

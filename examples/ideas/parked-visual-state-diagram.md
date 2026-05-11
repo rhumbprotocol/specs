@@ -29,7 +29,7 @@ promoted_at: null
 promoted_pipeline: null
 
 parked_as: "roadmap"
-parked_reason: "Depends on the lifecycle spec being finalized (MP-0288). Parking until the 7-state enum and transition table are stable; building a visualization against a moving target wastes effort."
+parked_reason: "Depends on the lifecycle spec being finalized (MP-0288-idea-artifact). Parking until the 7-state enum and transition table are stable; building a visualization against a moving target wastes effort."
 parked_until: "2026-06-01T00:00:00Z"
 
 discarded_by: null

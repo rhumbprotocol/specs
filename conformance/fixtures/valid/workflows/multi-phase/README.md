@@ -12,8 +12,8 @@ projects.
 | `INTAKE.yaml` | Intake | Detailed problem capture with pain points and constraints |
 | `PLAN.md` | Plan | 5-phase plan with sub-phases, dependency graph, risk assessment |
 | `state.yaml` | State | Execution tracking after P-02-A completion |
-| `handoffs/HO-RWP-0087-P-01-2026-02-15.md` | Handoff | P-01 completion handoff |
-| `handoffs/HO-RWP-0087-P-02-A-2026-02-15.md` | Handoff | P-02-A sub-phase handoff |
+| `handoffs/HO-MP-0087-api-rate-limiter-P-01-2026-02-15.md` | Handoff | P-01 completion handoff |
+| `handoffs/HO-MP-0087-api-rate-limiter-P-02-A-2026-02-15.md` | Handoff | P-02-A sub-phase handoff |
 
 ## Why This Example
 
@@ -40,4 +40,4 @@ they compound. The overhead pays for itself in reduced rework.
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.25.1 - https://rhumbprotocol.dev
+Rhumb Workflow Protocol (RWP) v0.26.0 - https://rhumbprotocol.dev

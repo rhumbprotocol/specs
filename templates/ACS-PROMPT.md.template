@@ -1,0 +1,21 @@
+# RWP ACS Prompt: {{ACS_ID}}
+
+Create or revise an Architecture Component Specification using `ACS.md.template`.
+
+## Inputs
+
+- Parent AVD: `{{AVD_ID}}`
+- Component name: `{{COMPONENT_NAME}}`
+- Parent plan: `{{PLAN_ID}}`
+- Constraints: `{{CONSTRAINTS}}`
+
+## Work
+
+1. Describe the component boundary, responsibilities, and exclusions.
+2. Define interfaces, data contracts, dependencies, failure modes, and operating assumptions.
+3. Include implementation phases only when they are specific enough to execute.
+4. Record key decisions and unresolved questions.
+5. Keep claims tied to source evidence or stated assumptions.
+
+Output a complete ACS. Do not invent dependencies, performance numbers, or compatibility promises.
+

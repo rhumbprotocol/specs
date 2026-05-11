@@ -11,7 +11,7 @@ that was producing duplicate database records.
 | `INTAKE.yaml` | Intake | Captures the bug report: pain points, requirements, constraints, success criteria |
 | `PLAN.md` | Plan | Single-phase plan with reproduce → fix → regression test → verify |
 | `state.yaml` | State | Tracks execution; shown in completed state |
-| `handoffs/HO-RWP-0001-P-01-2026-04-25.md` | Handoff | Closure handoff with deliverables, design decisions, sign-off |
+| `handoffs/HO-MP-0001-disable-submit-P-01-2026-04-25.md` | Handoff | Closure handoff with deliverables, design decisions, sign-off |
 
 ## Why This Example
 
@@ -74,4 +74,4 @@ change was made, not just *what* changed.
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.25.1 - https://rhumbprotocol.dev
+Rhumb Workflow Protocol (RWP) v0.26.0 - https://rhumbprotocol.dev

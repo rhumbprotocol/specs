@@ -2,7 +2,7 @@
 
 ---
 
-plan_id: RWP-0042
+plan_id: MP-0042-dark-mode-toggle
 request_id: null
 name: Add Dark Mode Toggle
 classification: public
@@ -14,14 +14,14 @@ current_phase: P-02
 started: 2026-03-01T10:15:00Z
 completed: null
 parent: null
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 dependencies: []
 packages:
   - frontend-app
 
 ---
 
-# RWP-0042: Add Dark Mode Toggle
+# MP-0042-dark-mode-toggle: Add Dark Mode Toggle
 
 ---
 

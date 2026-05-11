@@ -1,5 +1,5 @@
 # Rhumb Workflow Protocol (RWP)
-# Sequence Type Configuration Template v0.25.1
+# Sequence Type Configuration Template v{{RWP_VERSION}}
 #
 # This template defines all built-in sequence types and their format strings.
 # Sequence types are used to generate identifiers for artifacts, phases, and
@@ -9,10 +9,11 @@
 #   {id}      → Current sequence number (auto-incremented)
 #   {prefix}  → Type-specific prefix (e.g., MP, P, REQ)
 #   {suffix}  → Optional phase/variant suffix (e.g., -A, -B, -C)
+#   {slug}    → Lowercase short name for human-readable plan IDs
 #
 # Sequence Format Example:
 #   prefix: "MP"
-#   format: "{prefix}-{id:04d}"        # Produces: MP-0001, MP-0002, etc.
+#   format: "{prefix}-{id:04d}-{slug}" # Produces: MP-0001-setup-examples
 #   next: 1                             # Next ID to assign
 #
 # Extension Point:
@@ -26,21 +27,22 @@
 # CORE SEQUENCES (recommended for RWP conformance)
 
 sequences:
-  # Master Plans: large-scope work packages (e.g., "MP-0235")
+  # Master Plans: large-scope work packages (e.g., "MP-0235-rhumb-workflow-protocol")
   # Usage: Multi-phase initiatives, cross-team projects, formal specifications
   plan:
     prefix: "MP"
-    format: "{prefix}-{id:04d}"
+    format: "{prefix}-{id:04d}-{slug}"
     description: "Master Plan identifier"
-    example: "MP-0235"
+    example: "MP-0235-rhumb-workflow-protocol"
     next: 236  # Auto-increment starting from 236
     immutable: true
     scope: global
-    allowed_lifecycle: [planning, processing, completed]
+    slug_pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
+    allowed_lifecycle: [planning, in_progress, paused, completed, failed]
 
   # Phases: major work divisions within a plan (e.g., "P-01", "P-02-A")
   # Usage: Breaking plans into sequential or parallel work units
-  # Sub-phases: "P-NN-A", "P-NN-B", "P-NN-C" for 30-45 minute crash-resilient units
+  # Sub-phases: "P-NN-A" through "P-NN-Z" for crash-resilient units
   phase:
     prefix: "P"
     format: "{prefix}-{id:02d}{suffix}"
@@ -50,8 +52,9 @@ sequences:
       - "P-01-A"    # Sub-phase A (30-45 minutes)
       - "P-01-B"    # Sub-phase B
       - "P-01-C"    # Sub-phase C
-    suffix_pattern: "^(-[A-C])?$"  # Optional: -A, -B, or -C
-    suffix_meaning: "Sub-phase for crash resilience (A=first, B=middle, C=final)"
+      - "P-01-Z"    # Sub-phase Z
+    suffix_pattern: "^(-[A-Z])?$"  # Optional uppercase sub-phase letter
+    suffix_meaning: "Sub-phase for crash resilience"
     next: 1
     immutable: false
     scope: plan-local
@@ -108,13 +111,13 @@ sequences:
     allowed_lifecycle: [draft, review, approved, deprecated]
     parent_type: architecture_vision
 
-  # Research: exploratory investigation (e.g., "RSH-0001")
+  # Research: exploratory investigation (e.g., "RES-0001")
   # Usage: Protocol research, security analysis, performance studies
   research:
-    prefix: "RSH"
+    prefix: "RES"
     format: "{prefix}-{id:04d}"
     description: "Research identifier"
-    example: "RSH-0001"
+    example: "RES-0001"
     next: 1
     immutable: true
     scope: global
@@ -123,10 +126,10 @@ sequences:
   # Backlog Items: unscheduled work (e.g., "BLG-0001")
   # Usage: Roadmap items, future work, nice-to-have features
   backlog:
-    prefix: "BLG"
+    prefix: "BL"
     format: "{prefix}-{id:04d}"
     description: "Backlog item identifier"
-    example: "BLG-0001"
+    example: "BL-0001"
     next: 1
     immutable: false
     scope: global
@@ -180,47 +183,50 @@ custom_sequences: []  # Placeholder for domain-specific extensions
 
 naming_rules:
   # All sequence IDs must match one of the patterns above
-  pattern: "^[A-Z]+(-[0-9]+)?(-[A-C])?$"
+  pattern: "^MP-[0-9]{4}-[a-z0-9]+(-[a-z0-9]+)*$|^[A-Z]+(-[0-9]+)?(-[A-Z])?$"
   examples:
     valid:
-      - "MP-0001"      # Plan
+      - "MP-0001-setup-examples"      # Plan
       - "P-01-A"       # Phase with sub-phase
       - "REQ-0042"     # Requirement
       - "IDEA-0007"    # Idea
       - "AVD-0003"     # Architecture Vision
       - "ACS-0001"     # Architecture Component
-      - "RSH-0012"     # Research
-      - "BLG-0099"     # Backlog
+      - "RES-0012"     # Research
+      - "BL-0099"      # Backlog
     invalid:
       - "mp-0001"      # Lowercase prefix
       - "MP_0001"      # Underscore instead of dash
-      - "MP-1"         # Insufficient padding
-      - "MP-000A"      # Letter in number field
-      - "P-01-D"       # Invalid sub-phase (D not allowed)
+      - "MP-0001"      # Missing short name
+      - "MP-1-example" # Insufficient padding
+      - "MP-000A-example" # Letter in number field
+      - "P-01-a"       # Lowercase sub-phase
 
   parsing:
     # Variable-width prefix parsing algorithm
     algorithm: |
-      1. Extract all leading uppercase letters as prefix (MP, P, REQ, AVD, ACS, RSH, BLG, HO, AUD)
+      1. Extract all leading uppercase letters as prefix (MP, P, REQ, AVD, ACS, RES, BL, HO, AUD)
       2. Expect dash separator "-"
       3. Extract numeric ID (4 digits, zero-padded: 0000-9999)
-      4. Optionally extract sub-phase suffix (-A, -B, -C)
+      4. Optionally extract sub-phase suffix (-A through -Z)
+      Plan parsing is special: "MP-0001-setup-examples" keeps prefix "MP", number "0001", and slug "setup-examples".
       Example parsing "REQ-0042":
         prefix: "REQ"
         number: "0042" (integer: 42)
         subphase: null
 
-    regex_pattern: "^([A-Z]+)-([0-9]{4})(-[A-C])?$"
+    regex_pattern: "^MP-([0-9]{4})-([a-z0-9]+(?:-[a-z0-9]+)*)$|^([A-Z]+)-([0-9]{4})(-[A-Z])?$"
     parser_source: "spec/sequence-parser.md"
 
 # VERSIONING & COMPATIBILITY
 
 versioning:
-  rwp_version: "0.25.1"
+  rwp_version: "{{RWP_VERSION}}"
   specification_url: "https://rhumbprotocol.dev/spec/sequences"
   compatibility:
-    breaking_changes: []  # No breaking changes in v0.25.1
-    compatible_with: ["0.25.1"]  # Self-compatible during 0.x maturation
+    breaking_changes:
+      - "Plan IDs require MP-NNNN-short-name format."
+    compatible_with: ["{{RWP_VERSION}}"]
     notes: "Sequence types remain advisory and may change in 0.x minor releases. They lock in at v1.0; new types added in subsequent 1.x versions remain backward compatible."
 
 # METADATA
@@ -233,7 +239,6 @@ metadata:
   license: "Apache-2.0"
 
 ---
-
-# Produced: 2026-03-04T05:15:00Z
+# Produced: {{TIMESTAMP}}
 # By: Rhumb Workflow™ Protocol (RWP) - https://rhumbprotocol.dev
 # Copyright: Copyright © 2026 Rhumb Protocol Contributors. Licensed under Apache-2.0.

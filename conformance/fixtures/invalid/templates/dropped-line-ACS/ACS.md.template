@@ -10,11 +10,11 @@ author: "Author Name"
 parent: AVD-NNNN
 children: []
 tags: []
+rwp_version: 0.26.0
 ---
 
 # Architecture Component Specification: {Component}
 
-## Executive Summary
 
 Provide 1-2 paragraphs focused exclusively on this component. Unlike the AVD (which is big-picture), this should cover technical detail. Answer: **What problem does this specific component solve? How does it fit into the broader system?**
 

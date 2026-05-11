@@ -2,10 +2,10 @@
 # Example: Multi-Phase Project - API Rate Limiter Service
 # Snapshot: After P-02-A completion, P-02-B in progress
 
-plan_id: RWP-0087
+plan_id: MP-0087-api-rate-limiter
 request_id: REQ-00312
 title: "API Rate Limiter Service"
-rwp_version: "0.25.1"
+rwp_version: "0.26.0"
 
 execution:
   status: in_progress
@@ -91,20 +91,20 @@ audit_schedule:
       scheduled_after: P-03
       started_at: null
       completed_at: null
-      report_file: "audits/AUD-RWP-0087-2026-02-20.md"
+      report_file: "audits/AUD-MP-0087-api-rate-limiter-2026-02-20.md"
 
 errors:
   total_count: 0
   current: []
 
 handoffs:
-  last_handoff: "handoffs/HO-RWP-0087-P-02-A-2026-02-15.md"
+  last_handoff: "handoffs/HO-MP-0087-api-rate-limiter-P-02-A-2026-02-15.md"
   pending_handoff: false
   handoff_files:
-    - file: "handoffs/HO-RWP-0087-P-01-2026-02-15.md"
+    - file: "handoffs/HO-MP-0087-api-rate-limiter-P-01-2026-02-15.md"
       phase: P-01
       created_at: "2026-02-15T11:35:00Z"
-    - file: "handoffs/HO-RWP-0087-P-02-A-2026-02-15.md"
+    - file: "handoffs/HO-MP-0087-api-rate-limiter-P-02-A-2026-02-15.md"
       phase: P-02-A
       created_at: "2026-02-15T12:20:00Z"
 

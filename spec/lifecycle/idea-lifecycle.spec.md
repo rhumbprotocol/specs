@@ -2,7 +2,7 @@
 SPDX-License-Identifier: Apache-2.0
 Copyright (c) 2026 Rhumb Protocol Contributors
 
-RWP version: 0.25.3
+RWP version: 0.26.0
 RWP IDEA Lifecycle Specification — Normative prose specification for the
 seven-state IDEA lifecycle and its state machine.
 
@@ -30,8 +30,8 @@ idea.schema.json.
 
 # RWP IDEA Lifecycle Specification
 
-**Schema version**: v0.25.3
-**Schema $id**: `https://rhumbprotocol.dev/schemas/v0.25.3/lifecycle.schema.json`
+**Schema version**: v0.26.0
+**Schema $id**: `https://rhumbprotocol.dev/schemas/v0.26.0/lifecycle.schema.json`
 **Status enum source of truth**: [`idea.schema.json#/properties/status`](../schemas/idea.schema.json)
 **Lifecycle schema**: [`lifecycle.schema.json`](../schemas/lifecycle.schema.json)
 **Component spec**: ACS-0038 (`.meridian/.private/knowledge/components/ACS-0038-rwp-idea-template-and-lifecycle/`)
@@ -158,7 +158,7 @@ Instead, this specification declares the per-state required-fields contract. A L
 | `refining` | (none) | Same as `captured`. |
 | `ready` | (none) | Same as `captured`. |
 | `approved` | `approved_by`, `approved_at`, `approval_policy` | Approval ceremony attribution. `approval_policy` records whether the approval was solo, reviewed, or implementation-specific. |
-| `promoted` | `promoted_to`, `promoted_at`, `promoted_pipeline` | Downstream artifact identifier (e.g., AVD-0123, MP-0456), promotion timestamp, and the pipeline path actually taken. `promoted_pipeline` uses the same enum as `pipeline`. |
+| `promoted` | `promoted_to`, `promoted_at`, `promoted_pipeline` | Downstream artifact identifier (e.g., AVD-0123, MP-0456-example-plan), promotion timestamp, and the pipeline path actually taken. `promoted_pipeline` uses the same enum as `pipeline`. |
 | `parked` | `parked_as`, `parked_reason` | The free-string `parked_as` label (e.g., `roadmap`, `backlog`, or implementation-specific) and the reason. `parked_until` is optional even when parked — null means open-ended parking. |
 | `discarded` | `discarded_by`, `discarded_at`, `discarded_reason` | Discarder attribution and rationale. The `discarded_reason` field is load-bearing — discard without rationale is not a valid state. |
 

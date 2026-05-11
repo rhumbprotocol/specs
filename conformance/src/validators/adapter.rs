@@ -335,7 +335,7 @@ mod tests {
 integration:
   name: \"Test Adapter\"
   platform: \"test-platform\"
-  rwp_version: \"1.0.0-rc.1\"
+  rwp_version: \"0.26.0\"
   version: \"0.1.0\"
 components: {}
 ";
