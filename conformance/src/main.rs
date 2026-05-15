@@ -34,7 +34,7 @@ EXIT CODES:
 
 EXAMPLES:
   # Full run — typical CI invocation:
-  rhumb-validate --all --target .meridian/
+  rhumb-validate --all --target .meridian/    # YAKKL Meridian uses .meridian/ directory structure to hold many RWP™ artifacts
 
   # Single category — developer iterating on one area:
   rhumb-validate --category schema --target packages/my-impl/
@@ -76,8 +76,8 @@ enum FormatArg {
 #[command(
     name = "rhumb-validate",
     version,
-    about = "RWP conformance test runner",
-    long_about = "rhumb-validate runs the Rhumb Workflow Protocol conformance suite \
+    about = "RWP™ conformance test runner",
+    long_about = "rhumb-validate runs the Rhumb Workflow Protocol™ conformance suite \
                   against a target artifact tree and reports pass/fail per category.",
     after_long_help = AFTER_HELP,
     after_help = AFTER_HELP,

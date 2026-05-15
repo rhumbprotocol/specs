@@ -1,4 +1,4 @@
-name: Rhumb conformance
+name: Rhumb™ Conformance
 
 on:
   pull_request:
@@ -33,7 +33,7 @@ jobs:
       - name: Build and test validator
         run: cargo test --manifest-path conformance/Cargo.toml
 
-      - name: Validate canonical valid corpus
+      - name: Validate canonical valid fixture set
         run: cargo run --manifest-path conformance/Cargo.toml -- --all --target conformance/fixtures/valid
 
       - name: Validate canonical templates

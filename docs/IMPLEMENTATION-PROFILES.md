@@ -1,13 +1,13 @@
-# Rhumb Implementation Profiles
+# Rhumb™ Implementation Profiles
 
 This document separates the **core protocol contract** from **recommended file-tree
-profiles**. The distinction matters because RWP is a portable artifact protocol,
+profiles**. The distinction matters because RWP™ is a portable artifact protocol,
 not a mandate that every implementation must copy Meridian's private directory
 layout.
 
 ## 1. Core Rule
 
-An RWP implementation is conformant because its artifacts preserve the protocol
+An RWP™ implementation is conformant because its artifacts preserve the protocol
 semantics, not because it stores them in one exact directory tree.
 
 Core RWP defines:
@@ -23,7 +23,7 @@ Core RWP defines:
 
 Core RWP does **not** require:
 
-- `.meridian/` as the root directory;
+- `.meridian/` as the root directory (if you setup the Free version of Meridian it will create all of that for you);
 - `.private/` as a privacy boundary;
 - SQLite, a daemon, a desktop app, or a CLI runtime;
 - a specific repository layout;
@@ -84,9 +84,6 @@ state use a split private tree under `.meridian/.private/`:
 
 ```text
 .meridian/
-  MANIFEST.yaml
-  MERIDIAN.yaml
-  rules/
   .private/
     runtime/
       STATE.yaml
@@ -97,6 +94,7 @@ state use a split private tree under `.meridian/.private/`:
     data/
       meridian.db
     knowledge/
+      architecture/
       plans/
         backlog/
         planning/
@@ -105,17 +103,21 @@ state use a split private tree under `.meridian/.private/`:
         cancelled/
         onhold/
         archived/
-      ideas/
+      notes/          # holding area to track all of your notes and pre-IDEAs before promoting to IDEAS
+      ideas/          # where notes or thoughts solid enough to be put here directly and where it goes through the IP Cycle (Interactive Planning Cycle)
       visions/
       components/
-      notes/
       captured/
       evidence/
+  rules/
+  schemas/
+  templates/
+  MANIFEST.yaml
+  MERIDIAN.yaml
+  others...
 ```
 
-The production Meridian path constants live in
-`packages/yakkl-meridian-rs/meridian-ops/src/paths.rs`. The important point for
-RWP is the split:
+The important point for RWP is the split:
 
 | Meridian area | Purpose | RWP meaning |
 |---|---|---|
@@ -190,7 +192,7 @@ Use this decision table:
 
 ## 6. Current Reconciliation Findings
 
-The repository previously showed real drift that must not be hidden. RWP 0.26.0
+The repository previously showed real drift that must not be hidden. RWP 0.27.0
 resolves the protocol-side pieces and leaves remaining implementation-profile
 work explicit:
 

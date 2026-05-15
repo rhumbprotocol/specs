@@ -18,18 +18,8 @@ Describe the protocol, schema, template, validator, documentation, or integratio
 - [ ] No protocol contract change
 - [ ] Backward-compatible clarification or fix
 - [ ] Breaking pre-1.0 protocol change
-- [ ] Meridian Reference Profile impact
 
 If this changes artifact shape, IDs, statuses, lifecycle rules, template names, or validator behavior, explain the exact contract impact.
-
-## Meridian Compatibility
-
-- [ ] Not applicable
-- [ ] Compatible with the Meridian Reference Profile
-- [ ] Requires Meridian follow-up
-- [ ] Requires new profile or extension language
-
-Notes:
 
 ## Validation
 
@@ -52,6 +42,5 @@ Paste results:
 - [ ] New or changed templates are included in the template validator list.
 - [ ] Examples use `MP-NNNN-short-name` plan IDs where plan IDs are required.
 - [ ] Status values use current RWP vocabulary.
-- [ ] Public claims do not imply YAKKL endorsement beyond the trademark policy.
 - [ ] Documentation links use `https://github.com/rhumbprotocol/specs`.
 

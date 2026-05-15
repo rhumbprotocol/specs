@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../assets/rhumb-org-banner.svg" alt="Rhumb Protocol organization banner" width="100%">
+  <img src="../assets/rhumbprotocol-org-banner-2400x900.png" alt="Rhumb Protocol organization banner" width="100%">
 </p>
 
 # Rhumb Protocol&trade;
@@ -31,7 +31,7 @@ across tools, agents, vendors, and sessions.
 | Architecture path | `IDEA -> AVD -> ACS -> MP` |
 | Conformance | `rhumb-validate` |
 
-RWP `0.26.0` uses `MP-NNNN-short-name` plan identifiers, current-only state
+RWP `0.27.0` uses `MP-NNNN-short-name` plan identifiers, current-only state
 vocabulary, and canonical RWP template names such as `AVD.md.template`,
 `ACS.md.template`, `HANDOFF.yaml.template`, `AUDIT.md.template`, and
 `FINAL.md.template`.
@@ -71,7 +71,7 @@ protocol.
 ## License And Marks
 
 The Rhumb Workflow Protocol specification and validator are licensed under
-Apache-2.0. Rhumb names, marks, and visual identity are trademarks of YAKKL,
+Apache-2.0. Rhumb names, marks, and visual identity are trademarks of YAKKL®,
 Inc. and are governed separately by the repository trademark policy.
 
 Copyright &copy; 2026 YAKKL Inc. All Rights Reserved.

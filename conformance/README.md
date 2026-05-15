@@ -130,7 +130,7 @@ if !report.overall_passed {
 }
 ```
 
-The crate also embeds the canonical fixture corpus at build time so
+The crate also embeds the canonical fixture set at build time so
 library callers can self-test without depending on the on-disk
 `fixtures/` tree:
 
@@ -222,12 +222,12 @@ are required, and how mark-use claims can be machine-audited — see
 
 ## Reporting issues
 
-| Issue type                         | Where to report                                                |
-|------------------------------------|----------------------------------------------------------------|
-| Validator false positive           | Open an issue at <https://github.com/rhumbprotocol/specs> |
-| Validator false negative           | Same — include the artifact contents and the missed check.     |
-| Fixture corpus gap                 | Pull request against `packages/rhumb-protocol/conformance/fixtures/`. |
-| Trademark / mark-use question      | See TRADEMARK.md §9 for the policy contact.                    |
+| Issue type                         | Where to report                                                       |
+|------------------------------------|-----------------------------------------------------------------------|
+| Validator false positive           | Open an issue at <https://github.com/rhumbprotocol/specs>             |
+| Validator false negative           | Same — include the artifact contents and the missed check.            |
+| Fixture set gap                    | Pull request against `packages/rhumb-protocol/conformance/fixtures/`. |
+| Trademark / mark-use question      | See TRADEMARK.md §9 for the policy contact.                           |
 
 ---
 
@@ -240,14 +240,14 @@ cargo build
 cargo test                                 # 133 tests across lib + main + cli
 cargo clippy --all-targets -- -D warnings  # zero warnings tolerated
 
-# Run validator against the canonical fixture corpus:
+# Run validator against the canonical fixture set:
 cargo run -- --all --target fixtures/valid/
 
 # Run validator against itself (Target 0 — Meridian artifact tree):
 cargo run -- --all --target ../../../.meridian/
 ```
 
-The `fixtures/` tree is the canonical corpus. Every category has paired
+The `fixtures/` tree is the canonical fixture set. Every category has paired
 `valid/` and `invalid/` subdirectories — a positive case for each
 validator's happy path and at least one negative case per documented
 invariant. Adding fixtures is the most direct way to extend coverage.

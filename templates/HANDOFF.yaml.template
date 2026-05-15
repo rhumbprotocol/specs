@@ -1,50 +1,216 @@
-handoff_id: HO-{{PLAN_ID}}-{{PHASE_ID}}-{{DATE}}
-plan_id: {{PLAN_ID}}
-phase_id: {{PHASE_ID}}
-title: "{{PHASE_TITLE}}"
-status: "{{STATUS}}"
-rwp_version: "{{RWP_VERSION}}"
-created: "{{TIMESTAMP}}"
-created_by: "{{AUTHOR}}"
+# Purpose: Machine-parseable handoff document for phase transitions.
+# All fields are YAML. Narrative content uses multiline YAML strings.
+# Convert to human-readable markdown via: meridian render handoff <file>
 
-summary:
-  objective: "{{PHASE_OBJECTIVE}}"
-  outcome: "{{PHASE_OUTCOME}}"
-  quality_score: {{QUALITY_SCORE}}
-  duration_minutes: {{DURATION_MINUTES}}
+# ============================================================================
+# HANDOFF METADATA
+# ============================================================================
+schema_version: "{{SCHEMA_VERSION}}"
+type: handoff
 
-deliverables:
-  completed:
-    - path: "{{DELIVERABLE_PATH}}"
-      description: "{{DELIVERABLE_DESCRIPTION}}"
-      verification:
-        - "{{VERIFICATION_RESULT}}"
-  deferred: []
+# Plan Information
+plan:
+  id: "{{PLAN_ID}}"                      # MP-NNNN
+  request_id: "{{REQUEST_ID}}"           # REQ-NNNNN or null
+  title: "{{PLAN_TITLE}}"
+  classification: {{CLASSIFICATION}}   # public | confidential
 
-changes:
-  files_created: []
-  files_modified: []
-  files_deleted: []
+# Phase Transition
+phase:
+  from: "{{FROM_PHASE}}"                 # P-NN, START, or PLANNING
+  to: "{{TO_PHASE}}"                     # P-NN or COMPLETE
+  title: "{{PHASE_TITLE}}"
 
-decisions:
-  - decision: "{{DECISION}}"
-    rationale: "{{RATIONALE}}"
-    alternatives_considered: []
+# Timestamps (ISO 8601)
+timestamps:
+  created: "{{CREATED_ISO8601}}"
+  completed: "{{COMPLETED_ISO8601}}"
 
-risks:
-  open: []
-  mitigated: []
+# Authorship
+author:
+  agent: "{{AGENT}}"                     # claude | codex | gemini | human
+  model: "{{MODEL}}"                     # specific model used
 
+# Status
+status: {{STATUS}}                      # completed | blocked | partial
+progress: 100                          # 0-100
+
+# ============================================================================
+# FILES CHANGED
+# ============================================================================
+files:
+  created:
+    - path: "{{PATH}}"
+      purpose: "{{BRIEF_DESCRIPTION}}"
+      lines: 0
+
+  modified:
+    - path: "{{PATH}}"
+      changes: "{{WHAT_CHANGED}}"
+      lines_changed: 0
+
+  deleted:
+    - path: "{{ORIGINAL_PATH}}"
+      moved_to: ".meridian/deadcode/{{DATE}}/{{FILENAME}}" # {{DATE}} and {{FILENAME}} are template variables
+      reason: "{{WHY}}"
+
+# ============================================================================
+# DEPENDENCIES
+# ============================================================================
+dependencies:
+  packages_added:
+    - name: "{{PACKAGE}}"
+      version: "{{VERSION}}"
+      reason: "{{WHY_NEEDED}}"
+
+  packages_removed:
+    - name: "{{PACKAGE}}"
+      reason: "{{WHY_REMOVED}}"
+
+  env_vars_added:
+    - name: "{{VAR_NAME}}"
+      purpose: "{{DESCRIPTION}}"
+      example: "{{EXAMPLE_VALUE}}"
+      required: true
+
+# ============================================================================
+# TESTING
+# ============================================================================
+tests:
+  added: {{TEST_ADDED}}
+  modified: {{TEST_MODIFIED}}
+  deleted: {{TEST_DELETED}}
+  status: {{TEST_VERIFICATION_STATUS}}           # passing | failing | skipped
+  coverage_delta: {{TEST_COVERAGE_DELTA}}        # e.g. "+2.3%"
+
+# ============================================================================
+# VERIFICATION
+# ============================================================================
 verification:
-  commands:
-    - command: "{{VERIFY_COMMAND}}"
-      result: "{{VERIFY_RESULT}}"
-  evidence:
-    - "{{EVIDENCE_PATH_OR_SUMMARY}}"
+  - check: "Compiles"                    # Specific check names
+    command: "{{COMPILE_COMMAND}}"       # {{COMPILE_COMMAND}} is a template variable
+    expected: "No errors"
+    actual: "{{COMPILE_ACTUAL_RESULT}}"                      # {{COMPILE_ACTUAL_RESULT}} is a template variable
+    status: {{COMPILE_VERIFICATION_STATUS}}                       # pass | fail | skip
 
-next:
-  phase_id: "{{NEXT_PHASE_ID}}"
-  prompt_file: "{{NEXT_PROMPT_PATH}}"
-  setup_notes:
-    - "{{NEXT_AGENT_CONTEXT}}"
+  - check: "Tests pass"
+    command: "{{TEST_COMMAND}}"                # {{TEST_COMMAND}} is a template variable
+    expected: "All green"
+    actual: "{{TEST_ACTUAL_RESULT}}"
+    status: {{TEST_VERIFICATION_STATUS}}                       # pass | fail | skip
 
+  - check: "Build succeeds"
+    command: "{{BUILD_COMMAND}}"           # {{BUILD_COMMAND}} is a template variable
+    expected: "Exit 0"
+    actual: "{{BUILD_ACTUAL_RESULT}}"
+    status: {{BUILD_VERIFICATION_STATUS}}                       # pass | fail | skip
+
+# ============================================================================
+# ISSUES
+# ============================================================================
+issues:
+  - type: {{ISSUE_TYPE}}                        # TODO | FIXME | TECH_DEBT | BLOCKER
+    location: "{{FILE}}:{{LINE}}"               # {{FILE}} and {{LINE}} are template variables
+    description: "{{WHAT}}"                     # {{WHAT}} is a template variable
+    priority: {{ISSUE_PRIORITY}}                # low | medium | high | critical
+
+# ============================================================================
+# SESSION METRICS
+# ============================================================================
+metrics:
+  turns:
+    total: 0
+    implementation: 0
+    handoff: 0
+  tool_calls:
+    read: 0
+    write: 0
+    edit: 0
+    bash: 0
+    grep: 0
+    glob: 0
+  context:
+    files_read:
+      - path: "{{PATH}}"
+        lines: 0
+    total_lines_read: 0
+  output:
+    files_created: 0
+    files_modified: 0
+    lines_written: 0
+  quality:
+    tests_added: 0
+    tests_total: 0
+    build_attempts: 0
+    test_attempts: 0
+    errors_encountered: 0
+  timing:
+    wall_clock_minutes: 0
+
+# ============================================================================
+# NEXT PHASE CONTEXT
+# ============================================================================
+next_phase:
+  id: "{{NEXT_PHASE_ID}}"
+  title: "{{NEXT_PHASE_TITLE}}"
+  objective: "{{ONE_SENTENCE}}"
+
+  critical_files:
+    - path: "{{CRITICAL_FILE_PATH}}"                     # {{CRITICAL_FILE_PATH}} is a template variable
+      reason: "{{WHY_IMPORTANT}}"
+
+  assumptions:
+    - assumption: "{{WHAT}}"                            # {{WHAT}} is a template variable
+      based_on: "{{EVIDENCE}}"
+      impact_if_wrong: "{{CONSEQUENCE}}"
+
+  constraints:
+    - type: {{CONSTRAINT_TYPE}}                   # must | must_not
+      action: "{{ACTION}}"
+      reason: "{{WHY}}"
+
+  failure_modes:
+    - scenario: "{{WHAT_GOES_WRONG}}"
+      symptom: "{{WHAT_YOULL_SEE}}"
+      fix: "{{HOW_TO_RESOLVE}}"
+
+# ============================================================================
+# ROLLING CONTEXT
+# ============================================================================
+rolling_context:
+  - phase: "{{PHASE_ID}}"
+    summary: "{{ONE_PARAGRAPH_SUMMARY}}"
+
+# ============================================================================
+# NARRATIVE CONTENT
+# ============================================================================
+narrative:
+  completion_status:
+    - task: "{{TASK_1}}"
+      done: true
+    - task: "{{TASK_2}}"
+      done: true
+
+  what_was_done:
+    - title: "{{TASK_1_TITLE}}"
+      description: "{{DETAILED_DESCRIPTION}}"
+      details:
+        - "{{DETAIL_1}}"
+        - "{{DETAIL_2}}"
+
+  decisions:
+    - decision: "{{DECISION_1}}"
+      rationale: "{{WHY}}"
+      alternatives_rejected: "{{OPTION_A}}: {{WHY_NOT}}"
+
+  next_steps:
+    - title: "{{STEP_1_TITLE}}"
+      actions:
+        - "{{SPECIFIC_ACTION}}"
+      files:
+        - "{{PATH}}"
+
+  warnings:
+    - type: {{CONSTRAINT_TYPE}}                   # must | must_not
+      action: "{{WARNING_ACTION}}"
+      reason: "{{WARNING_REASON}}"
