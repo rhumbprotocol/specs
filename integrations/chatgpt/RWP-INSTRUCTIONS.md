@@ -48,7 +48,7 @@ ISO 8601 format: `2026-01-28T20:45:00Z`
 
 ### RWP Version
 
-YAML artifacts include `rwp_version: "0.26.0"` for protocol compatibility.
+YAML artifacts include `rwp_version: "0.27.0"` for protocol compatibility.
 
 ## Core Artifacts
 
@@ -131,7 +131,7 @@ Here is a minimal RWP plan structure for reference:
 ### INTAKE.yaml
 
 ```yaml
-rwp_version: "0.26.0"
+rwp_version: "0.27.0"
 plan_id: MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}
 title: "{Plan Title}"
 

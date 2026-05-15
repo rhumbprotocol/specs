@@ -133,5 +133,5 @@ All governance activities are conducted in public:
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.26.0
+Rhumb Workflow Protocol (RWP) v0.27.0
 https://rhumbprotocol.dev

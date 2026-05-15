@@ -43,7 +43,7 @@ discarded_reason: null
 ## Context
 
 RWP publishes JSON Schemas at versioned URLs (e.g.,
-`https://rhumbprotocol.dev/schemas/v0.26.0/idea.schema.json`). As the protocol
+`https://rhumbprotocol.dev/schemas/v0.27.0/idea.schema.json`). As the protocol
 evolves, breaking changes (new required fields, removed properties, enum value
 changes) need a clear versioning contract so that existing artifacts remain
 valid against the schema version they were authored under, while new artifacts
@@ -70,8 +70,8 @@ adopters over years and one that peaks at early-adopter enthusiasm then stalls.
 
 ## Key Concepts / Pillars
 
-1. **Version-pinned validation**: An artifact authored against v0.26.0 is always
-   valid against v0.26.0, regardless of what v0.26.0 introduces.
+1. **Version-pinned validation**: An artifact authored against v0.27.0 is always
+   valid against v0.27.0, regardless of what v0.27.0 introduces.
 2. **Forward-compatibility window**: Non-breaking additions (new optional fields)
    do not require a version bump from the artifact author's perspective.
 3. **Migration tooling**: `rhumb migrate` command that rewrites frontmatter for

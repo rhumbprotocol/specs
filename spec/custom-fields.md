@@ -2,7 +2,7 @@
 
 > Part of the [Rhumb Workflow Protocol (RWP)](../docs/PROTOCOL.md) - see also: [Extension Mechanism](../docs/PROTOCOL.md#extension-mechanism)
 
-**Version**: 0.26.0
+**Version**: 0.27.0
 **Date**: 2026-03-04
 **Classification**: Public
 
@@ -349,10 +349,10 @@ If you define custom fields, version them:
 
 ```yaml
 # In your implementation docs
-custom_fields_version: "0.26.0"
+custom_fields_version: "0.27.0"
 
 # In artifacts
-x-mycompany-custom-fields-version: "0.26.0"
+x-mycompany-custom-fields-version: "0.27.0"
 ```
 
 ### 5. Audit Custom Field Usage

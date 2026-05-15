@@ -152,7 +152,7 @@ before parsing.
 ### Text (default)
 
 ```text
-rhumb-validate 0.1.0 (RWP 0.26.0)
+rhumb-validate 0.1.0 (RWP 0.27.0)
 target: .meridian/
 started: 2026-05-01T12:34:56.789012Z    completed: 2026-05-01T12:34:57.012345Z    duration: 223 ms
 
@@ -181,7 +181,7 @@ Top-level fields: `rhumb_validate_version`, `rwp_version`, `started_at`,
 ```json
 {
   "rhumb_validate_version": "0.1.0",
-  "rwp_version": "0.26.0",
+  "rwp_version": "0.27.0",
   "started_at": "2026-05-01T12:34:56.789012Z",
   "completed_at": "2026-05-01T12:34:57.012345Z",
   "target_path": ".meridian/",
