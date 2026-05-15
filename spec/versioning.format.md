@@ -96,7 +96,7 @@ rwp_version: "0.26.0"    # Protocol version
 created: "2026-04-27T08:00:00Z"
 ```
 
-### In Handoff (HO-*.md)
+### In Handoff (HO-*.yaml)
 
 Handoff documents don't require explicit version declaration in most cases, but may reference it:
 
@@ -330,4 +330,4 @@ Future RWP versions will document their corresponding schema versions in their r
 ---
 
 *Specification produced by YAKKL® - https://yakkl.com*
-*RWP Reference Implementation: YAKKL Meridian - https://meridian.yakkl.com*
+*RWP Reference Implementation: YAKKL® Meridian™ - https://meridian.yakkl.com*

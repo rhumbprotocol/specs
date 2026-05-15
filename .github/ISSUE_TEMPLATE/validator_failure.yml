@@ -38,7 +38,7 @@ body:
     id: target
     attributes:
       label: Target artifact tree
-      description: Describe the target tree and whether it is Core RWP, Meridian Reference Profile, or another implementation profile.
+      description: Describe the target tree and whether it is Core RWP™, or another implementation profile.
     validations:
       required: true
   - type: checkboxes
@@ -48,6 +48,6 @@ body:
       options:
         - label: I verified the target does not include intentionally invalid fixtures.
           required: true
-        - label: I checked the current RWP version in `VERSION`.
+        - label: I checked the current RWP™ version in `VERSION`.
           required: true
 

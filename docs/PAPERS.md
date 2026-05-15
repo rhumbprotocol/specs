@@ -1,6 +1,6 @@
 # Rhumb Protocol Papers
 
-This document defines the first public paper set for Rhumb Workflow Protocol.
+This document defines the first public paper set for Rhumb Workflow Protocol™.
 The PDFs are distribution artifacts generated from the website paper pages.
 The maintained sources remain this repository's Markdown specifications,
 schemas, templates, examples, and conformance notes.
@@ -23,7 +23,7 @@ schemas, templates, examples, and conformance notes.
 | Sequence grammar | `spec/sequence.grammar`, `spec/sequence-parser.md`, `util/sequence-parser.ts` |
 | IDEA lifecycle | `spec/lifecycle/idea-lifecycle.spec.md`, `spec/schemas/idea.schema.json`, `spec/schemas/lifecycle.schema.json` |
 | Architecture path | `templates/IDEA.md.template`, `templates/AVD.md.template`, `templates/ACS.md.template`, `templates/PLAN.md.template` |
-| Meridian compatibility | `docs/CONFORMANCE.md`, `docs/IMPLEMENTATION-PROFILES.md`, Meridian path constants in `meridian-ops/src/paths.rs` |
+| Meridian compatibility | `docs/CONFORMANCE.md`, `docs/IMPLEMENTATION-PROFILES.md`, Meridian |
 
 ## Paper 1: Executive Brief
 

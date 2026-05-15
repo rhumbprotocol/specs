@@ -1,14 +1,14 @@
-# Extending RWP
+# Extending RWP™
 
-A guide to extending the Rhumb Workflow Protocol with custom fields, artifacts, and domain-specific additions.
+A guide to extending the Rhumb Workflow Protocol™ with custom fields, artifacts, and domain-specific additions.
 
 > See also: [PROTOCOL.md](./PROTOCOL.md) (full specification), [Custom Fields](../spec/custom-fields.md), [Schema Composition](../spec/schema-composition.md), [Conformance Levels](../spec/conformance-levels.md)
 
 ---
 
-## Why Extend RWP?
+## Why Extend RWP™?
 
-RWP provides a structured foundation for workflow management, but every organization has unique needs - billing codes, compliance requirements, monitoring hooks, team-specific metadata. Rather than baking these into the core protocol, RWP provides formal extension points that let you add domain-specific capabilities while preserving interoperability.
+RWP™ provides a structured foundation for workflow management, but every organization has unique needs - billing codes, compliance requirements, monitoring hooks, team-specific metadata. Rather than baking these into the core protocol, RWP™ provides formal extension points that let you add domain-specific capabilities while preserving interoperability.
 
 Extensions fall into three categories:
 
@@ -20,7 +20,7 @@ Extensions fall into three categories:
 
 ## Custom Fields
 
-The simplest and most common extension pattern. Custom fields add key-value pairs to standard RWP artifacts without modifying the core schema.
+The simplest and most common extension pattern. Custom fields add key-value pairs to standard RWP™ artifacts without modifying the core schema.
 
 ### Naming Convention
 
@@ -48,7 +48,7 @@ x-analytics-cohort-size: 2500
 
 ### Where to Use Custom Fields
 
-Custom fields can be added to any RWP artifact type:
+Custom fields can be added to any RWP™ artifact type:
 
 | Artifact | Common Extensions |
 |----------|------------------|
@@ -79,7 +79,7 @@ For detailed patterns, naming rules, and real-world examples, see the [Custom Fi
 
 ## Custom Artifact Types
 
-For workflows that need document types beyond the standard five (Plan, Intake, Manifest, State, Handoff), RWP supports defining custom artifact types.
+For workflows that need document types beyond the standard five (Plan, Intake, Manifest, State, Handoff), RWP™ supports defining custom artifact types.
 
 ### When to Create a Custom Artifact
 
@@ -132,13 +132,13 @@ decisions:
 
 ### Schema for Custom Artifacts
 
-Define a JSON Schema that extends the base RWP artifact pattern:
+Define a JSON Schema that extends the base RWP™ artifact pattern:
 
 ```json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Decision Log",
-  "description": "Custom RWP artifact for recording architectural decisions",
+  "description": "Custom RWP™ artifact for recording architectural decisions",
   "type": "object",
   "required": ["artifact_type", "id", "decisions"],
   "properties": {
@@ -369,12 +369,12 @@ To contribute an extension package:
 
 ## Reference Implementation
 
-[YAKKL Meridian](https://meridian.yakkl.com) - the RWP reference implementation - demonstrates extension patterns including:
+[YAKKL® Meridian™](https://meridian.yakkl.com?utm_source=RWP_extension_doc) - the RWP™ reference implementation - demonstrates extension patterns including:
 - Budget enforcement via custom fields (`x-meridian-budget-*`)
 - Agent orchestration metadata
 - Session tracking and analytics
 
-Meridian's extensions illustrate how a production tool can layer capabilities on top of the RWP foundation while remaining protocol-compliant.
+Meridian's extensions illustrate how a production tool can layer capabilities on top of the RWP™ foundation while remaining protocol-compliant.
 
 ---
 
@@ -388,5 +388,5 @@ Meridian's extensions illustrate how a production tool can layer capabilities on
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.26.0
+Rhumb Workflow Protocol™ (RWP™) v0.26.0
 https://rhumbprotocol.dev

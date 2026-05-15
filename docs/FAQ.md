@@ -1,6 +1,6 @@
 # Frequently Asked Questions
 
-Common questions about the Rhumb Workflow Protocol - adoption, implementation, and compatibility.
+Common questions about the Rhumb Workflow Protocol™ - adoption, implementation, and compatibility.
 
 > See also: [Getting Started](./GETTING-STARTED.md), [PROTOCOL.md](./PROTOCOL.md), [Extensions Guide](./EXTENSIONS.md)
 
@@ -8,13 +8,13 @@ Common questions about the Rhumb Workflow Protocol - adoption, implementation, a
 
 ## General
 
-### What is RWP?
+### What is RWP™?
 
-The **Rhumb Workflow Protocol** (RWP) is a formal, open-source protocol specification for structured, multi-phase workflow management in AI-assisted environments. It defines standard artifact types (plans, intakes, manifests, state, handoffs), lifecycle rules, and integration patterns. See the [full specification](./PROTOCOL.md) for details.
+The **Rhumb Workflow Protocol™** (RWP™) is a formal, open-source protocol specification for structured, multi-phase workflow management in AI-assisted environments. It defines standard artifact types (plans, intakes, manifests, state, handoffs), lifecycle rules, and integration patterns. See the [full specification](./PROTOCOL.md) for details.
 
-### Why "Rhumb"?
+### Why "Rhumb™"?
 
-In navigation, **rhumb** and **meridian** are the two coordinates needed to locate any point. RWP is the open protocol specification; [YAKKL Meridian](https://meridian.yakkl.com) is the reference implementation. Together they provide complete workflow navigation - the specification (rhumb) and the tooling (meridian).
+In navigation, **rhumb** and **meridian** are the two coordinates needed to locate any point. RWP™ is the open protocol specification; [YAKKL® Meridian™](https://meridian.yakkl.com?utm_source=RWP_faq) is the reference implementation. Together they provide complete workflow navigation - the specification (rhumb) and the tooling (meridian).
 
 ### Who created RWP?
 
@@ -24,9 +24,9 @@ RWP was created by [YAKKL, Inc.](https://yakkl.com) and is released under the [A
 
 Yes. RWP is licensed under **Apache 2.0**, which permits commercial and non-commercial use, modification, and distribution. There are no fees, royalties, or usage restrictions.
 
-### What is the relationship between RWP and Meridian?
+### What is the relationship between RWP™ and Meridian™?
 
-RWP is the **protocol specification** - it defines artifact formats, lifecycle rules, and integration patterns. [YAKKL Meridian](https://meridian.yakkl.com) is the **reference implementation** - a production tool that implements RWP. The relationship is similar to LSP (specification) and VS Code (implementation), or MCP (specification) and Claude Code (implementation). You can implement RWP without using Meridian.
+RWP™ is the **protocol specification** - it defines artifact formats, lifecycle rules, and integration patterns. [YAKKL® Meridian™](https://meridian.yakkl.com?utm_source=RWP_faq2) is the **reference implementation** - a production tool that implements RWP™. The relationship is similar to LSP (specification) and VS Code (implementation), or MCP (specification) and Claude Code (implementation). You can implement RWP™ without using Meridian™.
 
 ---
 
@@ -46,7 +46,7 @@ RWP works best for projects that span multiple sessions, involve multiple phases
 - **Regulated workflows** - Projects requiring audit trails and compliance documentation
 - **AI-assisted development** - Structured collaboration between humans and AI tools
 
-For quick, single-session tasks, RWP may be more overhead than it's worth. Use your judgment.
+For quick, single-session tasks, RWP may be more overhead than it's worth. Use your judgment However, you see how YAKKL® Meridian™ handles it with additional `Getting Started` guides and it will ask what do you want to do. The Chat option is just like plain ole AI chat but will not a large overhead like the AI Vendors have (but for good reason for their target audience).
 
 ### How do I start using RWP?
 
@@ -56,6 +56,8 @@ For quick, single-session tasks, RWP may be more overhead than it's worth. Use y
 4. Write a PLAN.md decomposing work into phases
 5. Track progress with state.yaml and handoff documents
 
+>This process is mainly for tool builders or someone wishing to incorporate the process into their product. For the rest of us, you can take a look at [YAKKL® Meridian™](https://meridian.yakkl.com?utm_source=RWP_faq3).
+
 ### Can I adopt RWP incrementally?
 
 Yes. RWP has three [conformance levels](../spec/conformance-levels.md):
@@ -64,7 +66,7 @@ Yes. RWP has three [conformance levels](../spec/conformance-levels.md):
 - **Standard** - Include RECOMMENDED fields (best practice)
 - **Full** - Support extensions and all artifact types (comprehensive)
 
-Start with Basic conformance (just plans and state tracking) and add more structure as needed.
+>Start with Basic conformance (just plans and state tracking) and add more structure as needed.
 
 ### Can I use RWP with my existing project management tools?
 
@@ -95,17 +97,17 @@ Each artifact type has REQUIRED, RECOMMENDED, and OPTIONAL fields. The [Conforma
 ### How do phases work?
 
 Phases are the primary unit of work in RWP. Each phase has:
-- An identifier (e.g., `P-01`, `P-02-A` for sub-phases)
+- An identifier (e.g., `P-01` or `P-02-A` for sub-phases)
 - A title and objective
 - Deliverables and tasks
 - Verification criteria
 
-Phases follow a lifecycle: `pending` → `in_progress` → `completed` (or `failed` → `recovery`). Sub-phases (P-01-A, P-01-B, P-01-C) break large phases into ~30-minute sessions for crash resilience.
+Phases follow a lifecycle: `pending` → `in_progress` → `completed` (or `failed` → `recovery`). Sub-phases (P-01-A, P-01-B, P-01-C) break large phases into smaller sessions for crash resilience and drift.
 
 ### How do handoffs work?
 
-Handoffs document the transition between phases. They capture what was accomplished, what decisions were made, and what the next phase needs to know. Handoffs are especially valuable for:
-- Multi-session work (continuing across days)
+Handoffs document the transition between phases and sub-phases. They capture what was accomplished, what decisions were made, and what the next phase needs to know. Handoffs are especially valuable for:
+- Multi-session work (continuing across hours or days)
 - Multi-agent work (different AI agents handling different phases)
 - Team transitions (handing work to another person)
 
@@ -215,6 +217,9 @@ python -m jsonschema -i my-plan.json spec/schemas/plan.schema.json
 
 # Using check-jsonschema
 check-jsonschema --schemafile spec/schemas/plan.schema.json my-plan.json
+
+# RWP Validate
+rhumb-validate ... # See rhumb-validate documentation in /conformance
 ```
 
 For YAML artifacts, convert to JSON first or use a YAML-aware validator.
@@ -250,7 +255,7 @@ Changes are discussed through issues and pull requests. The protocol changelog i
 
 ### Where do I report issues?
 
-File issues at the RWP repository. Include:
+File issues at the RWP GitHub repository (https://github.com/rhumbprotocol/issues). Include:
 - Which artifact type or spec document is affected
 - What behavior you expected vs. what happened
 - Your RWP version and tool/platform
@@ -279,7 +284,7 @@ Common causes:
 
 ### Phases are getting too large
 
-Break large phases into sub-phases (P-01-A, P-01-B, P-01-C). Each sub-phase should be completable in approximately 30 minutes. This provides:
+Break large phases into sub-phases (P-01-A, P-01-B, P-01-C). Each sub-phase should be completable in 30 minutes or less. This provides:
 - Natural checkpoint boundaries
 - Crash resilience
 - Clearer handoff documents
@@ -291,19 +296,19 @@ The state file (state.yaml) is the single source of truth. If it gets out of syn
 2. Update state.yaml to match actual progress
 3. Continue from the corrected state
 
-RWP doesn't enforce automated state updates - it's your responsibility (or your tool's) to keep state current.
+RWP™ doesn't enforce automated state updates - it's your responsibility (or your tool's) to keep state current. You can use a DB too.
 
 ---
 
 ## Further Reading
 
-- [PROTOCOL.md](./PROTOCOL.md) - Full RWP specification
+- [PROTOCOL.md](./PROTOCOL.md) - Full RWP™ specification
 - [Getting Started](./GETTING-STARTED.md) - Practical adoption guide
-- [Extensions Guide](./EXTENSIONS.md) - Extending RWP for your needs
+- [Extensions Guide](./EXTENSIONS.md) - Extending RWP™ for your needs
 - [Templates](../templates/) - Foundation templates for all artifact types
 - [Integration Adapters](../integrations/) - Platform-specific setup guides
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.26.0
+Rhumb Workflow Protocol™ (RWP™) v0.27.0
 https://rhumbprotocol.dev

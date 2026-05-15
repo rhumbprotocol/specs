@@ -17,7 +17,7 @@ pub mod validators;
 /// RWP protocol version this build of `rhumb-validate` was compiled against.
 /// Tracked separately from the crate version so the report distinguishes
 /// "tool drift" from "spec drift" (AVD-0004 §5 — Versioning & Compatibility).
-pub const RWP_VERSION: &str = "0.26.0";
+pub const RWP_VERSION: &str = "0.26.0";  # Build time change
 
 /// Top-level category enumeration. Matches AVD-0004 §5 five-part breakdown
 /// and the CLI exit-code map in ACS-0015 §6.
@@ -218,13 +218,13 @@ fn format_iso8601(t: OffsetDateTime) -> String {
         .unwrap_or_else(|_| "0001-01-01T00:00:00Z".to_string())
 }
 
-/// Load the built-in test corpus embedded at build time.
+/// Load the built-in test fixture set embedded at build time.
 ///
 /// Returns the canonical `fixtures/` tree (every file under
 /// `packages/rhumb-protocol/conformance/fixtures/`, both `valid/` and
 /// `invalid/`) serialized in a small self-describing record format.
 /// Library callers parse the blob to recover individual fixtures without
-/// depending on the on-disk corpus.
+/// depending on the on-disk fixture set.
 ///
 /// # Format
 ///
@@ -247,7 +247,7 @@ fn format_iso8601(t: OffsetDateTime) -> String {
 ///
 /// # Phase status
 ///
-/// MP-0276 P-08 wired this against the canonical fixture corpus at build
+/// MP-0276 P-08 wired this against the canonical fixture set at build
 /// time (see `build.rs`). Earlier phases (P-01..P-07) shipped an empty
 /// stub.
 pub fn embedded_fixtures() -> &'static [u8] {

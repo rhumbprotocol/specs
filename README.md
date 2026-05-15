@@ -6,7 +6,7 @@ A structured protocol for AI-assisted workflow management.
 
 ## Overview
 
-The **Rhumb Workflow Protocol** (RWP) is a formal, open-source protocol specification designed to enable structured, multi-phase AI Workflow™ Management in AI-assisted environments. RWP combines clear artifact definitions, lifecycle state machines, and formalized integration points to enable consistent workflow execution across tools, platforms, and AI providers.
+The **Rhumb Workflow Protocol** (RWP™) is a formal, open-source protocol specification designed to enable structured, multi-phase AI Workflow™ Management in AI-assisted environments. RWP combines clear artifact definitions, lifecycle state machines, and formalized integration points to enable consistent workflow execution across tools, platforms, and AI providers.
 
 Created by [YAKKL, Inc.](https://yakkl.com) - the Rhumb Workflow Protocol is a complementary, open counterpart to [YAKKL® Meridian™](https://meridian.yakkl.com), which serves as the reference implementation.
 
@@ -42,7 +42,7 @@ RWP provides integration adapters for major AI platforms:
 ## Documentation
 
 - **[Getting Started](./docs/GETTING-STARTED.md)** - Practical guide to adopting RWP
-- **[Protocol Specification](./docs/PROTOCOL.md)** - Full RWP v0.26.0 specification (2000+ lines)
+- **[Protocol Specification](./docs/PROTOCOL.md)** - Full RWP specification (2000+ lines)
 - **[Implementation Profiles](./docs/IMPLEMENTATION-PROFILES.md)** - Core RWP versus file-tree profiles, including the Meridian reference profile
 - **[Extensions Guide](./docs/EXTENSIONS.md)** - Extending RWP with custom fields, artifacts, and integrations
 - **[FAQ](./docs/FAQ.md)** - Frequently asked questions about adoption, implementation, and compatibility
@@ -65,7 +65,7 @@ RWP provides integration adapters for major AI platforms:
 ```
 rhumbprotocol/
 ├── docs/
-│   ├── PROTOCOL.md                    # Full RWP v0.26.0 specification
+│   ├── PROTOCOL.md                    # Full RWP specification
 │   ├── GETTING-STARTED.md             # Practical adoption guide
 │   ├── IMPLEMENTATION-PROFILES.md     # Core profile + Meridian reference profile
 │   ├── EXTENSIONS.md                  # Extension patterns & custom artifacts
@@ -161,7 +161,7 @@ rhumbprotocol/
 
 ## Reference Implementation
 
-[YAKKL Meridian](https://meridian.yakkl.com) - The official reference implementation of the Rhumb Workflow Protocol.
+[YAKKL® Meridian™](https://meridian.yakkl.com) - The official reference implementation of the Rhumb Workflow Protocol™.
 
 ---
 
@@ -173,7 +173,7 @@ Licensed under the **Apache License 2.0**. See [LICENSE](./LICENSE) for details.
 
 ## Contributing
 
-We welcome contributions to the Rhumb Workflow Protocol. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on:
+We welcome contributions to the Rhumb Workflow Protocol™. See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on:
 
 - Protocol specification changes
 - Template contributions
@@ -188,26 +188,24 @@ See [CHANGELOG.md](./CHANGELOG.md) for version history.
 
 ## Acknowledgments
 
-The Rhumb Workflow Protocol draws inspiration from established open standards including:
+The Rhumb Workflow Protocol™ draws inspiration from established open standards including:
 - **LSP** (Language Server Protocol) - Microsoft's standardized interface for editor tools
 - **MCP** (Model Context Protocol) - Anthropic's protocol for structured tool integration
 - **OpenAPI** - Industry standard for API specification
 
 These protocols demonstrate the value of formal, open specifications in enabling ecosystem interoperability. RWP extends these principles to AI workflow management.
 
-_Renamed 2026-04-18; see CHANGELOG.md and MIGRATION.md for history._
-
 ---
 
 ## Trademarks
 
-"Rhumb"™, "Rhumb Workflow Protocol"™, and "RWP"™ are trademarks of YAKKL, Inc. (a Delaware corporation, C Corp). The marks are claimed under U.S. common law; no federal registration is asserted in this document. Use of the marks is governed by [TRADEMARK.md](./TRADEMARK.md). Apache 2.0 §6 trademark exclusion applies — the License does not grant trademark rights.
+"Rhumb"™, "Rhumb Workflow Protocol"™, and "RWP"™ are trademarks of YAKKL, Inc. The marks are claimed under U.S. common law; no federal registration is asserted in this document. Use of the marks is governed by [TRADEMARK.md](./TRADEMARK.md). Apache 2.0 §6 trademark exclusion applies — the License does not grant trademark rights.
 
 For mark-use enquiries, written-agreement requests, or infringement reports, contact `legal@yakkl.com`.
 
 ---
 
-**Rhumb Workflow Protocol (RWP) v0.26.0**
+**Rhumb Workflow Protocol™ (RWP™)**
 
 ## Version Source of Truth
 
@@ -219,7 +217,3 @@ After changing `VERSION`, run:
 node scripts/sync-version.mjs
 ```
 
-This syncs the conformance crate, public site config, and Meridian RWP version constants. Commit the synced files with the changelog entry.
-Produced: 2026-05-02T16:00:00Z
-By: YAKKL® Meridian™- https://meridian.yakkl.com
-Copyright: Copyright © 2026 YAKKL Inc. All Rights Reserved.

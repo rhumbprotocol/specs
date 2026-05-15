@@ -14,14 +14,7 @@ While `MAJOR == 0`, the protocol follows the SemVer pre-1.0 convention: MINOR re
 
 - Canonical plan identifiers now use `MP-NNNN-short-name`, for example `MP-0250-setup-examples`.
 - Removed greenfield-incompatible status aliases from the state schema. Current workflow status is `planning | in_progress | paused | completed | failed`; phase status is `pending | in_progress | completed | failed | skipped`.
-- Replaced old Meridian-shaped template names with top-level RWP template names: `AVD.md.template`, `ACS.md.template`, `HANDOFF.yaml.template`, `AUDIT.md.template`, prompt companions, finalization templates, and `SUBPHASE-COMPLETE-DISPLAY.md.template`.
-- Added `VERSION` as the protocol version source of truth and `scripts/sync-version.mjs` to sync the conformance crate, website config, and Meridian RWP constants.
-
-### Removed
-
-- Removed canonical use of `AVD-TEMPLATE.md`, `ACS-TEMPLATE.md`, `HANDOFF-TEMPLATE.md`, `PHASE-AUDIT.md`, and `HANDOFF-COMPLETE-DISPLAY.md.template`.
-
-This is a breaking MINOR release under RWP's pre-1.0 versioning rule.
+- Added `VERSION` as the protocol version source of truth and `scripts/sync-version.mjs` to sync the conformance crate, website config, and RWP constants.
 
 ---
 
@@ -162,7 +155,7 @@ Initial published release of the Rhumb Workflow Protocol.
 
 This protocol was previously developed internally under the name *Azimuth Workflow Protocol* (AWP). Prior to public release it was renamed to *Rhumb Workflow Protocol* (RWP). The rename retains the nautical-navigation semantic (a rhumb line is a constant-bearing path) while resolving namespace conflicts with unrelated GitHub identifiers using "azimuth" variants.
 
-Internal artifacts using AWP tokens (`awp_uuid`, `awp_version`, `AwpUuid`/`AwpVersion` types, `CLAUDE-AWP.md` and similar filenames, `azimuthprotocol` package paths) were renamed to their RWP equivalents. Schema `$id` URIs were updated to `https://rhumbprotocol.dev/schemas/...`. See [MIGRATION.md](./MIGRATION.md) for the full mapping if you have internal references that predate the rename.
+Internal artifacts using AWP tokens (`awp_uuid`, `awp_version`, `AwpUuid`/`AwpVersion` types, `CLAUDE-AWP.md` and similar filenames, `azimuthprotocol` package paths) were renamed to their RWP equivalents. Schema `$id` URIs were updated to `https://rhumbprotocol.dev/schemas/...`.
 
 ---
 
@@ -183,5 +176,5 @@ The `rwp_version` field in artifacts indicates which protocol version they confo
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.26.0
+Rhumb Workflow Protocol™ (RWP™)
 https://rhumbprotocol.dev

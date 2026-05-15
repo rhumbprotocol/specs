@@ -95,6 +95,10 @@ const TEMPLATES: &[(&str, &str)] = &[
         include_str!("../../../templates/FINAL.md.template"),
     ),
     (
+        "HANDOFF-SESSION.yaml.template",
+        include_str!("../../../templates/HANDOFF-SESSION.yaml.template"),
+    ),
+    (
         "HANDOFF.yaml.template",
         include_str!("../../../templates/HANDOFF.yaml.template"),
     ),

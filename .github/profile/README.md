@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="../assets/rhumb-org-banner.svg" alt="Rhumb Protocol organization banner" width="100%">
+  <img src="../assets/rhumbprotocol-org-banner-2400x900.png" alt="Rhumb Workflow Protocol™ organization banner" width="100%">
 </p>
 
-# Rhumb Protocol&trade;
+# Rhumb Workflow Protocol™;
 
 **Open workflow protocol for AI-assisted delivery.**
 
-Rhumb Workflow Protocol&trade; (RWP) defines the plain-file contract for durable
+Rhumb Workflow Protocol&trade; (RWP™) defines the plain-file contract for durable
 AI-assisted work: intakes, plans, execution state, manifests, handoffs,
 architecture artifacts, templates, schemas, and conformance checks that survive
 across tools, agents, vendors, and sessions.
@@ -18,9 +18,9 @@ across tools, agents, vendors, and sessions.
 
 ---
 
-## What RWP Standardizes
+## What RWP™ Standardizes
 
-| Area | RWP artifact |
+| Area | RWP™ artifact |
 |---|---|
 | Request capture | `INTAKE.yaml` |
 | Executable plan | `PLAN.md` |
@@ -31,23 +31,20 @@ across tools, agents, vendors, and sessions.
 | Architecture path | `IDEA -> AVD -> ACS -> MP` |
 | Conformance | `rhumb-validate` |
 
-RWP `0.26.0` uses `MP-NNNN-short-name` plan identifiers, current-only state
-vocabulary, and canonical RWP template names such as `AVD.md.template`,
+RWP™ uses `MP-NNNN-short-name` plan identifiers, current-only state
+vocabulary, and canonical RWP™ template names such as `AVD.md.template`,
 `ACS.md.template`, `HANDOFF.yaml.template`, `AUDIT.md.template`, and
 `FINAL.md.template`.
 
 ---
 
-## Relationship To Meridian
+## Relationship To Meridian™
 
-Meridian is the YAKKL reference implementation for RWP-supported workflow
+[YAKKL® Meridian™](https://meridian.yakkl.com?utm_source="RPW_Org_page") is the [YAKKL®](https://yakkl.com) reference implementation for RWP™ supported workflow
 surfaces. It proves the protocol in a real toolchain, but it does not own the
-protocol.
+protocol. 
 
-RWP stays vendor-neutral. Meridian-specific runtime files, private workspace
-state, database indexes, CLI behavior, and desktop UI belong in the Meridian
-Reference Profile or namespaced extensions unless promoted into the core
-protocol.
+RWP™ stays vendor-neutral.
 
 ---
 
@@ -70,9 +67,7 @@ protocol.
 
 ## License And Marks
 
-The Rhumb Workflow Protocol specification and validator are licensed under
-Apache-2.0. Rhumb names, marks, and visual identity are trademarks of YAKKL,
+The Rhumb Workflow Protocol™ specification and validator are licensed under
+Apache-2.0. Rhumb™ names, marks, and visual identity are trademarks of YAKKL®,
 Inc. and are governed separately by the repository trademark policy.
-
-Copyright &copy; 2026 YAKKL Inc. All Rights Reserved.
 

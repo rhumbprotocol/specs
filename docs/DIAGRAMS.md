@@ -25,7 +25,7 @@ core artifacts clockwise:
 | 01 | `INTAKE.yaml` | Captures problem, constraints, requirements, and success criteria |
 | 02 | `PLAN.md` | Defines phases, deliverables, dependencies, risks, and verification |
 | 03 | `state.yaml` | Records current execution status, phase progress, and recovery context |
-| 04 | `HO-*.md` | Preserves transition context between phases, people, agents, and sessions |
+| 04 | `HO-*.yaml | Preserves transition context between phases, people, agents, and sessions |
 | 05 | `manifest.yaml` | Registers produced artifacts, prompts, handoffs, audits, and outputs |
 
 The order is clockwise so readers can scan the workflow from request capture to
@@ -91,7 +91,7 @@ The portability map puts Rhumb at the center and shows adapters around it:
 | Browser AI | Pasteable project knowledge and instructions |
 | Meridian | Reference implementation |
 
-Adapters consume Rhumb artifacts. They do not own the protocol.
+Adapters consume Rhumb™ artifacts. They do not own the protocol.
 
 ---
 
