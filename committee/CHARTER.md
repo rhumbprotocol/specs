@@ -1,12 +1,12 @@
-# RWP Committee Charter
+# RWP™ Committee Charter
 
-The Rhumb Workflow Protocol (RWP) Committee provides stewardship and direction for the protocol specification, schemas, templates, and ecosystem.
+The Rhumb Workflow Protocol™ (RWP™) Committee provides stewardship and direction for the protocol specification, schemas, templates, and ecosystem.
 
 ---
 
 ## Purpose
 
-The RWP Committee exists to:
+The RWP™ Committee exists to:
 
 - Guide the evolution of the protocol specification
 - Review and approve significant changes to core artifacts
@@ -24,7 +24,7 @@ The committee operates under these guiding principles:
 2. **Minimal governance** - Process should enable contribution, not impede it
 3. **Technical merit** - Decisions are based on technical quality, not politics
 4. **Backward compatibility** - Breaking changes require strong justification
-5. **Advisory by nature** - RWP recommends; it does not enforce
+5. **Advisory by nature** - RWP™ recommends; it does not enforce
 
 ---
 
@@ -91,5 +91,5 @@ This charter may be amended by a committee vote (simple majority of maintainers)
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.26.0
+Rhumb Workflow Protocol™ (RWP™) v0.26.0
 https://rhumbprotocol.dev

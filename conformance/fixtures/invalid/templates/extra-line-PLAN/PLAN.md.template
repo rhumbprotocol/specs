@@ -325,7 +325,7 @@ Define measurable criteria that indicate the plan has been successfully complete
 # Commands to verify all success criteria are met
 # Consider running these after all phases complete
 ```
-<!-- TODO: bash scripts need completed -->
+<!-- bash scripts can go here if needed or anything else -->
 ---
 
 ## Risk Assessment

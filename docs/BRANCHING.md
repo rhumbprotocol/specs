@@ -177,7 +177,7 @@ util/
 2. Each template file (`templates/*.template`) parses as the expected format
    and conforms to its schema.
 3. User-provided artifact files (`PLAN.md`, `INTAKE.yaml`, `state.yaml`,
-   `manifest.yaml`, `HO-*.md`) parse and validate against the published
+   `manifest.yaml`, `HO-*.yaml`) parse and validate against the published
    schemas.
 4. Conformance levels (per `spec/conformance-levels.md`) hold for declared
    artifacts.

@@ -49,5 +49,5 @@ body:
       label: Contract impact
       options:
         - label: This may change artifact shape, identifiers, lifecycle rules, statuses, or template names.
-        - label: This may affect Meridian Reference Profile compatibility.
+        - label: This may affect RWP™ compatibility.
 

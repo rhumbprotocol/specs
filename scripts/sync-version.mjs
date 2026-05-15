@@ -20,21 +20,6 @@ const replacements = [
     file: '../rhumbprotocol.dev/src/lib/config/site.ts',
     pattern: /version: '[^']+',/,
     value: `version: '${version}',`
-  },
-  {
-    file: '../yakkl-meridian-rs/meridian-core/src/rwp_version.rs',
-    pattern: /pub const RWP_VERSION: &str = "[^"]+";/,
-    value: `pub const RWP_VERSION: &str = "${version}";`
-  },
-  {
-    file: '../yakkl-meridian-rs/meridian-core/src/rwp_version.rs',
-    pattern: /pub const RWP_VERSION_PREFIXED: &str = "RWP-[^"]+";/,
-    value: `pub const RWP_VERSION_PREFIXED: &str = "RWP-${version}";`
-  },
-  {
-    file: '../yakkl-meridian-rs/meridian-core/src/rwp_version.rs',
-    pattern: /pub const fn version_tuple\(\) -> \(u32, u32, u32\) \{\n    \([0-9]+, [0-9]+, [0-9]+\)\n\}/,
-    value: `pub const fn version_tuple() -> (u32, u32, u32) {\n    (${major}, ${minor}, ${patch})\n}`
   }
 ];
 

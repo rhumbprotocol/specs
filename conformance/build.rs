@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: Apache-2.0
 //
-// build.rs — emit the embedded-fixture corpus blob consumed by
+// build.rs — emit the embedded-fixture blob consumed by
 // `rhumb_validate::embedded_fixtures()`.
 //
 // MP-0276 P-08. The lib's public contract returns `&'static [u8]` — opaque
-// from the caller's perspective — so we embed the canonical fixture corpus
+// from the caller's perspective — so we embed the canonical fixture 
 // in a small, self-describing record format and document the format in the
 // lib.rs docstring. Library consumers parse the blob to recover individual
 // fixtures without depending on the on-disk `fixtures/` tree.
@@ -42,7 +42,7 @@ fn main() {
     if !fixtures_root.is_dir() {
         panic!(
             "fixtures/ not found at {} — embedded_fixtures requires the \
-             canonical corpus to be present at build time",
+             canonical fixture set to be present at build time",
             fixtures_root.display()
         );
     }
@@ -54,7 +54,7 @@ fn main() {
     if entries.is_empty() {
         panic!(
             "fixtures/ at {} is empty — refusing to ship an empty embedded \
-             corpus (MP-0276 P-08 binding: embedded_fixtures must round-trip \
+             (MP-0276 P-08 binding: embedded_fixtures must round-trip \
              the canonical fixture set)",
             fixtures_root.display()
         );

@@ -26,7 +26,7 @@ RWP addresses the need for structured collaboration between humans and AI system
 
 This specification defines:
 
-- **Artifact Types** - The core documents (PLAN.md, INTAKE.yaml, manifest.yaml, state.yaml, HO-*.md) that together describe a workflow
+- **Artifact Types** - The core documents (PLAN.md, INTAKE.yaml, manifest.yaml, state.yaml, HO-*.yaml) that together describe a workflow
 - **Lifecycle State Machine** - Phase and plan states, transitions, error handling, and recovery
 - **Data Formats** - YAML, Markdown, JSON schemas for all artifacts
 - **Protocol Versioning** - Version numbering, backward compatibility, and deprecation
@@ -61,7 +61,7 @@ Out of scope:
 
 **State** - The execution state document (state.yaml) recording which phases have started/completed, current heartbeat, and error status.
 
-**Handoff** - A phase completion summary (HO-*.md) documenting what was accomplished, decisions made, and rolling context for the next phase.
+**Handoff** - A phase completion summary (HO-*.yaml) documenting what was accomplished, decisions made, and rolling context for the next phase.
 
 **Lifecycle** - The progression of a phase through states: pending → in_progress → completed (or error → recoverable).
 
@@ -911,7 +911,7 @@ metrics:
 - `audit_trail` - Summary stats (update count, last updater)
 - `metrics` - Execution statistics (durations, variance, error rates)
 
-### 5. Handoff (HO-*.md)
+### 5. Handoff (HO-*.yaml)
 
 **Purpose**: Phase completion documentation. Created when a phase finishes; summarizes what was accomplished, decisions made, metrics, and rolling context for the next phase.
 
@@ -987,7 +987,7 @@ Each phase progresses through a defined set of states:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    RWP Phase Lifecycle                        │
+│                    RWP Phase Lifecycle                       │
 └──────────────────────────────────────────────────────────────┘
 
               ┌────────────┐
@@ -1004,8 +1004,8 @@ Each phase progresses through a defined set of states:
                  │         │
                  ▼         ▼
          ┌──────────────────────────────┐
-         │    COMPLETED               │ ERROR
-         │ (requires handoff)        │ (recoverable/fatal)
+         │    COMPLETED                 │ ERROR
+         │ (requires handoff)           │ (recoverable/fatal)
          └──────────────────────────────┘
                  │                   │
                  │                   └──► RECOVERABLE
@@ -1710,7 +1710,7 @@ This section provides recommendations for tools and organizations implementing R
 3. **Artifact Naming**: Use consistent naming conventions
    - Plans: `PLAN.md` (singular)
    - Intake: `INTAKE.yaml` (singular)
-   - Handoffs: `HO-{PLAN_ID}-{PHASE}-{DATE}.md`
+   - Handoffs: `HO-{PLAN_ID}-{PHASE}-{DATE}.yaml`
    - State: `state.yaml` (singular)
 
 ### Execution Best Practices
@@ -1867,7 +1867,7 @@ RWP is licensed under Apache-2.0, enabling free use, modification, and redistrib
 | **INTAKE.yaml** | Requirements & constraints | YAML | Before execution | As requirements change |
 | **manifest.yaml** | Deliverable registry | YAML | After each phase | Executor |
 | **state.yaml** | Runtime execution state | YAML | Execution start | Continuously (executor) |
-| **HO-*.md** | Phase completion handoff | Markdown | After each phase | Phase executor |
+| **HO-*.yaml** | Phase completion handoff | Markdown | After each phase | Phase executor |
 
 ### Key Acronyms & Abbreviations
 
@@ -2147,4 +2147,4 @@ parent_plan: "MP-0001-example-plan"
 *Status: Released*
 *Last Updated: 2026-03-04*
 *License: Apache-2.0*
-*Copyright: Copyright © 2026 YAKKL Inc. All Rights Reserved.*
+*Copyright: Copyright © 2026 YAKKL® Inc. All Rights Reserved.*

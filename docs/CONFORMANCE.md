@@ -1,11 +1,11 @@
-# Rhumb Conformance
+# Rhumb™ Conformance
 
 This document explains what it means to be **Rhumb-compliant**, what
 `rhumb-validate` actually checks, how compliance interacts with the
 trademark policy, and how to read a non-zero verdict.
 
 It is written for implementers — somebody whose project ingests, emits,
-or transforms Rhumb Workflow Protocol artifacts and who needs to either
+or transforms Rhumb Workflow Protocol™ artifacts and who needs to either
 (a) assert compliance publicly or (b) understand where their
 implementation stands relative to the spec.
 
@@ -46,12 +46,12 @@ program.
 ## 2. What `rhumb-validate` checks
 
 The validator runs five independent categories, one per part of the
-RWP specification. Each category has a documented exit code so CI
+RWP™ specification. Each category has a documented exit code so CI
 scripts can react granularly.
 
 | #  | Category   | Validates                                                                                                                          | Exit |
 |---:|------------|------------------------------------------------------------------------------------------------------------------------------------|-----:|
-| 1  | Schema     | RWP YAML/JSON instances against the canonical JSON Schemas at `spec/schemas/`. Catches structural drift in `PLAN.md` frontmatter, `state.yaml`, `manifest.yaml`, `INTAKE.yaml`, `handoff.yaml`. |  `1` |
+| 1  | Schema     | RWP™ YAML/JSON instances against the canonical JSON Schemas at `spec/schemas/`. Catches structural drift in `PLAN.md` frontmatter, `state.yaml`, `manifest.yaml`, `INTAKE.yaml`, `handoff.yaml`. |  `1` |
 | 2  | Template   | Drift-hash check: implementation must ship byte-identical canonical templates after CRLF/BOM/trailing-newline canonicalization. Catches forks of templates that drifted from the spec. |  `2` |
 | 3  | Workflow   | Cross-file invariants: `PLAN.md`'s `plan_id` agrees with `state.yaml`'s `plan_id`; the handoff file referenced by `state.yaml.execution.last_handoff` exists; `current_phase` is in the `phases:` map. |  `3` |
 | 4  | Adapter    | Integration-adapter shape: `MANIFEST.yaml` carries `integration:` and `components:` blocks; `rwp_version` is a valid version string; required adapter fields are present. |  `4` |
@@ -110,17 +110,10 @@ load-bearing: an exit-`0` only attaches to artifact trees that
 genuinely pass. If the project had silently widened the validator's
 exemption door to force exit-`0`, the gate would become ceremonial.
 
-The current divergences fall into two narrow architectural
+The current divergences fall into the two narrow architectural
 exemption categories and one larger reconciliation-in-flight category.
-Each is documented in
-`.meridian/.private/knowledge/plans/processing/MP-0276-rhumb-validate-conformance/exemptions.yaml`:
 
 ### 4.1 Two narrow architectural exemptions
-
-| ID         | Path                                            | Category | Why exempted                                                                                                                                                                                                                                                                            |
-|------------|-------------------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| EX-P07-01  | `.meridian/MANIFEST.yaml`                       | Adapter  | Filename collision: `.meridian/MANIFEST.yaml` is the Meridian global config (project registry, agent defaults). It shares a filename with RWP integration-adapter manifests but is structurally a different document type. The adapter validator's discovery rule is too eager.         |
-| EX-P07-02  | `.meridian/deadcode/...`                        | Workflow | Archival convention: `.meridian/deadcode/` is a documented Meridian archival directory (RULE-57). Files moved there are preserved as-deleted; their internal frontmatter may be incomplete because deletion stripped some fields. Editing them would defeat the tombstone convention. |
 
 Both exemptions are **path-narrow**: they are scoped to a specific
 file or directory, not a class of artifacts. Both have a documented
@@ -130,16 +123,7 @@ for the first; an `well-known-archive` walker skip-list for the second).
 Until those land, the v1 disposition is documented exemption with full
 rationale.
 
-### 4.2 Eleven template entries — reconciliation in flight
-
-The validator additionally surfaces 11 template-drift entries against
-`.meridian/templates/`. These are **not exempted**. They are the input
-to a separate, currently-running Meridian↔RWP template reconciliation
-effort. Per the project's reconciliation strategy: Meridian is the
-canonical authority at this point in time; the reconciliation pass
-trims Meridian-side noise, gap-analyzes against RWP, and one-way
-pollinates (RWP additions move into Meridian where valuable; never the
-reverse — RWP must stay vendor-neutral and protocol-pure).
+### 4.2 Template entries — reconciliation in flight
 
 The validator's drift report is **data input** for that work, not a
 bug list to fix in the conformance MP itself. The 11 entries have
@@ -159,7 +143,7 @@ is `6`.
 If you run `rhumb-validate` against your own artifact tree and it
 exits `0`, you are passing the same gate that YAKKL's reference run
 will eventually pass. The validator does not lower the bar for
-YAKKL — the YAKKL reference run is held to exactly the same
+YAKKL® — the YAKKL® reference run is held to exactly the same
 mechanical condition as any external implementation. That symmetry
 is the policy's defense against accusations of self-dealing.
 
@@ -349,5 +333,5 @@ that the claim means the same thing in every context it appears.
 
 Produced:
   - by: YAKKL® Meridian™— https://meridian.yakkl.com
-  - for: the Rhumb Workflow Protocol (RWP) — https://rhumbprotocol.dev
-  - copyright: Copyright © 2026 YAKKL Inc. All Rights Reserved.
+  - for: the Rhumb Workflow Protocol™ (RWP™) — https://rhumbprotocol.dev
+  - copyright: Copyright © 2026 YAKKL® Inc. All Rights Reserved.

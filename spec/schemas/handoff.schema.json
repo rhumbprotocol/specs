@@ -4,7 +4,7 @@
   "$comment": "See docs/PROTOCOL.md 'Artifact Types & Schemas' section for specification details",
   "type": "object",
   "title": "RWP Handoff Schema",
-  "description": "JSON Schema for Rhumb Workflow Protocol (RWP) Handoff artifacts (HO-*.md). Validates the structure and required sections of phase completion documentation in Markdown format.",
+  "description": "JSON Schema for Rhumb Workflow Protocol (RWP) Handoff artifacts (HO-*.yaml). Validates the structure and required sections of phase completion documentation in YAML format.",
   "required": ["metadata", "summary"],
   "additionalProperties": false,
   "properties": {
@@ -16,8 +16,8 @@
       "properties": {
         "filename": {
           "type": "string",
-          "pattern": "^HO-MP-[0-9]{4}-[a-z0-9]+(?:-[a-z0-9]+)*-P-[0-9]{2}(-[A-Z])?-[0-9]{4}-[0-9]{2}-[0-9]{2}\\.md$",
-          "description": "Standard handoff filename (e.g., HO-MP-0235-rhumb-workflow-protocol-P-01-C-2026-03-04.md)"
+          "pattern": "^HO-MP-[0-9]{4}-[a-z0-9]+(?:-[a-z0-9]+)*-P-[0-9]{2}(-[A-Z])?-[0-9]{4}-[0-9]{2}-[0-9]{2}\\.yaml$",
+          "description": "Standard handoff filename (e.g., HO-MP-0235-rhumb-workflow-protocol-P-01-C-2026-03-04.yaml)"
         },
         "phase": {
           "type": "string",
@@ -208,7 +208,7 @@
   "$examples": [
     {
       "metadata": {
-        "filename": "HO-MP-0235-P-01-C-2026-03-04.md",
+        "filename": "HO-MP-0235-P-01-C-2026-03-04.yaml",
         "phase": "P-01-C",
         "date": "2026-03-04",
         "created_at": "2026-03-04T02:55:00Z",
