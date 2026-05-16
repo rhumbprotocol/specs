@@ -107,7 +107,7 @@ A custom artifact type needs:
 ```yaml
 # decision-log.yaml
 artifact_type: "x-decision-log"
-rwp_version: "0.26.0"
+rwp_version: "0.27.0"
 id: "DL-0001"
 plan_id: "MP-0042-dark-mode-toggle"
 
@@ -388,5 +388,5 @@ Meridian's extensions illustrate how a production tool can layer capabilities on
 
 ---
 
-Rhumb Workflow Protocol™ (RWP™) v0.26.0
+Rhumb Workflow Protocol™ (RWP™) v0.27.0
 https://rhumbprotocol.dev

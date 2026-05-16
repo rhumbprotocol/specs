@@ -4,7 +4,7 @@ title: "Core Implementation"
 created: 2026-03-01T11:20:00Z
 status: completed
 quality_score: 95
-rwp_version: 0.26.0
+rwp_version: 0.27.0
 ---
 
 # Handoff: P-01 - Core Implementation

@@ -75,7 +75,7 @@ planning -> processing -> completed
 - A final audit at plan completion helps verify all deliverables
 
 ### RWP Version
-- Include `rwp_version: "0.26.0"` in YAML artifacts for protocol compatibility
+- Include `rwp_version: "0.27.0"` in YAML artifacts for protocol compatibility
 
 ## RWP Templates Reference
 

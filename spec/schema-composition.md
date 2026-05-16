@@ -2,7 +2,7 @@
 
 > Part of the [Rhumb Workflow Protocol (RWP)](../docs/PROTOCOL.md) - see also: [Artifact Types & Schemas](../docs/PROTOCOL.md#artifact-types--schemas)
 
-**Version**: 0.26.0
+**Version**: 0.27.0
 **Date**: 2026-03-04
 **Classification**: Public
 
@@ -427,7 +427,7 @@ Keep track of schema versions:
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Plan Schema v2.0.0",
-  "description": "Breaking changes from v0.26.0: phases.duration_minutes renamed to duration_minutes",
+  "description": "Breaking changes from v0.27.0: phases.duration_minutes renamed to duration_minutes",
   "version": "2.0.0",
   "type": "object",
   "properties": {
@@ -447,8 +447,8 @@ Document how versions compose:
 
 | Base Version | Extension Version | Compatible | Notes |
 |---|---|---|---|
-| 0.26.0 | 1.x.x | ✓ Yes | Patch updates always compatible |
-| 0.26.0 | 2.0.0 | ⚠ Maybe | Breaking changes possible |
+| 0.27.0 | 1.x.x | ✓ Yes | Patch updates always compatible |
+| 0.27.0 | 2.0.0 | ⚠ Maybe | Breaking changes possible |
 | 2.0.0 | 1.x.x | ✗ No | Extension requires newer base |
 
 ---
@@ -501,7 +501,7 @@ Document how versions compose:
 
 This schema (infrastructure-plan.schema.json) extends plan.schema.json:
 
-- **Base**: plan.schema.json v0.26.0
+- **Base**: plan.schema.json v0.27.0
 - **Custom fields**: x-deployment-*, x-monitoring-*
 - **Breaking changes**: None (backward compatible)
 - **Requires**: AJV with `draft-07` support
@@ -538,7 +538,7 @@ ajv compile -s infrastructure-plan.schema.json
 | **if/then/else** | Conditional requirements | Confidential plans require security fields |
 | **$ref** | Reuse base schema | Every extension references a base |
 | **Custom fields** | Add vendor metadata | x-mycompany-billing-code |
-| **Version embedding** | Track schema version | `schema_version: "0.26.0"` |
+| **Version embedding** | Track schema version | `schema_version: "0.27.0"` |
 
 Composition patterns provide unlimited extensibility while maintaining validation integrity and interoperability.
 

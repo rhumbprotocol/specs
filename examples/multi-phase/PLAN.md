@@ -14,7 +14,7 @@ current_phase: P-02-B
 started: 2026-02-15T10:00:00Z
 completed: null
 parent: null
-rwp_version: "0.26.0"
+rwp_version: "0.27.0"
 dependencies: []
 packages:
   - rate-limiter

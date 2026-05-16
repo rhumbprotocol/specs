@@ -2,7 +2,7 @@
 
 > Part of the [Rhumb Workflow Protocol (RWP)](../docs/PROTOCOL.md) - see also: [Conformance Levels](../docs/PROTOCOL.md#conformance-levels)
 
-**Version**: 0.26.0
+**Version**: 0.27.0
 **Date**: 2026-03-04
 **Classification**: Public
 
@@ -356,7 +356,7 @@ success_criteria:
 3. **Version custom field contracts separately**
    ```yaml
    # In artifact
-   x-mycompany-custom-fields-version: "0.26.0"
+   x-mycompany-custom-fields-version: "0.27.0"
    x-mycompany-billing-code: "ENG-2026-Q1"
    ```
 
@@ -406,7 +406,7 @@ ajv validate -s plan.schema.json -d plan.json --conformance=permissive
 
 When adding fields to RWP:
 
-1. **Start as OPTIONAL** (v0.26.0)
+1. **Start as OPTIONAL** (v0.27.0)
    - Tools can ignore safely
    - No breaking changes
    - Example: `x-experimental-feature`

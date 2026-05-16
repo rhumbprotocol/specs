@@ -74,4 +74,4 @@ change was made, not just *what* changed.
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.26.0 - https://rhumbprotocol.dev
+Rhumb Workflow Protocol (RWP) v0.27.0 - https://rhumbprotocol.dev
