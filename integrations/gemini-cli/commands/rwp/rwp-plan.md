@@ -1,8 +1,8 @@
-# RWP Plan Creation
+# RWP™ Plan Creation
 
-Instructions for creating structured plans using the Rhumb Workflow Protocol (RWP).
+Instructions for creating structured plans using the Rhumb Workflow Protocol™ (RWP™).
 
-> Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+> Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 > Protocol spec: [PROTOCOL.md](../../../../docs/PROTOCOL.md) | Templates: [Foundation Templates](../../../../docs/PROTOCOL.md#foundation-templates)
 
 ## Trigger
@@ -57,7 +57,7 @@ planning -> processing -> completed
 ## RWP Conventions
 
 ### Plan IDs
-- Format: `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` with zero-padded sequence numbers
+- Format: `MP-{NNNN}-{short-name}` with zero-padded sequence numbers
 
 ### Phase IDs
 - Traditional: `P-01`, `P-02`, `P-03`
@@ -67,7 +67,7 @@ planning -> processing -> completed
 - ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`
 
 ### Handoff Documents
-- **Handoff**: `HO-{PLAN_ID}-P-{NN}-{DATE}.md` - Records completed work
+- **Handoff**: `HO-{PLAN_ID}-P-{NN}-{DATE}.yaml` - Records completed work
 - **Prompt**: `HO-{PLAN_ID}-P-{NN}-TO-P-{MM}-PROMPT.md` - Continuation context
 
 ### Audit Checkpoints
@@ -75,7 +75,7 @@ planning -> processing -> completed
 - A final audit at plan completion helps verify all deliverables
 
 ### RWP Version
-- Include `rwp_version: "0.27.0"` in YAML artifacts for protocol compatibility
+- Include `rwp_version: "0.28.0"` in YAML artifacts for protocol compatibility
 
 ## RWP Templates Reference
 
@@ -104,9 +104,9 @@ After plan creation, each phase follows this pattern:
 
 - RWP Specification: https://rhumbprotocol.dev
 - RWP JSON Schemas: `spec/schemas/` for validation
-- Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
+- Reference Implementation: YAKKL® Meridian™ (https://meridian.yakkl.com)
 
 ---
 
-Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+Produced by Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 Created by YAKKL Inc. - https://yakkl.com

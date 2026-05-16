@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sync the RWP version from the VERSION file into every file that references it.
+ * Sync the RWP™ version from the VERSION file into every file that references it.
  *
  * Usage:
  *   node scripts/sync-version.mjs --from 0.26.0

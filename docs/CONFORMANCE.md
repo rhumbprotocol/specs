@@ -165,7 +165,7 @@ based on positive signals — a `$schema` URI matching one of the
 canonical RWP schemas, a filename in the canonical templates allowlist,
 an `integration:` block in `MANIFEST.yaml`, a `*.seq` extension. Files
 without any positive signal are silently skipped, regardless of whether
-they live inside `.meridian/`, inside `node_modules/`, or anywhere else
+they live inside `.rwp/`, inside `node_modules/`, or anywhere else
 under `--target`.
 
 This is the property that lets you point `rhumb-validate` at a real
@@ -255,7 +255,7 @@ The validator's report distinguishes two versions:
 
 - `rhumb_validate_version` — the validator's own crate version, e.g. `0.1.0`.
 - `rwp_version` — the protocol version this build of the validator was
-  compiled against, e.g. `0.27.0`.
+  compiled against, e.g. `0.28.0`.
 
 A change to `rwp_version` means the protocol itself moved; a change to
 `rhumb_validate_version` means only the tool moved (e.g., a bug fix

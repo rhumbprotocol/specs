@@ -1,9 +1,7 @@
-# RWP Branching Model
+# RWP™ Branching Model
 
-This document describes the git branching strategy for the Rhumb Workflow
-Protocol specification repository. It complements
-[RELEASES.md](../committee/RELEASES.md) (which defines release authority and
-versioning) and [CONTRIBUTING.md](../CONTRIBUTING.md) (which defines how to
+This document describes the git branching strategy for the Rhumb Workflow Protocol™ specification repository. It complements
+[RELEASES.md](../committee/RELEASES.md) (which defines release authority and versioning) and [CONTRIBUTING.md](../CONTRIBUTING.md) (which defines how to
 participate).
 
 ---
@@ -223,5 +221,5 @@ matches what RWP needs.
 
 ---
 
-Rhumb Workflow Protocol (RWP)
+Rhumb Workflow Protocol™ (RWP™)
 https://rhumbprotocol.dev

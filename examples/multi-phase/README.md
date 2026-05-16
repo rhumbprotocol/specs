@@ -40,4 +40,4 @@ they compound. The overhead pays for itself in reduced rework.
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.27.0 - https://rhumbprotocol.dev
+Rhumb Workflow Protocol (RWP) v0.28.0 - https://rhumbprotocol.dev

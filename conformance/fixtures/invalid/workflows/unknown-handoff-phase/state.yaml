@@ -2,7 +2,7 @@
 
 plan_id: MP-4444-unknown-handoff
 title: "Unknown Handoff Phase (negative fixture)"
-rwp_version: "0.27.0"
+rwp_version: "0.28.0"
 
 execution:
   status: in_progress

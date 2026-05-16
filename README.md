@@ -6,9 +6,9 @@ A structured protocol for AI-assisted workflow management.
 
 ## Overview
 
-The **Rhumb Workflow Protocol** (RWP™) is a formal, open-source protocol specification designed to enable structured, multi-phase AI Workflow™ Management in AI-assisted environments. RWP combines clear artifact definitions, lifecycle state machines, and formalized integration points to enable consistent workflow execution across tools, platforms, and AI providers.
+The **Rhumb Workflow Protocol™** (RWP™) is a formal, open-source protocol specification designed to enable structured, multi-phase AI Workflow™ Management in AI-assisted environments. RWP combines clear artifact definitions, lifecycle state machines, and formalized integration points to enable consistent workflow execution across tools, platforms, and AI providers.
 
-Created by [YAKKL, Inc.](https://yakkl.com) - the Rhumb Workflow Protocol is a complementary, open counterpart to [YAKKL® Meridian™](https://meridian.yakkl.com), which serves as the reference implementation.
+Created by [YAKKL, Inc.](https://yakkl.com) - the Rhumb Workflow Protocol™ is a complementary, open counterpart to [YAKKL® Meridian™](https://meridian.yakkl.com), which serves as the reference implementation.
 
 **Protocol URL**: https://rhumbprotocol.dev
 
@@ -209,7 +209,7 @@ For mark-use enquiries, written-agreement requests, or infringement reports, con
 
 ## Version Source of Truth
 
-The protocol version is stored in [`VERSION`](./VERSION). For breaking protocol-shape changes during the pre-1.0 period, bump MINOR, for example `0.25.4` to `0.27.0`. PATCH is only for backward-compatible corrections.
+The protocol version is stored in [`VERSION`](./VERSION). For breaking protocol-shape changes during the pre-1.0 period, bump MINOR, for example `0.25.4` to `0.28.0`. PATCH is only for backward-compatible corrections.
 
 After changing `VERSION`, run:
 

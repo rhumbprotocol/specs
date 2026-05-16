@@ -1,8 +1,8 @@
 # rhumb-validate
 
-Conformance test runner for the **Rhumb Workflow Protocol** (RWP).
+Conformance test runner for the **Rhumb Workflow Protocol™** (RWP™).
 
-`rhumb-validate` walks an artifact tree (your `.meridian/` directory, an
+`rhumb-validate` walks an artifact tree (your `.rwp/` directory, an
 adapter package, or any RWP implementation under test) and verifies it
 against the five-part RWP conformance suite. It is the canonical mechanism
 for substantiating a "Rhumb-compliant" claim under the trademark policy
@@ -40,8 +40,10 @@ the v0.1.0 ship.)
 ## Run
 
 ```bash
+# .rwp/ - Assuming .rwp/ but it could be anything you made it to be
+
 # Full conformance run — typical CI invocation:
-rhumb-validate --all --target .meridian/
+rhumb-validate --all --target .rwp/
 
 # Single category — when iterating on one part of an implementation:
 rhumb-validate --category schema --target packages/my-rwp-impl/
@@ -50,7 +52,7 @@ rhumb-validate --category schema --target packages/my-rwp-impl/
 rhumb-validate --category schema --category grammar --target ./artifacts/
 
 # Machine-readable JSON for dashboard ingestion:
-rhumb-validate --all --target .meridian/ --format json --output report.json
+rhumb-validate --all --target .rpw/ --format json --output report.json
 ```
 
 `--target <PATH>` is required for any run that exercises a category. The
@@ -152,7 +154,7 @@ before parsing.
 ### Text (default)
 
 ```text
-rhumb-validate 0.1.0 (RWP 0.27.0)
+rhumb-validate 0.1.0 (RWP 0.28.0)
 target: .meridian/
 started: 2026-05-01T12:34:56.789012Z    completed: 2026-05-01T12:34:57.012345Z    duration: 223 ms
 
@@ -181,7 +183,7 @@ Top-level fields: `rhumb_validate_version`, `rwp_version`, `started_at`,
 ```json
 {
   "rhumb_validate_version": "0.1.0",
-  "rwp_version": "0.27.0",
+  "rwp_version": "0.28.0",
   "started_at": "2026-05-01T12:34:56.789012Z",
   "completed_at": "2026-05-01T12:34:57.012345Z",
   "target_path": ".meridian/",
@@ -262,5 +264,5 @@ Apache License 2.0. See `../LICENSE`.
 
 Produced:
   - by: YAKKL® Meridian™— https://meridian.yakkl.com
-  - for: the Rhumb Workflow Protocol (RWP) — https://rhumbprotocol.dev
+  - for: the Rhumb Workflow Protocol™ (RWP™) — https://rhumbprotocol.dev
   - copyright: Copyright © 2026 YAKKL Inc. All Rights Reserved.

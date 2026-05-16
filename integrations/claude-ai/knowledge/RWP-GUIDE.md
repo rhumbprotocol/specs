@@ -1,21 +1,21 @@
-# Rhumb Workflow Protocol (RWP) - Guide for Claude.ai
+# Rhumb Workflow Protocol™ (RWP™) - Guide for Claude.ai
 
-> Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+> Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 
-This document provides RWP knowledge for use in Claude.ai Projects. Add this file to a Project's knowledge base so Claude understands RWP conventions when helping you plan and manage structured work.
+This document provides RWP™ knowledge for use in Claude.ai Projects. Add this file to a Project's knowledge base so Claude understands RWP™ conventions when helping you plan and manage structured work.
 
-## What is RWP?
+## What is RWP™?
 
-The Rhumb Workflow Protocol (RWP) is an open protocol for structured AI workflow management. It defines a standard way to create plans, track progress through phases, hand off context between sessions, and audit quality at checkpoints.
+The Rhumb Workflow Protocol™ (RWP™) is an open protocol for structured AI workflow management. It defines a standard way to create plans, track progress through phases, hand off context between sessions, and audit quality at checkpoints.
 
-RWP is tool-agnostic and platform-independent. It works with any AI assistant, any programming language, and any project type. The protocol focuses on the artifacts and lifecycle - not the tools used to create them.
+RWP™ is tool-agnostic and platform-independent. It works with any AI assistant, any programming language, and any project type. The protocol focuses on the artifacts and lifecycle - not the tools used to create them.
 
 - **Specification**: https://rhumbprotocol.dev
-- **Protocol Spec (full)**: See `docs/PROTOCOL.md` in the RWP repository for the complete specification, including artifact schemas, lifecycle state machine, conformance levels, and foundation templates
+- **Protocol Spec (full)**: See `docs/PROTOCOL.md` in the RWP™ repository for the complete specification, including artifact schemas, lifecycle state machine, conformance levels, and foundation templates
 - **License**: Apache-2.0
-- **Reference Implementation**: YAKKL Meridian (https://meridian.yakkl.com)
+- **Reference Implementation**: YAKKL® Meridian™ (https://meridian.yakkl.com)
 
-## RWP Plan Lifecycle
+## RWP™ Plan Lifecycle
 
 Plans move through three stages:
 
@@ -32,7 +32,7 @@ planning  →  processing  →  completed
 
 ## Core Artifacts
 
-RWP plans produce a standard set of files. When working in a browser chat, you can ask the assistant to draft these artifacts for you to save locally.
+RWP™ plans produce a standard set of files. When working in a browser chat, you can ask the assistant to draft these artifacts for you to save locally.
 
 | Artifact | Format | Purpose |
 |----------|--------|---------|
@@ -45,16 +45,16 @@ RWP plans produce a standard set of files. When working in a browser chat, you c
 
 ### Handoff Documents
 
-RWP uses handoff documents to maintain continuity when work spans multiple sessions:
+RWP™ uses handoff documents to maintain continuity when work spans multiple sessions:
 
-- **Handoff** (`HO-{PLAN_ID}-P-{NN}-{DATE}.md`): Records what was completed, decisions made, verification results, and open items
+- **Handoff** (`HO-{PLAN_ID}-P-{NN}-{DATE}.yaml`): Records what was completed, decisions made, verification results, and open items
 - **Prompt** (`HO-{PLAN_ID}-P-{NN}-TO-P-{MM}-PROMPT.md`): Provides rolling context for the next phase, including history summary and specific tasks
 
 Handoffs are especially valuable in browser chat environments where conversation context resets between sessions. Starting a new session with the handoff prompt gives the assistant full continuity.
 
 ### Audit Checkpoints
 
-RWP recommends audits at regular intervals (e.g., every 3rd phase) and a final audit at plan completion. Audits verify:
+RWP™ recommends audits at regular intervals (e.g., every 3rd phase) and a final audit at plan completion. Audits verify:
 
 - All deliverables are present and correct
 - Quality standards are met
@@ -67,29 +67,29 @@ RWP recommends audits at regular intervals (e.g., every 3rd phase) and a final a
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Plan ID | `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` | `MP-0042-dark-mode-toggle` |
+| Plan ID | `MP-{NNNN}-{short-name}` | `MP-0042-dark-mode-toggle` |
 | Phase | `P-{NN}` | `P-03` |
 | Sub-phase | `P-{NN}-{A/B/C}` | `P-03-B` |
 | Audit | `AUD-{NN}` or `FINAL` | `AUD-02` |
 
 ### Timestamps
 
-RWP uses ISO 8601 format for all timestamps: `2026-01-28T20:45:00Z`
+RWP™ uses ISO 8601 format for all timestamps: `2026-01-28T20:45:00Z`
 
-### RWP Version
+### RWP™ Version
 
 All YAML artifacts include an `rwp_version` field for protocol compatibility tracking:
 
 ```yaml
-rwp_version: "0.27.0"
+rwp_version: "0.28.0"
 ```
 
-## How to Use RWP in Claude.ai
+## How to Use RWP™ in Claude.ai
 
 Since browser-based chat cannot create files directly, the workflow is conversational:
 
 1. **Describe your project or task** - explain what you want to accomplish
-2. **Ask for an RWP plan** - say something like "Create an RWP plan for this" or "Structure this as an RWP plan"
+2. **Ask for an RWP™ plan** - say something like "Create an RWP™ plan for this" or "Structure this as an RWP™ plan"
 3. **Review the draft** - the assistant will output plan artifacts you can review
 4. **Copy artifacts to your project** - save the PLAN.md, INTAKE.yaml, and other files locally
 5. **Execute phases** - work through phases, asking the assistant for help with each
@@ -97,7 +97,7 @@ Since browser-based chat cannot create files directly, the workflow is conversat
 
 ### Example Prompts
 
-- "Create an RWP plan for building a REST API with authentication"
+- "Create an RWP™ plan for building a REST API with authentication"
 - "Draft an INTAKE.yaml for migrating our database to PostgreSQL"
 - "I'm starting phase P-02-A of plan MP-0015-example-project. Here's the handoff prompt: [paste prompt]"
 - "Generate an audit checklist for phases P-01 through P-03"
@@ -108,7 +108,7 @@ Here's a minimal plan structure for reference:
 
 ```yaml
 # INTAKE.yaml
-rwp_version: "0.27.0"
+rwp_version: "0.28.0"
 plan_id: MP-0001-example-plan
 title: "Example Project Plan"
 
@@ -148,7 +148,7 @@ Automate the deployment pipeline to reduce manual errors.
 
 ## Directory Structure
 
-RWP plans are typically stored in a plans directory within your project:
+RWP™ plans are typically stored in a plans directory within your project:
 
 ```
 .plans/
@@ -166,11 +166,11 @@ RWP plans are typically stored in a plans directory within your project:
   completed/          # Finished plans
 ```
 
-The exact directory structure is flexible - RWP defines the artifacts, not where you put them.
+The exact directory structure is flexible - RWP™ defines the artifacts, not where you put them.
 
 ## Templates
 
-RWP provides foundation templates for all artifact types. Templates use advisory language ("Consider", "You may want to") rather than enforcement directives. You can ask the assistant to output any template for you to customize.
+RWP™ provides foundation templates for all artifact types. Templates use advisory language ("Consider", "You may want to") rather than enforcement directives. You can ask the assistant to output any template for you to customize.
 
 Available templates:
 - Plan document (PLAN.md)
@@ -186,12 +186,12 @@ Available templates:
 
 ## References
 
-- RWP Specification: https://rhumbprotocol.dev
-- RWP JSON Schemas: Available for validation of YAML/JSON artifacts
-- Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
+- RWP™ Specification: https://rhumbprotocol.dev
+- RWP™ JSON Schemas: Available for validation of YAML/JSON artifacts
+- Reference Implementation: YAKKL® Meridian™ (https://meridian.yakkl.com)
 - Source: https://github.com/rhumbprotocol/specs
 
 ---
 
-Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+Produced by Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 Created by YAKKL Inc. - https://yakkl.com

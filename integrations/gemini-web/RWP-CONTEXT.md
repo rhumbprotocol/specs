@@ -1,4 +1,4 @@
-# Rhumb Workflow Protocol (RWP) - Context for Gemini
+# Rhumb Workflow Protocol™ (RWP™) - Context for Gemini
 
 > Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
 > Full protocol specification: `docs/PROTOCOL.md` in the RWP repository | Reference implementation: YAKKL Meridian (https://meridian.yakkl.com)
@@ -16,7 +16,7 @@ RWP is:
 - **Continuity-focused**: Handoff documents bridge sessions and tools
 
 **Specification**: https://rhumbprotocol.dev
-**Reference Implementation**: YAKKL Meridian (https://meridian.yakkl.com)
+**Reference Implementation**: YAKKL® Meridian™ (https://meridian.yakkl.com)
 
 ## Plan Lifecycle
 
@@ -34,7 +34,7 @@ During **processing**, work progresses through phases. Audits occur at scheduled
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Plan ID | `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` | `MP-0042-dark-mode-toggle` |
+| Plan ID | `MP-{NNNN}-{short-name}` | `MP-0042-dark-mode-toggle` |
 | Phase | `P-{NN}` | `P-03` |
 | Sub-phase | `P-{NN}-{A/B/C}` | `P-03-B` |
 | Audit | `AUD-{NN}` or `FINAL` | `AUD-02` |
@@ -46,7 +46,7 @@ ISO 8601: `2026-01-28T20:45:00Z`
 
 ### Version Field
 
-All YAML artifacts include: `rwp_version: "0.27.0"`
+All YAML artifacts include: `rwp_version: "0.28.0"`
 
 ## Artifacts
 
@@ -60,7 +60,7 @@ RWP plans produce a standard set of documents:
 | `manifest.yaml` | YAML | File paths and audit schedule |
 | `state.yaml` | YAML | Execution tracking - phase status, timestamps |
 | `dependencies.yaml` | YAML | Plan and phase dependencies |
-| Handoff documents | Markdown | Session continuity and context transfer |
+| Handoff documents | YAML/MD | Session continuity and context transfer |
 | Audit reports | Markdown | Quality verification at checkpoints |
 
 ## Using RWP in Gemini Web
@@ -106,7 +106,7 @@ Users may ask for RWP-style planning with:
 ### Minimal Plan
 
 ```markdown
-# MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name} - {Title}
+# MP-{NNNN}-{short-name} - {Title}
 
 ## Objective
 {What this plan achieves.}
@@ -124,8 +124,8 @@ Users may ask for RWP-style planning with:
 ### Requirements Intake
 
 ```yaml
-rwp_version: "0.27.0"
-plan_id: MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}
+rwp_version: "0.28.0"
+plan_id: MP-{NNNN}-{short-name}
 title: "{Title}"
 
 pain_points:
@@ -146,7 +146,7 @@ constraints:
 ### Session Handoff
 
 ```markdown
-# Handoff - MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name} Phase P-{NN}
+# Handoff - MP-{NNNN}-{short-name} Phase P-{NN}
 
 ## Completed
 - {Summary of completed work}
@@ -176,10 +176,10 @@ If creating a Gemini Gem for RWP planning, consider these behavioral guidelines:
 
 - RWP Specification: https://rhumbprotocol.dev
 - RWP JSON Schemas: Available for artifact validation
-- Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
+- Reference Implementation: YAKKL® Meridian™ (https://meridian.yakkl.com)
 - Source: https://github.com/rhumbprotocol/specs
 
 ---
 
-Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+Produced by Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 Created by YAKKL Inc. - https://yakkl.com

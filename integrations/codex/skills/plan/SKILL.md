@@ -1,9 +1,9 @@
 ---
 name: rwp-plan
-description: "RWP plan skill for conversational plan generation using the Rhumb Workflow Protocol."
+description: "RWP™ plan skill for conversational plan generation using the Rhumb Workflow Protocol™."
 ---
 
-> Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+> Rhumb Workflow™ Protocol (RWP™) - https://rhumbprotocol.dev
 > Protocol spec: [PROTOCOL.md](../../../../docs/PROTOCOL.md) | Templates: [Foundation Templates](../../../../docs/PROTOCOL.md#foundation-templates)
 > This skill enables structured plan generation following RWP conventions.
 
@@ -85,7 +85,7 @@ When the user approves, create the RWP plan directory with all artifacts:
 #### Directory Structure
 
 ```
-{plan_directory}/MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}/
+{plan_directory}/MP-{NNNN}-{short-name}/
   PLAN.md
   INTAKE.yaml
   MASTERPLAN.yaml
@@ -108,7 +108,7 @@ After creating all files:
 ## RWP Conventions
 
 ### Plan IDs
-- Format: `MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}` (zero-padded sequence number)
+- Format: `MP-{NNNN}-{short-name}` (zero-padded sequence number)
 
 ### Phase IDs
 - Traditional: `P-01`, `P-02`, `P-03`
@@ -118,7 +118,7 @@ After creating all files:
 - ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`
 
 ### RWP Version
-- Include `rwp_version: "0.27.0"` in YAML artifacts
+- Include `rwp_version: "0.28.0"` in YAML artifacts
 
 ### Audit Checkpoints
 - Consider audits every 3rd phase (P-03, P-06, P-09...)
@@ -127,7 +127,7 @@ After creating all files:
 ### Handoff Documents
 - **Handoff**: Records completed work, decisions, verification
 - **Prompt**: Provides rolling context for the next phase
-- **Naming**: `HO-{PLAN_ID}-P-{NN}-{DATE}.md` for handoffs
+- **Naming**: `HO-{PLAN_ID}-P-{NN}-{DATE}.yaml` for handoffs
 
 ## Plan Lifecycle
 
@@ -152,9 +152,9 @@ P-XX-Y where:
 - RWP Specification: https://rhumbprotocol.dev
 - RWP Templates: `templates/` directory in the RWP package
 - RWP JSON Schemas: `spec/schemas/` for validation
-- Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
+- Reference Implementation: YAKKL® Meridian™ (https://meridian.yakkl.com)
 
 ---
 
-Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+Produced by Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 Created by YAKKL Inc. - https://yakkl.com
