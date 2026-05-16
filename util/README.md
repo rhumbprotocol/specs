@@ -1,7 +1,7 @@
-# RWP Reference Utilities
+# RWP™ Reference Utilities
 
 This directory contains reference implementations and utilities that
-accompany the Rhumb Workflow Protocol specification. They serve two
+accompany the Rhumb Workflow Protocol™ specification. They serve two
 audiences:
 
 1. **Implementors** - code that demonstrates correct parsing and generation

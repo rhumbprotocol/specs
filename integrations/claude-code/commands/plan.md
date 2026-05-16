@@ -1,8 +1,8 @@
-# RWP Plan - Conversational Plan Generation
+# RWP™ Plan - Conversational Plan Generation
 
-Generate structured plans using the Rhumb Workflow Protocol (RWP). Plans follow the RWP lifecycle: planning, processing, completed.
+Generate structured plans using the Rhumb Workflow Protocol™ (RWP™). Plans follow the RWP™ lifecycle: planning, processing, completed.
 
-> This command uses the Rhumb Workflow Protocol. See https://rhumbprotocol.dev for the full specification.
+> This command uses the Rhumb Workflow Protocol™. See https://rhumbprotocol.dev for the full specification.
 > Protocol spec: [PROTOCOL.md](../../../docs/PROTOCOL.md) | Artifact types: [Artifact Types & Schemas](../../../docs/PROTOCOL.md#artifact-types--schemas) | Templates: [Foundation Templates](../../../docs/PROTOCOL.md#foundation-templates)
 
 ## Usage
@@ -116,10 +116,10 @@ After showing draft, the user can refine with natural language:
 
 When the user says "create it", "looks good", or `/plan commit`:
 
-#### 4.1 Create plan directory structure following RWP conventions:
+#### 4.1 Create plan directory structure following RWP™ conventions:
 
 ```
-{plan_directory}/MP-{NNNN}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}-{short-name}/
+{plan_directory}/MP-{NNNN}-{short-name}/
   PLAN.md                              # RWP Plan template
   INTAKE.yaml                          # RWP Intake template
   MASTERPLAN.yaml                      # RWP Masterplan template
@@ -132,11 +132,11 @@ When the user says "create it", "looks good", or `/plan commit`:
     HO-{PLAN_ID}-START-P-01-PROMPT.md  # Initial phase prompt
 ```
 
-#### 4.2 RWP Templates
+#### 4.2 RWP™ Templates
 
-Consider using RWP templates from the `templates/` directory:
+Consider using RWP™ templates from the `templates/` directory:
 
-| File | RWP Template |
+| File | RWP™ Template |
 |------|-------------|
 | PLAN.md | `PLAN.md.template` |
 | INTAKE.yaml | `INTAKE.yaml.template` |
@@ -149,7 +149,7 @@ Consider using RWP templates from the `templates/` directory:
 
 #### 4.3 Audit Schedule
 
-RWP recommends checkpoint audits at regular intervals:
+RWP™ recommends checkpoint audits at regular intervals:
 - Consider audit checkpoints every 3rd phase (P-03, P-06, P-09...)
 - A final audit at plan completion helps verify all deliverables
 
@@ -179,12 +179,12 @@ Crossing logical phases: `HO-{PLAN_ID}-P-01-C-TO-P-02-A-PROMPT.md`
 
 ## References
 
-- RWP Specification: https://rhumbprotocol.dev
-- Reference Implementation: YAKKL Meridian - https://meridian.yakkl.com
-- RWP Templates: `templates/` directory in the RWP package
-- RWP Schemas: `spec/schemas/` directory for JSON schema validation
+- RWP™ Specification: https://rhumbprotocol.dev
+- Reference Implementation: YAKKL® Meridian™ - https://meridian.yakkl.com
+- RWP™ Templates: `templates/` directory in the RWP™ package
+- RWP™ Schemas: `spec/schemas/` directory for JSON schema validation
 
 ---
 
-Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+Produced by Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 Created by YAKKL Inc. - https://yakkl.com

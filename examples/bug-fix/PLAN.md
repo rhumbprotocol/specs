@@ -14,7 +14,7 @@ current_phase: P-01
 started: 2026-04-25T09:45:00Z
 completed: 2026-04-25T11:30:00Z
 parent: null
-rwp_version: "0.27.0"
+rwp_version: "0.28.0"
 dependencies: []
 packages:
   - frontend-app

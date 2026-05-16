@@ -1,4 +1,4 @@
-# Rhumb Protocol Papers
+# Rhumb Protocol™ Papers
 
 This document defines the first public paper set for Rhumb Workflow Protocol™.
 The PDFs are distribution artifacts generated from the website paper pages.
@@ -71,7 +71,7 @@ Reference Profile compatibility.
 - Plan-level `state.yaml` versus `.meridian/.private/runtime/STATE.yaml`.
 - Conformance categories: schema, template, workflow, adapter, grammar.
 - Exit codes and why multi-category failure is reported as exit `6`.
-- RWP 0.27.0 reconciliation decisions: canonical template names,
+- RWP 0.28.0 reconciliation decisions: canonical template names,
   `MP-NNNN-short-name` plan IDs, greenfield status vocabulary, and `A-Z`
   sub-phase language.
 - Safe extension mechanisms and namespaced implementation fields.

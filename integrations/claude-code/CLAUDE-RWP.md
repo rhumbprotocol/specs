@@ -1,22 +1,22 @@
 # RWP-Enabled Project Instructions
 
-> Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+> Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 > Protocol spec: [PROTOCOL.md](../../docs/PROTOCOL.md) | Reference implementation: [YAKKL Meridian](https://meridian.yakkl.com)
 
 This file provides project-level instructions for AI assistants working in an RWP-enabled workspace. Copy this file to your project root and rename to `CLAUDE.md` (or append to an existing `CLAUDE.md`).
 
-## Rhumb Workflow Protocol
+## Rhumb Workflow Protocol™
 
-This project uses the Rhumb Workflow Protocol (RWP) for structured AI workflow management.
+This project uses the Rhumb Workflow Protocol™ (RWP™) for structured AI workflow management.
 
 **Key principle**: Significant changes benefit from a plan created and approved before code changes begin.
 
 **Quick triggers**:
-- `/plan` or "make this a plan" - Creates an RWP plan draft
+- `/plan` or "make this a plan" - Creates an RWP™ plan draft
 - `/plan commit` - Finalizes the plan and creates artifacts
 - `/plan review` - Analyzes conversation without drafting
 
-## RWP Plan Lifecycle
+## RWP™ Plan Lifecycle
 
 Plans follow a structured lifecycle:
 
@@ -29,7 +29,7 @@ planning -> processing -> completed
 
 ### Artifacts
 
-RWP plans produce these artifacts in the plan directory:
+RWP™ plans produce these artifacts in the plan directory:
 
 | File | Purpose |
 |------|---------|
@@ -44,18 +44,18 @@ RWP plans produce these artifacts in the plan directory:
 
 ### Handoff Documents
 
-RWP uses handoff documents to maintain continuity between sessions:
+RWP™ uses handoff documents to maintain continuity between sessions:
 - **Handoff**: Records what was completed, decisions made, and verification results
 - **Prompt**: Provides rolling context for the next phase or sub-phase
-- **Naming**: `HO-{PLAN_ID}-P-{NN}-{DATE}.md` for handoffs, `HO-{PLAN_ID}-P-{NN}-TO-P-{MM}-PROMPT.md` for prompts
+- **Naming**: `HO-{PLAN_ID}-P-{NN}-{DATE}.yaml` for handoffs, `HO-{PLAN_ID}-P-{NN}-TO-P-{MM}-PROMPT.md` for prompts
 
 ### Audit Checkpoints
 
-RWP recommends audits at regular intervals (e.g., every 3rd phase) and a final audit at plan completion. Audits verify deliverables, check quality, and identify issues.
+RWP™ recommends audits at regular intervals (e.g., every 3rd phase) and a final audit at plan completion. Audits verify deliverables, check quality, and identify issues.
 
-## RWP Templates
+## RWP™ Templates
 
-RWP provides foundation templates for all artifact types. Templates use advisory language ("Consider", "You may want to") rather than enforcement language. Templates are located in the RWP package under `templates/`.
+RWP™ provides foundation templates for all artifact types. Templates use advisory language ("Consider", "You may want to") rather than enforcement language. Templates are located in the RWP™ package under `templates/`.
 
 ### Template Types
 
@@ -85,15 +85,15 @@ RWP provides foundation templates for all artifact types. Templates use advisory
 
 ### RWP Version
 - RWP artifacts include an `rwp_version` field for protocol compatibility
-- Current version: `0.27.0`
+- Current version: `0.28.0`
 
 ## References
 
-- RWP Specification: https://rhumbprotocol.dev
-- RWP JSON Schemas: Available in `spec/schemas/` for validation
-- RWP Reference Implementation: YAKKL Meridian (https://meridian.yakkl.com)
+- RWP™ Specification: https://rhumbprotocol.dev
+- RWP™ JSON Schemas: Available in `spec/schemas/` for validation
+- RWP™ Reference Implementation: YAKKL® Meridian™ (https://meridian.yakkl.com)
 
 ---
 
-Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+Produced by Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 Created by YAKKL Inc. - https://yakkl.com

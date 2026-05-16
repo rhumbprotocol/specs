@@ -1,17 +1,17 @@
-# RWP Integration Manifest for Claude Code
+# RWP™ Integration Manifest for Claude Code
 #
 # This manifest describes the RWP integration components available
 # for Claude Code. Copy the relevant files to your project's
 # .claude/ directory to enable RWP workflow support.
 #
-# Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+# Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 
 integration:
-  name: "Rhumb Workflow Protocol (RWP)"
+  name: "Rhumb Workflow Protocol™ (RWP™)"
   platform: "claude-code"
-  rwp_version: "0.27.0"
+  rwp_version: "0.28.0"
   version: "0.1.0"
-  description: "RWP plan management integration for Claude Code"
+  description: "RWP™ plan management integration for Claude Code"
 
 components:
   commands:
@@ -32,7 +32,7 @@ installation:
       from: "commands/plan.md"
       to: ".claude/commands/rwp-plan.md"
 
-    - description: "Append RWP instructions to your project CLAUDE.md"
+    - description: "Append RWP™ instructions to your project CLAUDE.md"
       from: "CLAUDE-RWP.md"
       to: "CLAUDE.md"
       mode: "append"
@@ -40,7 +40,7 @@ installation:
   notes:
     - "Consider adapting the plan command to match your project's naming conventions"
     - "The CLAUDE-RWP.md content can be customized for your specific workflow"
-    - "RWP templates are referenced from the RWP package's templates/ directory"
+    - "RWP™ templates are referenced from the RWP™ package's templates/ directory"
 
 templates:
   referenced:
@@ -66,5 +66,5 @@ schemas:
     - "spec/schemas/handoff.schema.json"
 
 # Reference Implementation: YAKKL Meridian - https://meridian.yakkl.com
-# Produced by Rhumb Workflow Protocol (RWP) - https://rhumbprotocol.dev
+# Produced by Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 # Created by YAKKL Inc. - https://yakkl.com

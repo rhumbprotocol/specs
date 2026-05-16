@@ -4,7 +4,7 @@ title: "Middleware Skeleton and Request Interception"
 created: 2026-02-15T12:20:00Z
 status: completed
 quality_score: 95
-rwp_version: 0.27.0
+rwp_version: 0.28.0
 ---
 
 # Handoff: P-02-A - Middleware Skeleton and Request Interception

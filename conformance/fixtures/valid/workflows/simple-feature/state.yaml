@@ -5,7 +5,7 @@
 plan_id: MP-0042-dark-mode-toggle
 request_id: null
 title: "Add Dark Mode Toggle"
-rwp_version: "0.27.0"
+rwp_version: "0.28.0"
 
 execution:
   status: in_progress

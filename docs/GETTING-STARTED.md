@@ -1,12 +1,12 @@
-# Getting Started with RWP
+# Getting Started with RWP™
 
-A practical guide to adopting the Rhumb Workflow Protocol for structured AI workflow management.
+A practical guide to adopting the Rhumb Workflow Protocol™ for structured AI workflow management.
 
 ---
 
-## What is RWP?
+## What is RWP™?
 
-The **Rhumb Workflow Protocol** (RWP) is a formal, open-source protocol for structuring multi-phase projects that involve AI and human collaboration. It provides:
+The **Rhumb Workflow Protocol™** (RWP™) is a formal, open-source protocol for structuring multi-phase projects that involve AI and human collaboration. It provides:
 
 - **Artifact definitions** - Standard documents (plans, intakes, manifests, state, handoffs) that describe and track work
 - **Lifecycle management** - A state machine governing how phases progress and recover from failure
@@ -86,7 +86,7 @@ Create an intake document describing what you want to build:
 
 ```yaml
 # INTAKE.yaml
-rwp_version: "0.27.0"
+rwp_version: "0.28.0"
 id: "intake-my-feature"
 title: "Add user authentication"
 created: "2026-03-01T10:00:00Z"
@@ -147,7 +147,7 @@ As you execute each phase, update the state artifact:
 
 ```yaml
 # state.yaml
-rwp_version: "0.27.0"
+rwp_version: "0.28.0"
 plan_id: "MP-0001-example-plan"
 execution:
   status: in_progress
@@ -299,5 +299,5 @@ For details, see [spec/conformance-levels.md](../spec/conformance-levels.md).
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.27.0
+Rhumb Workflow Protocol (RWP) v0.28.0
 https://rhumbprotocol.dev

@@ -7,7 +7,7 @@
 integration:
   name: "Generic Workflow Adapter"
   platform: "any-llm-cli"
-  rwp_version: "0.27.0"
+  rwp_version: "0.28.0"
   version: "1.4.2"
 
 components:

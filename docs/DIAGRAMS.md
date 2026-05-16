@@ -1,6 +1,6 @@
-# Rhumb Protocol Diagram Guide
+# Rhumb Protocol™ Diagram Guide
 
-This guide defines the public diagram set for Rhumb Workflow Protocol documentation.
+This guide defines the public diagram set for Rhumb Workflow Protocol™ documentation.
 The diagrams are explanatory views over the canonical artifacts, schemas, templates,
 and specifications in this repository.
 
@@ -8,7 +8,7 @@ and specifications in this repository.
 
 | Diagram | Purpose | Source Material |
 |---|---|---|
-| Artifact constellation | Shows the five core files around the RWP contract | `docs/GETTING-STARTED.md`, `docs/PROTOCOL.md`, `templates/`, `spec/schemas/` |
+| Artifact constellation | Shows the five core files around the RWP™ contract | `docs/GETTING-STARTED.md`, `docs/PROTOCOL.md`, `templates/`, `spec/schemas/` |
 | IDEA lifecycle state machine | Shows concept state transitions from capture through promotion, parking, or discard | `spec/lifecycle/idea-lifecycle.spec.md`, `spec/schemas/idea.schema.json`, `spec/schemas/lifecycle.schema.json` |
 | Architecture path | Shows `IDEA -> AVD -> ACS -> MP` as the path from concept to executable work | `templates/IDEA.md.template`, `templates/AVD.md.template`, `templates/ACS.md.template`, `templates/PLAN.md.template` |
 | Conformance ladder | Shows Minimal, Standard, and Full adoption depth | `spec/conformance-levels.md`, `conformance/` |
