@@ -4,7 +4,7 @@ title: "Redis Module and Sliding Window Algorithm"
 created: 2026-02-15T11:35:00Z
 status: completed
 quality_score: 98
-rwp_version: 0.28.0
+rwp_version: 0.28.1
 ---
 
 # Handoff: P-01 - Redis Module and Sliding Window Algorithm

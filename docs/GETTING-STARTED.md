@@ -86,7 +86,7 @@ Create an intake document describing what you want to build:
 
 ```yaml
 # INTAKE.yaml
-rwp_version: "0.28.0"
+rwp_version: "0.28.1"
 id: "intake-my-feature"
 title: "Add user authentication"
 created: "2026-03-01T10:00:00Z"
@@ -147,7 +147,7 @@ As you execute each phase, update the state artifact:
 
 ```yaml
 # state.yaml
-rwp_version: "0.28.0"
+rwp_version: "0.28.1"
 plan_id: "MP-0001-example-plan"
 execution:
   status: in_progress
@@ -299,5 +299,5 @@ For details, see [spec/conformance-levels.md](../spec/conformance-levels.md).
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.28.0
+Rhumb Workflow Protocol (RWP) v0.28.1
 https://rhumbprotocol.dev

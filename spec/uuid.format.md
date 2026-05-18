@@ -214,7 +214,7 @@ These are designed for human readability within a single context (plan, intake, 
 
 ## Backward Compatibility
 
-RWP v0.28.0 supports both:
+RWP v0.28.1 supports both:
 
 1. **UUID-only identification** (recommended for new implementations)
 2. **Human-readable IDs with optional UUID** (recommended for human-facing tools)
@@ -255,7 +255,7 @@ RWP UUIDs use UUIDv4 (random), which provides 122 bits of entropy. This is suffi
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 0.28.0 | 2026-03-04 | Initial specification; UUIDv4 required |
+| 0.28.1 | 2026-03-04 | Initial specification; UUIDv4 required |
 
 ---
 

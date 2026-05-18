@@ -6,7 +6,7 @@ captured: "2026-04-25T09:30:00Z"
 title: "Submit Button Allows Double-Click Double-Submission"
 summary: "Users who double-click the form submit button cause the form to be submitted twice, producing duplicate records server-side. The button does not disable on the first click."
 classification: public
-rwp_version: "0.28.0"
+rwp_version: "0.28.1"
 
 pain_points:
   - id: PP-01

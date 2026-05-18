@@ -4,11 +4,11 @@ All notable changes to the Rhumb Workflow Protocol are documented in this file.
 
 This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) conventions, and the protocol uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html) as described in [PROTOCOL.md](./docs/PROTOCOL.md).
 
-While `MAJOR == 0`, the protocol follows the SemVer pre-1.0 convention: MINOR releases (e.g., `0.25.1` → `0.28.0`) may include breaking changes; PATCH releases within a MINOR series remain backward compatible. See [spec/versioning.format.md](./spec/versioning.format.md#pre-10-stability) for the full rules.
+While `MAJOR == 0`, the protocol follows the SemVer pre-1.0 convention: MINOR releases (e.g., `0.25.1` → `0.28.1`) may include breaking changes; PATCH releases within a MINOR series remain backward compatible. See [spec/versioning.format.md](./spec/versioning.format.md#pre-10-stability) for the full rules.
 
 ---
 
-## [0.28.0] - 2026-05-06
+## [0.28.1] - 2026-05-06
 
 ### Changed - Greenfield RWP Shape
 
@@ -163,7 +163,7 @@ Internal artifacts using AWP tokens (`awp_uuid`, `awp_version`, `AwpUuid`/`AwpVe
 
 RWP uses Semantic Versioning 2.0.0 with one nuance during the pre-1.0 phase. While `MAJOR == 0`:
 
-- **MINOR** (`0.25.1` → `0.28.0`): may include breaking changes
+- **MINOR** (`0.25.1` → `0.28.1`): may include breaking changes
 - **PATCH** (`0.25.1` → `0.25.2`): always backward compatible within a MINOR series
 
 After v1.0 ships, standard SemVer rules apply:

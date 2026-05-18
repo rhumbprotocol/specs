@@ -103,5 +103,5 @@ For critical issues (security vulnerabilities, data loss risks):
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.28.0
+Rhumb Workflow Protocol (RWP) v0.28.1
 https://rhumbprotocol.dev

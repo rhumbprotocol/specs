@@ -91,5 +91,5 @@ This charter may be amended by a committee vote (simple majority of maintainers)
 
 ---
 
-Rhumb Workflow Protocol™ (RWP™) v0.28.0
+Rhumb Workflow Protocol™ (RWP™) v0.28.1
 https://rhumbprotocol.dev

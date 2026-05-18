@@ -1,0 +1,47 @@
+name: Rhumb Workflow Protocol™ Conformance
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rhumb-conformance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: rhumb-validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            conformance -> conformance/target
+
+      - name: Build and test validator
+        run: cargo test --manifest-path conformance/Cargo.toml
+
+      - name: Validate canonical valid fixture set
+        run: cargo run --manifest-path conformance/Cargo.toml -- --all --target conformance/fixtures/valid
+
+      - name: Validate canonical templates
+        run: cargo run --manifest-path conformance/Cargo.toml -- --category template --target templates
+
+      - name: Validate examples
+        run: cargo run --manifest-path conformance/Cargo.toml -- --category workflow --target examples
+
+      - name: Validate integrations
+        run: cargo run --manifest-path conformance/Cargo.toml -- --category adapter --target integrations
+

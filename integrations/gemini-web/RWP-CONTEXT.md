@@ -46,7 +46,7 @@ ISO 8601: `2026-01-28T20:45:00Z`
 
 ### Version Field
 
-All YAML artifacts include: `rwp_version: "0.28.0"`
+All YAML artifacts include: `rwp_version: "0.28.1"`
 
 ## Artifacts
 
@@ -124,7 +124,7 @@ Users may ask for RWP-style planning with:
 ### Requirements Intake
 
 ```yaml
-rwp_version: "0.28.0"
+rwp_version: "0.28.1"
 plan_id: MP-{NNNN}-{short-name}
 title: "{Title}"
 

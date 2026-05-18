@@ -310,5 +310,5 @@ RWP™ doesn't enforce automated state updates - it's your responsibility (or yo
 
 ---
 
-Rhumb Workflow Protocol™ (RWP™) v0.28.0
+Rhumb Workflow Protocol™ (RWP™) v0.28.1
 https://rhumbprotocol.dev
