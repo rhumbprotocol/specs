@@ -85,24 +85,24 @@ The forward flow `captured → refining → ready → approved → promoted` is 
 
 ```
    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-   │   captured   │───►│   refining   │───►│    ready     │───►│   approved   │───►│   promoted   │
-   │  (initial)   │    │              │    │              │    │              │    │  (terminal)  │
+   │   captured  │───►│   refining   │───►│    ready     │───►│   approved   │───►│   promoted   │
+   │  (initial)  │    │              │    │              │    │              │    │  (terminal)  │
    └──────┬───────┘    └──────┬───────┘    └──────┬───────┘    └──────┬───────┘    └──────────────┘
-          │                   │                   │                   │
-          │ park              │ park              │ park              │
-          │                   │                   │                   │
-          ▼                   ▼                   ▼                   │
+         │                   │                   │                   │
+         │ park              │ park              │ park              │
+         │                   │                   │                   │
+         ▼                   ▼                   ▼                   │
    ┌──────────────────────────────────────────────────────┐           │
-   │                       parked                         │           │
-   │            (re-entry → refining, ready, approved)    │           │
+   │                       parked                        │           │
+   │            (re-entry → refining, ready, approved)   │           │
    └──────┬───────────────────────────────────────────────┘           │
           │                                                           │
           │ discard                                                   │ discard
           │                                                           │
           ▼                                                           ▼
    ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
-   │                                       discarded                                              │
-   │                                       (terminal)                                             │
+   │                                       discarded                                             │
+   │                                       (terminal)                                            │
    └──────────────────────────────────────────────────────────────────────────────────────────────┘
 
    discard transitions also exist from: captured, refining, ready (omitted from diagram for clarity).

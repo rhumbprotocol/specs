@@ -1,10 +1,10 @@
-# RWP Version Embedding Format Specification
+# RWP™ Version Embedding Format Specification
 
-> Part of the [Rhumb Workflow Protocol (RWP)](../docs/PROTOCOL.md) - see also: [Protocol Versioning](../docs/PROTOCOL.md#protocol-versioning)
+> Part of the [Rhumb Workflow Protocol™ (RWP™)](../docs/PROTOCOL.md) - see also: [Protocol Versioning](../docs/PROTOCOL.md#protocol-versioning)
 
 ## Overview
 
-The Rhumb Workflow Protocol (RWP) supports version declaration and embedding in artifacts to enable compatibility checking, schema validation, and migration support across implementations and versions.
+The Rhumb Workflow Protocol™ (RWP™) supports version declaration and embedding in artifacts to enable compatibility checking, schema validation, and migration support across implementations and versions.
 
 ## Version Format
 

@@ -1,4 +1,4 @@
-# RWP Audit Prompt: {{AUDIT_ID}}
+# RWP™ Audit Prompt: {{AUDIT_ID}}
 
 You are auditing `{{PLAN_ID}}` for phases `{{PHASE_RANGE}}` under Rhumb Workflow Protocol `{{RWP_VERSION}}`.
 

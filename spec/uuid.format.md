@@ -1,10 +1,10 @@
-# RWP UUID Format Specification
+# RWP™ UUID Format Specification
 
-> Part of the [Rhumb Workflow Protocol (RWP)](../docs/PROTOCOL.md) - see also: [UUID Generation](./uuid-generation.md), [Implementation Guide](./implementation-guide.md)
+> Part of the [Rhumb Workflow Protocol™ (RWP™)](../docs/PROTOCOL.md) - see also: [UUID Generation](./uuid-generation.md), [Implementation Guide](./implementation-guide.md)
 
 ## Overview
 
-The Rhumb Workflow Protocol (RWP) defines a standardized UUID format for uniquely identifying plans, intakes, phases, and other workflow artifacts. RWP UUIDs are cryptographically secure, URL-safe, and human-readable, enabling reliable deduplication and cross-reference tracking across distributed systems.
+The Rhumb Workflow Protocol™ (RWP™) defines a standardized UUID format for uniquely identifying plans, intakes, phases, and other workflow artifacts. RWP UUIDs are cryptographically secure, URL-safe, and human-readable, enabling reliable deduplication and cross-reference tracking across distributed systems.
 
 ## UUID Type: UUIDv4 (Random)
 

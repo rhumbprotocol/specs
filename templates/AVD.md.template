@@ -48,30 +48,30 @@ Example: "The system consists of three layers: a stateless ingestion layer that 
 
 ```
 ┌──────────────────────────┐
-│   Event Producers        │
-│   (HTTP/gRPC clients)    │
+│   Event Producers       │
+│   (HTTP/gRPC clients)   │
 └────────────┬─────────────┘
-             │
-             ▼
+            │
+            ▼
 ┌──────────────────────────────────────┐
-│   Ingestion Layer (Stateless)        │
-│   - Load balancer                    │
-│   - Request validation               │
-│   - Topic routing                    │
+│   Ingestion Layer (Stateless)       │
+│   - Load balancer                   │
+│   - Request validation              │
+│   - Topic routing                   │
 └────────┬───────────────────┬─────────┘
-         │                   │
-         ▼                   ▼
+        │                   │
+        ▼                   ▼
 ┌─────────────────┐  ┌──────────────────┐
-│  Stream Proc.   │  │  Stream Proc.    │
-│  (Instance 1)   │  │  (Instance N)    │
+│  Stream Proc.  │  │  Stream Proc.    │
+│  (Instance 1)  │  │  (Instance N)    │
 └────────┬────────┘  └────────┬─────────┘
-         │                    │
+        │                    │
          └────────┬───────────┘
                   ▼
        ┌────────────────────────┐
-       │  Persistence Layer     │
-       │  - Hot (SSD)           │
-       │  - Cold (Blob store)   │
+       │  Persistence Layer    │
+       │  - Hot (SSD)          │
+       │  - Cold (Blob store)  │
        └────────────────────────┘
 ```
 

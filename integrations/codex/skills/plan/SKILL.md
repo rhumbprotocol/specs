@@ -3,7 +3,7 @@ name: rwp-plan
 description: "RWP™ plan skill for conversational plan generation using the Rhumb Workflow Protocol™."
 ---
 
-> Rhumb Workflow™ Protocol (RWP™) - https://rhumbprotocol.dev
+> Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 > Protocol spec: [PROTOCOL.md](../../../../docs/PROTOCOL.md) | Templates: [Foundation Templates](../../../../docs/PROTOCOL.md#foundation-templates)
 > This skill enables structured plan generation following RWP conventions.
 
