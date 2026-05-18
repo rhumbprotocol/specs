@@ -17,7 +17,7 @@ pub mod validators;
 /// RWP protocol version this build of `rhumb-validate` was compiled against.
 /// Tracked separately from the crate version so the report distinguishes
 /// "tool drift" from "spec drift" (AVD-0004 §5 — Versioning & Compatibility).
-pub const RWP_VERSION: &str = "0.28.1";  # Build time change
+pub const RWP_VERSION: &str = "0.29.0";  
 
 /// Top-level category enumeration. Matches AVD-0004 §5 five-part breakdown
 /// and the CLI exit-code map in ACS-0015 §6.

@@ -9,7 +9,7 @@ classification: public
 status: processing
 phases: 1
 current_phase: P-01
-rwp_version: "0.28.1"
+rwp_version: "0.29.0"
 
 ---
 

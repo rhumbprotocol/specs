@@ -4,7 +4,7 @@ title: "Fix and Verify"
 created: 2026-04-25T11:30:00Z
 status: completed
 quality_score: 98
-rwp_version: 0.28.1
+rwp_version: 0.29.0
 ---
 
 # Handoff: P-01 - Fix and Verify

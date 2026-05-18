@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://rhumbprotocol.dev/schemas/v0.28.1/idea.schema.json",
+  "$id": "https://rhumbprotocol.dev/schemas/v0.29.0/idea.schema.json",
   "$comment": "First RWP schema authored against draft 2020-12 and the versioned $id convention (ACS-0040 KD-40.2 + KD-40.7). The five pre-existing schemas (handoff, intake, manifest, plan, state) ship under draft-07 and unversioned $ids; an ACS-0040 retrofit brings them forward in a separate plan. Authored under MP-0288-idea-artifact (ACS-0038 / AVD-0009 OPEN-row inheritance: Apache 2.0).",
   "title": "RWP IDEA Schema",
   "description": "JSON Schema for Rhumb Workflow Protocol (RWP) IDEA artifacts. IDEA is the universal capture artifact in RWP: every thought, feature request, bug report, architectural concept, or strategic initiative starts as an IDEA and progresses through the 7-state lifecycle (captured, refining, ready, approved, promoted, parked, discarded). Path selection happens at approved-time via the `pipeline` field, choosing among architecture (IDEA->AVD->ACS->MP), direct (IDEA->MP), or one_off (IDEA->execution). Per KD-38.6, lifecycle metadata fields are sparse: declared optional in this schema and conditionally required per state by the prose lifecycle spec (idea-lifecycle.spec.md) plus rhumb-validate Level-3 checks. Per KD-38.2, frontmatter is the source of truth on conflict with file location.",
