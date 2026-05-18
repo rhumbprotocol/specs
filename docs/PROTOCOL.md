@@ -1,4 +1,4 @@
-# Rhumb Workflow Protocol™ (RWP™) v0.28.1
+# Rhumb Workflow Protocol™ (RWP™) v0.29.0
 
 ## Executive Summary
 
@@ -1107,7 +1107,7 @@ RWP uses semantic versioning: **RWP-{MAJOR}.{MINOR}.{PATCH}**
 - **PATCH**: Bug fixes with no schema changes
 
 **Examples**:
-- RWP-0.28.1 - Initial release
+- RWP-0.29.0 - Initial release
 - RWP-1.1.0 - Added `heartbeat_timeout_minutes` field (backward-compatible)
 - RWP-1.1.1 - Fixed lifecycle diagram (documentation only)
 - RWP-2.0.0 - Renamed `status` to `phase_status` (breaking change)
@@ -1119,14 +1119,14 @@ Each artifact includes the RWP version it conforms to:
 ```yaml
 # In PLAN.md frontmatter or as a comment:
 ---
-rwp_version: "0.28.1"
+rwp_version: "0.29.0"
 ---
 
 # In INTAKE.yaml:
-rwp_version: "0.28.1"
+rwp_version: "0.29.0"
 
 # In state.yaml:
-rwp_version: "0.28.1"
+rwp_version: "0.29.0"
 ```
 
 ### Backward Compatibility Policy
@@ -1143,7 +1143,7 @@ Tools declare which RWP versions they support:
 # tool-config.yaml
 rwp_conformance:
   level: 2
-  supported_versions: ["0.28.1", "1.1.0"]
+  supported_versions: ["0.29.0", "1.1.0"]
   auto_migrate: true  # Automatically upgrade artifacts to latest version
 ```
 
@@ -1294,7 +1294,7 @@ rwp_conformance:
   description: >
     Standard RWP Level 2 implementation. Supports all 5 core artifact types,
     automatic dependency verification, handoff validation, and sub-phases.
-  supported_versions: ["0.28.1", "1.1.0"]
+  supported_versions: ["0.29.0", "1.1.0"]
   features:
     schema_validation: true
     sub_phases: true
@@ -1306,7 +1306,7 @@ rwp_conformance:
 {
   "rwp_conformance": {
     "level": 2,
-    "version": "0.28.1",
+    "version": "0.29.0",
     "supported_artifacts": ["PLAN", "INTAKE", "MANIFEST", "STATE", "HANDOFF"],
     "features": {
       "automatic_dependency_verification": true,
@@ -1832,7 +1832,7 @@ RWP is an open standard. Contributions are welcome:
 
 ## Final Notes
 
-This specification represents v0.28.1 of the Rhumb Workflow Protocol. As adoption grows and real-world use cases emerge, the protocol will evolve. However, the core principles will remain:
+This specification represents v0.29.0 of the Rhumb Workflow Protocol. As adoption grows and real-world use cases emerge, the protocol will evolve. However, the core principles will remain:
 
 - **Simplicity**: Five artifacts, clear state machine, no magic
 - **Interoperability**: Any RWP tool can read any RWP workflow
@@ -1975,7 +1975,7 @@ MINOR = Backward-compatible additions (new optional fields, new artifact types)
 PATCH = Non-breaking clarifications (documentation, example updates, typo fixes)
 ```
 
-**Current Version**: 0.28.1
+**Current Version**: 0.29.0
 **Stability**: Stable (no breaking changes until 2.0.0)
 
 ### Artifact Versioning Fields
@@ -2035,7 +2035,7 @@ When processing artifacts, tools MUST detect and validate protocol version:
 
 1. **Explicit Field**: Check for `rwp_version` in artifact metadata
    ```yaml
-   rwp_version: "0.28.1"
+   rwp_version: "0.29.0"
    ```
 
 2. **Parent Inheritance**: If version field missing, inherit from parent artifact
@@ -2051,7 +2051,7 @@ When processing artifacts, tools MUST detect and validate protocol version:
    If artifact has optional_field_Y → minimum version 1.2.0
    ```
 
-4. **Fallback Default**: Assume 0.28.1 (earliest version on record)
+4. **Fallback Default**: Assume 0.29.0 (earliest version on record)
    ```
    Last resort when all else fails
    ```
@@ -2061,15 +2061,15 @@ When processing artifacts, tools MUST detect and validate protocol version:
 Before processing an artifact, tools SHOULD assert version compatibility:
 
 ```
-Tool supports RWP versions: [0.28.1, 1.1.0]
+Tool supports RWP versions: [0.29.0, 1.1.0]
 Artifact version: 1.0.5
-Result: COMPATIBLE (1.0.5 is patch of 0.28.1, covered by support)
+Result: COMPATIBLE (1.0.5 is patch of 0.29.0, covered by support)
 
-Tool supports RWP versions: [0.28.1]
+Tool supports RWP versions: [0.29.0]
 Artifact version: 1.1.0
 Result: CAUTION (tool doesn't support new optional fields)
 
-Tool supports RWP versions: [0.28.1]
+Tool supports RWP versions: [0.29.0]
 Artifact version: 2.0.0
 Result: INCOMPATIBLE (breaking changes, reject processing)
 ```
@@ -2077,7 +2077,7 @@ Result: INCOMPATIBLE (breaking changes, reject processing)
 ### Migration & Upgrade Path
 
 **For Users**:
-1. Existing RWP 0.28.1 workflows continue working indefinitely (backward compatibility)
+1. Existing RWP 0.29.0 workflows continue working indefinitely (backward compatibility)
 2. Optional new fields in 1.x can be ignored by 1.0.0-only tools
 3. Upgrade to newer tools when you want to use 1.x features
 
@@ -2092,23 +2092,23 @@ Result: INCOMPATIBLE (breaking changes, reject processing)
 ```bash
 # Example: Meridian CLI
 meridian --version
-# Output: Meridian 0.61.0 (RWP 0.28.1 compatible)
+# Output: Meridian 0.61.0 (RWP 0.29.0 compatible)
 
 # Example: Codex
 codex info
-# Output: Codex with RWP 0.28.1 support
+# Output: Codex with RWP 0.29.0 support
 
 # Your Tool
 ./your-tool --check-rwp
-# Output: Your Tool v1.0 supports RWP 0.28.1 - 1.2.0
+# Output: Your Tool v1.0 supports RWP 0.29.0 - 1.2.0
 ```
 
 ### Examples: Version in Artifacts
 
-**RWP 0.28.1 Plan** (minimal):
+**RWP 0.29.0 Plan** (minimal):
 
 ```yaml
-rwp_version: "0.28.1"
+rwp_version: "0.29.0"
 plan_id: "MP-0001-example-plan"
 title: "My Project"
 ```
@@ -2119,13 +2119,13 @@ title: "My Project"
 rwp_version: "1.1.0"
 plan_id: "MP-0001-example-plan"
 title: "My Project"
-custom_metadata: {...}  # New in 1.1.0, ignored by 0.28.1 tools
+custom_metadata: {...}  # New in 1.1.0, ignored by 0.29.0 tools
 ```
 
 **RWP 1.0.5 Handoff** (inherits version):
 
 ```yaml
-rwp_version: "0.28.1"  # Inherited from parent plan
+rwp_version: "0.29.0"  # Inherited from parent plan
 handoff_id: "HO-MP-0001-P-01-2026-03-04.md"
 parent_plan: "MP-0001-example-plan"
 ```
@@ -2142,7 +2142,7 @@ parent_plan: "MP-0001-example-plan"
 
 ---
 
-*Specification Version: 0.28.1*
+*Specification Version: 0.29.0*
 *Status: Released*
 *Last Updated: 2026-03-04*
 *License: Apache-2.0*

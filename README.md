@@ -209,7 +209,7 @@ For mark-use enquiries, written-agreement requests, or infringement reports, con
 
 ## Version Source of Truth
 
-The protocol version is stored in [`VERSION`](./VERSION). For breaking protocol-shape changes during the pre-1.0 period, bump MINOR, for example `0.25.4` to `0.28.1`. PATCH is only for backward-compatible corrections.
+The protocol version is stored in [`VERSION`](./VERSION). For breaking protocol-shape changes during the pre-1.0 period, bump MINOR, for example `0.25.4` to `0.29.0`. PATCH is only for backward-compatible corrections.
 
 After changing `VERSION`, run:
 

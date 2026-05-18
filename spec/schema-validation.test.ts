@@ -333,7 +333,7 @@ describe('RWP Schema Validation', () => {
         id: 'MAN-2026-PLATFORM',
         name: 'Platform Modernization Manifest',
         description: 'Complete list of artifacts for Q1 platform work',
-        version: '0.28.1',
+        version: '0.29.0',
         created_at: '2026-01-01T00:00:00Z',
         updated_at: '2026-03-04T15:30:00Z',
         artifacts: [
@@ -383,7 +383,7 @@ describe('RWP Schema Validation', () => {
         plan_id: 'MP-0001-q1-infrastructure',
         request_id: 'INT-0001',
         title: 'Detailed state tracking',
-        rwp_version: '0.28.1',
+        rwp_version: '0.29.0',
         execution: {
           status: 'paused',
           current_phase: 'P-02-Z',

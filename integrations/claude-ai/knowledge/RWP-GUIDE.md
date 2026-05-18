@@ -81,7 +81,7 @@ RWP™ uses ISO 8601 format for all timestamps: `2026-01-28T20:45:00Z`
 All YAML artifacts include an `rwp_version` field for protocol compatibility tracking:
 
 ```yaml
-rwp_version: "0.28.1"
+rwp_version: "0.29.0"
 ```
 
 ## How to Use RWP™ in Claude.ai
@@ -108,7 +108,7 @@ Here's a minimal plan structure for reference:
 
 ```yaml
 # INTAKE.yaml
-rwp_version: "0.28.1"
+rwp_version: "0.29.0"
 plan_id: MP-0001-example-plan
 title: "Example Project Plan"
 

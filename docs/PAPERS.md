@@ -71,7 +71,7 @@ Reference Profile compatibility.
 - Plan-level `state.yaml` versus `.meridian/.private/runtime/STATE.yaml`.
 - Conformance categories: schema, template, workflow, adapter, grammar.
 - Exit codes and why multi-category failure is reported as exit `6`.
-- RWP 0.28.1 reconciliation decisions: canonical template names,
+- RWP 0.29.0 reconciliation decisions: canonical template names,
   `MP-NNNN-short-name` plan IDs, greenfield status vocabulary, and `A-Z`
   sub-phase language.
 - Safe extension mechanisms and namespaced implementation fields.

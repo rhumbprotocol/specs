@@ -36,4 +36,4 @@ from the [Protocol Specification](../../docs/PROTOCOL.md).
 
 ---
 
-Rhumb Workflow Protocol (RWP) v0.28.1 - https://rhumbprotocol.dev
+Rhumb Workflow Protocol (RWP) v0.29.0 - https://rhumbprotocol.dev
