@@ -2,7 +2,7 @@
 
 > Part of the [Rhumb Workflow Protocol™ (RWP™)](../docs/PROTOCOL.md) - see also: [Integration Points](../docs/PROTOCOL.md#integration-points)
 
-**Version**: 0.28.0
+**Version**: 0.28.1
 **Date**: 2026-03-04
 **Classification**: Public
 
@@ -26,7 +26,7 @@ This document explains how to use RWP artifact schemas in OpenAPI 3.0+ API speci
 openapi: 3.0.3
 info:
   title: RWP™ Workflow API
-  version: 0.28.0
+  version: 0.28.1
   description: REST API for managing RWP artifacts
 
 servers:
@@ -75,7 +75,7 @@ paths:
 openapi: 3.0.3
 info:
   title: Rhumb Workflow Protocol (RWP) API
-  version: 0.28.0
+  version: 0.28.1
   description: >
     REST API for creating, managing, and tracking RWP workflow artifacts.
     Implements the Rhumb Workflow Protocol for structured AI workflow management.
@@ -674,7 +674,7 @@ print(f"Plan created: {result['id']}")
 ```yaml
 info:
   title: RWP Workflow API
-  version: 0.28.0  # Major.Minor.Patch
+  version: 0.28.1  # Major.Minor.Patch
 ```
 
 When schema version changes:
@@ -809,7 +809,7 @@ openapi-generator-cli generate \
 | **Resource paths** | RESTful naming | `/plans`, `/plans/{id}` |
 | **Conformance** | Documented in descriptions | "REQUIRED fields: ..." |
 | **Examples** | Multiple per endpoint | minimal, recommended, custom_fields |
-| **Versioning** | Semantic versioning | `0.28.0` → `1.1.0` → `2.0.0` |
+| **Versioning** | Semantic versioning | `0.28.1` → `1.1.0` → `2.0.0` |
 
 OpenAPI integration enables seamless API-driven workflow management with full RWP schema validation.
 

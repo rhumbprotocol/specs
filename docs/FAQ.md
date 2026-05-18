@@ -46,7 +46,7 @@ RWP works best for projects that span multiple sessions, involve multiple phases
 - **Regulated workflows** - Projects requiring audit trails and compliance documentation
 - **AI-assisted development** - Structured collaboration between humans and AI tools
 
-For quick, single-session tasks, RWP may be more overhead than it's worth. Use your judgment However, you see how YAKKL® Meridian™ handles it with additional `Getting Started` guides and it will ask what do you want to do. The Chat option is just like plain ole AI chat but will not a large overhead like the AI Vendors have (but for good reason for their target audience).
+For quick, single-session tasks, RWP may be more overhead than it's worth. Use your judgment. However, you see how YAKKL® Meridian™ handles it with additional `Getting Started` guides and it will ask what do you want to do. The Chat option is just like plain ole AI chat but will not a large overhead like the AI Vendors have (but for good reason for their target audience).
 
 ### How do I start using RWP?
 
@@ -310,5 +310,5 @@ RWP™ doesn't enforce automated state updates - it's your responsibility (or yo
 
 ---
 
-Rhumb Workflow Protocol™ (RWP™) v0.28.0
+Rhumb Workflow Protocol™ (RWP™) v0.28.1
 https://rhumbprotocol.dev

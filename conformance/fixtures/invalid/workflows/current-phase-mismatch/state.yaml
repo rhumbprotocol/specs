@@ -3,7 +3,7 @@
 
 plan_id: MP-2222-current-phase-mismatch
 title: "Current Phase Mismatch (negative fixture)"
-rwp_version: "0.28.0"
+rwp_version: "0.28.1"
 
 execution:
   status: in_progress

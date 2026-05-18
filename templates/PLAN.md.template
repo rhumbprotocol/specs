@@ -267,12 +267,12 @@ grep "expected content" /path/to/file
 P-01 (Foundation)
   │
   ├──── P-02 (Feature A) ─────────┐
-  │       ├── P-02-A              │
-  │       ├── P-02-B              │
-  │       └── P-02-C              │
-  │                               │
+  │       ├── P-02-A             │
+  │       ├── P-02-B             │
+  │       └── P-02-C             │
+  │                              │
   └──── P-03 (Feature B) ─────────┼──→ AUDIT
-                                  │
+                                 │
                                   └──→ P-04 (Final)
                                         └── P-04-A
 ```

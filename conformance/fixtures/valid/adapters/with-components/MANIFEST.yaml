@@ -6,7 +6,7 @@
 integration:
   name: "Adapter With Components"
   platform: "with-components-platform"
-  rwp_version: "0.28.0"
+  rwp_version: "0.28.1"
   version: "0.2.0"
   description: "Optional description field — accepted but not required."
 

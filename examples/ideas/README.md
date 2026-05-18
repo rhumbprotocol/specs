@@ -2,7 +2,7 @@
 SPDX-License-Identifier: Apache-2.0
 Copyright (c) 2026 Rhumb Protocol Contributors
 
-RWP version: 0.28.0
+RWP version: 0.28.1
 -->
 
 # IDEA Examples

@@ -6,7 +6,7 @@
 integration:
   name: "Components-As-List Adapter"
   platform: "components-as-list-platform"
-  rwp_version: "0.28.0"
+  rwp_version: "0.28.1"
   version: "0.1.0"
 
 components:

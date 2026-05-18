@@ -2,7 +2,7 @@
 SPDX-License-Identifier: Apache-2.0
 Copyright (c) 2026 Rhumb Protocol Contributors
 
-RWP version: 0.28.0
+RWP version: 0.28.1
 RWP IDEA Lifecycle Specification — Normative prose specification for the
 seven-state IDEA lifecycle and its state machine.
 
@@ -30,8 +30,8 @@ idea.schema.json.
 
 # RWP IDEA Lifecycle Specification
 
-**Schema version**: v0.28.0
-**Schema $id**: `https://rhumbprotocol.dev/schemas/v0.28.0/lifecycle.schema.json`
+**Schema version**: v0.28.1
+**Schema $id**: `https://rhumbprotocol.dev/schemas/v0.28.1/lifecycle.schema.json`
 **Status enum source of truth**: [`idea.schema.json#/properties/status`](../schemas/idea.schema.json)
 **Lifecycle schema**: [`lifecycle.schema.json`](../schemas/lifecycle.schema.json)
 **Component spec**: ACS-0038 (`.meridian/.private/knowledge/components/ACS-0038-rwp-idea-template-and-lifecycle/`)
@@ -85,24 +85,24 @@ The forward flow `captured → refining → ready → approved → promoted` is 
 
 ```
    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-   │   captured   │───►│   refining   │───►│    ready     │───►│   approved   │───►│   promoted   │
-   │  (initial)   │    │              │    │              │    │              │    │  (terminal)  │
+   │   captured  │───►│   refining   │───►│    ready     │───►│   approved   │───►│   promoted   │
+   │  (initial)  │    │              │    │              │    │              │    │  (terminal)  │
    └──────┬───────┘    └──────┬───────┘    └──────┬───────┘    └──────┬───────┘    └──────────────┘
-          │                   │                   │                   │
-          │ park              │ park              │ park              │
-          │                   │                   │                   │
-          ▼                   ▼                   ▼                   │
+         │                   │                   │                   │
+         │ park              │ park              │ park              │
+         │                   │                   │                   │
+         ▼                   ▼                   ▼                   │
    ┌──────────────────────────────────────────────────────┐           │
-   │                       parked                         │           │
-   │            (re-entry → refining, ready, approved)    │           │
+   │                       parked                        │           │
+   │            (re-entry → refining, ready, approved)   │           │
    └──────┬───────────────────────────────────────────────┘           │
           │                                                           │
           │ discard                                                   │ discard
           │                                                           │
           ▼                                                           ▼
    ┌──────────────────────────────────────────────────────────────────────────────────────────────┐
-   │                                       discarded                                              │
-   │                                       (terminal)                                             │
+   │                                       discarded                                             │
+   │                                       (terminal)                                            │
    └──────────────────────────────────────────────────────────────────────────────────────────────┘
 
    discard transitions also exist from: captured, refining, ready (omitted from diagram for clarity).

@@ -50,8 +50,8 @@ All work happens on short-lived branches that target `develop`:
    ...edit, commit...
    git push origin feature/x
    open PR  ──────────────►       review
-                                  request changes ──┐
-   ...address feedback...                           │
+                                 request changes ──┐
+   ...address feedback...                          │
    git push                       re-review  ◄──────┘
                                   approve
                                   merge into develop  ─────►   develop updated

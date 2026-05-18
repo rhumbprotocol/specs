@@ -85,7 +85,7 @@ RWP™ provides foundation templates for all artifact types. Templates use advis
 
 ### RWP Version
 - RWP artifacts include an `rwp_version` field for protocol compatibility
-- Current version: `0.28.0`
+- Current version: `0.28.1`
 
 ## References
 

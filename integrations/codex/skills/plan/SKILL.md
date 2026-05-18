@@ -3,7 +3,7 @@ name: rwp-plan
 description: "RWP™ plan skill for conversational plan generation using the Rhumb Workflow Protocol™."
 ---
 
-> Rhumb Workflow™ Protocol (RWP™) - https://rhumbprotocol.dev
+> Rhumb Workflow Protocol™ (RWP™) - https://rhumbprotocol.dev
 > Protocol spec: [PROTOCOL.md](../../../../docs/PROTOCOL.md) | Templates: [Foundation Templates](../../../../docs/PROTOCOL.md#foundation-templates)
 > This skill enables structured plan generation following RWP conventions.
 
@@ -118,7 +118,7 @@ After creating all files:
 - ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ`
 
 ### RWP Version
-- Include `rwp_version: "0.28.0"` in YAML artifacts
+- Include `rwp_version: "0.28.1"` in YAML artifacts
 
 ### Audit Checkpoints
 - Consider audits every 3rd phase (P-03, P-06, P-09...)
