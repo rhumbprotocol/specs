@@ -1,0 +1,11 @@
+# ADP-3 negative fixture: integration.platform present but empty
+# string. The validator must emit an AdapterShapeMismatch with
+# message prefix "ADP-3" mentioning "empty".
+
+integration:
+  name: "Empty-Platform Adapter"
+  platform: ""
+  rwp_version: "0.31.0"
+  version: "0.1.0"
+
+components: {}

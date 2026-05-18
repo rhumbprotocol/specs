@@ -1,0 +1,37 @@
+═══════════════════════════════════════════════════════════════════════════════
+                      ✓ PHASE COMPLETE: {{PHASE_ID}}
+                         {{PHASE_TITLE}}
+═══════════════════════════════════════════════════════════════════════════════
+
+COMPLETED IN
+  {{DURATION_MINUTES}} minutes
+
+FILES CREATED
+  {{FILE_COUNT}} deliverables
+
+QUALITY SCORE
+  {{QUALITY_SCORE}}/100
+
+DELIVERABLES
+{{DELIVERABLE_LIST}}
+
+────────────────────────────────────────────────────────────────────────────
+
+What's next?
+
+  Continue to {{NEXT_PHASE_ID}}: {{NEXT_PHASE_TITLE}} (~{{NEXT_PHASE_DURATION}} min)
+
+  Or review:
+    • Handoff document: handoffs/{{HANDOFF_FILENAME}}
+    • Phase state: state.yaml
+    • Detailed plan: PLAN.md
+
+Ready to continue?
+  → Type 'next phase' to start {{NEXT_PHASE_ID}}
+  → Type 'review' to examine deliverables
+  → Type 'pause' to take a break
+
+───────────────────────────────────────────────────────────────────────────────
+Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}
+Homepage: https://rhumbprotocol.dev
+───────────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,185 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Rhumb Protocol Contributors
+#
+# RWP version: "{{RWP_VERSION}}"
+# IDEA Template — Universal capture artifact for the Rhumb Workflow Protocol
+#
+# DESIGN PROVENANCE
+# This template inherits from AVD-0009 KD-09-02 (Open/Closed Split Table OPEN
+# row: Artifacts + Schemas + State Machines ship under Apache 2.0) and from
+# ACS-0038 KD-38.1..7. KD-38.3 strips runtime and commercial-tier fields
+# (cost-tracking metadata, internal pipeline variants, runtime metadata
+# pointers); KD-38.5 sets the pipeline enum to {direct, architecture,
+# one_off}; KD-38.7 declines to standardize parked/roadmap/backlog
+# directory layout (advisory only).
+#
+# PRECEDENCE RULE (KD-38.2 — frontmatter wins on conflict)
+# When `status:` (frontmatter) and file location disagree (e.g.,
+# status=approved but file in ideas/captured/), tooling MUST trust
+# frontmatter. Lifecycle-by-location stays advisory for human navigation;
+# rhumb-validate Level-3 gating consumes frontmatter only.
+#
+# UNIVERSAL CAPTURE
+# IDEA is the universal capture artifact in the Rhumb Workflow Protocol.
+# Every thought, feature request, bug report, architectural concept, or
+# strategic initiative starts as an IDEA. What happens after capture
+# depends on the 7-state lifecycle and the `pipeline:` routing field
+# (decided at `approved` time).
+#
+# ─── Lifecycle (7-state enum) ─────────────────────────────────────────
+#   captured  → just dropped in; no refinement cycle yet
+#   refining  → refinement in motion (brainstorming, shaping)
+#   ready     → refinement done; awaiting human approval
+#   approved  → human said yes; awaiting promotion
+#   promoted  → promoted_to is set (downstream artifact assigned)
+#   parked    → deferred (uses parked_as: any string label)
+#   discarded → killed (with discarded_reason)
+#
+# ─── Lifecycle-by-location (advisory only) ────────────────────────────
+# Implementations MAY organize IDEAs by directory (e.g., ideas/captured/,
+# ideas/promoted/) for human navigation, but MUST NOT use directory
+# location as the source of truth for `status`. Per KD-38.7, directory
+# layout — including any roadmap/backlog folders for parked items — is
+# implementation-specific and NOT normative.
+#
+# ─── Pipeline routing (set at `approved` time) ────────────────────────
+#   architecture → IDEA → AVD(s) → ACS(es) → MP(s) → Execution (rigor path)
+#   direct       → IDEA → MP → Execution (fast path; directly plannable work)
+#   one_off      → IDEA → direct execution, no MP (single-shot work)
+#
+# Path selection is methodology, not runtime. Implementations MUST surface
+# `pipeline` in IDEA frontmatter; tooling MUST validate the value against
+# the {direct, architecture, one_off} enum. Default-to-architecture-when-
+# ambiguous is the recommended posture (see prose spec).
+#
+# IDEAs are intentionally lightweight at creation. No required body sections
+# beyond the frontmatter — capture the thought, refine later. Architecture-
+# pipeline IDEAs typically grow Resolved Decisions, Present State Audit,
+# and Path Selection sections before AVD promotion.
+
+id: IDEA-NNNN
+type: idea
+title: "[{{IDEA_TITLE}}]"
+status: captured                      # captured | refining | ready | approved | promoted | parked | discarded
+classification: public                # public | confidential
+created: {{TIMESTAMP}}
+updated: {{TIMESTAMP}}
+
+# Authors — supports human + AI collaboration; minimum one entry
+authors:
+  - name: "[Author name]"
+    role: "[architect | engineer | pm | assistant | reviewer | other]"
+tags: []                              # Optional; domain tags for indexing
+
+# ─── Chain linkage ────────────────────────────────────────────────────────
+parent: null                          # Upstream artifact: IDEA-NNNN | REQ-NNNNN | null
+children: []                          # Downstream artifacts: AVD-NNNN, MP-NNNN, etc.
+
+# ─── Pipeline routing (decided at `approved` time) ────────────────────────
+pipeline: null                        # direct | architecture | one_off | null
+                                      # null         = not yet routed
+                                      # architecture = IDEA → AVD(s) → ACS(es) → MP(s) (rigor path)
+                                      # direct       = IDEA → MP (fast path; directly plannable)
+                                      # one_off      = direct execution, no MP (single-shot)
+
+# ─── Lifecycle metadata (sparse — populated as states are reached) ────────
+# All fields below are optional in JSON Schema; per-state required fields
+# are enforced separately by the lifecycle spec + validator (KD-38.6).
+
+# Approval (status: approved)
+approved_by: null                     # Plain string (name or handle)
+approved_at: null                     # ISO-8601
+approval_policy: null                 # e.g. "solo" | "review" | implementation-specific
+
+# Promotion (status: promoted)
+promoted_to: null                     # AVD-NNNN | MP-NNNN | downstream artifact ID
+promoted_at: null                     # ISO-8601
+promoted_pipeline: null               # direct | architecture | one_off
+
+# Parking (status: parked)
+parked_as: null                       # Free string label (e.g., "roadmap", "backlog", impl-specific)
+parked_reason: null                   # Why deferred
+parked_until: null                    # ISO-8601 | null (open-ended)
+
+# Discarding (status: discarded)
+discarded_by: null                    # Plain string
+discarded_at: null                    # ISO-8601
+discarded_reason: null                # Why killed (REQUIRED when status=discarded)
+---
+
+# IDEA-NNNN: [IDEA Title]
+
+## Context
+<!-- What sparked this idea? What problem are we solving? -->
+[Context]
+
+## Initial Considerations
+
+- [Consideration 1]
+- [Consideration 2]
+
+## The "Why"
+<!-- Why does this matter? Why now? -->
+
+## Strategic Value
+<!-- How does this align with product or organizational goals? -->
+
+## Key Concepts / Pillars
+1. **Concept A**: ...
+2. **Concept B**: ...
+
+## Target Audience
+<!-- Who is this for? -->
+
+## Proposed Execution (High Level)
+<!-- Not a task list yet. Just big blocks of work. -->
+
+## Open Questions / Unknowns
+* [ ] Question 1?
+* [ ] Question 2?
+
+<!-- ═══════════════════════════════════════════════════════════════
+     OPTIONAL SECTIONS — add as the IDEA matures
+     These sections are common for architecture-pipeline IDEAs but
+     are NOT required at initial capture.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<!-- Uncomment and fill as needed:
+
+## Present State Audit
+[What already exists in the codebase that is relevant to this IDEA?
+Walk the relevant packages and document what's there. Recommended
+before AVD promotion for architecture-pipeline work.]
+
+## Resolved Decisions
+[Decisions made during refinement. Each becomes a Key Decision in
+the downstream AVD/ACS. Use checkbox format:]
+* [x] **Decision name** — **Choice.** Rationale here.
+* [x] **Another decision** — **Choice.** Rationale here.
+
+## Path Selection
+[How does this IDEA's downstream work split across pipeline paths?
+Which parts take the architecture path (IDEA→AVD→ACS→MP) and which
+take the direct path (IDEA→MP) or one_off path (IDEA→execution)?]
+
+## Operating Modes
+[If the IDEA introduces distinct operating modes, describe them here.]
+
+## Framing
+[How should this be positioned to users or stakeholders? What framing
+is most credible and durable?]
+
+-->
+
+## References
+
+- [Link or source 1]
+
+---
+Tags: [idea]
+
+---
+Produced: {{TIMESTAMP}}
+By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
+Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

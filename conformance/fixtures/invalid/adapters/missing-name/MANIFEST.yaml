@@ -1,0 +1,11 @@
+# ADP-2 negative fixture: integration.name field missing. The
+# validator must emit an AdapterShapeMismatch with message prefix
+# "ADP-2".
+
+integration:
+  # name: (intentionally omitted)
+  platform: "missing-name-platform"
+  rwp_version: "0.31.0"
+  version: "0.1.0"
+
+components: {}

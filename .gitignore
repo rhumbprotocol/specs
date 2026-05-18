@@ -1,0 +1,169 @@
+# =============================================================================
+# YAKKL Master .gitignore Template
+# =============================================================================
+# Comprehensive template covering Rust, TypeScript, UI, and Backend projects
+# Use for mixed-language projects or as a reference
+# Copy to your project root as .gitignore
+# =============================================================================
+
+# =============================================================================
+# RUST / WASM / TAURI (CRITICAL - prevents 100MB+ push failures!)
+# =============================================================================
+# Main build directory - ALWAYS ignore
+target/
+**/target/
+
+# Compiled Rust artifacts
+*.rlib
+*.rmeta
+*.dylib
+*.so
+*.dll
+*.a
+*.o
+*.obj
+*.exe
+*.pdb
+
+# Cargo lock (uncomment for libraries)
+# Cargo.lock
+
+# Rust backup files
+**/*.rs.bk
+
+# =============================================================================
+# NODE.JS / TYPESCRIPT
+# =============================================================================
+node_modules/
+.pnpm-store/
+.yarn/
+.npm/
+
+# Build outputs
+dist/
+build/
+lib/
+.output/
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# =============================================================================
+# UI FRAMEWORKS
+# =============================================================================
+# SvelteKit
+.svelte-kit/
+
+# Vite
+.vite/
+
+# Next.js
+.next/
+out/
+
+# Nuxt
+.nuxt/
+
+# Turbo
+.turbo/
+
+# Vercel / Netlify
+.vercel/
+.netlify/
+
+# =============================================================================
+# TESTING AND COVERAGE
+# =============================================================================
+coverage/
+.nyc_output/
+*.lcov
+lcov.info
+playwright-report/
+test-results/
+.playwright/
+
+# Rust testing
+*.profraw
+*.profdata
+tarpaulin-report.html
+*.gcno
+*.gcda
+criterion/
+
+# =============================================================================
+# IDE AND EDITORS
+# =============================================================================
+.idea/
+.vscode/
+.cursor/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.iml
+*.ipr
+*.iws
+*.sublime-workspace
+*.sublime-project
+
+# =============================================================================
+# OS FILES
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# =============================================================================
+# ENVIRONMENT AND SECRETS (CRITICAL!)
+# =============================================================================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.mustache
+!.env.example
+*.pem
+*.key
+credentials.json
+service-account.json
+
+# =============================================================================
+# LOGS
+# =============================================================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =============================================================================
+# CACHE
+# =============================================================================
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.cache
+
+# =============================================================================
+# MISC
+# =============================================================================
+*.local
+.history/
+*.bak
+*.backup
+*.orig
+*.tmp
+tmp/
+temp/
+.cargo-ok

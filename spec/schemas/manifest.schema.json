@@ -1,0 +1,269 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rhumbprotocol.dev/schemas/manifest.schema.json",
+  "$comment": "See docs/PROTOCOL.md 'Artifact Types & Schemas' section for specification details",
+  "type": "object",
+  "title": "RWP Manifest Schema",
+  "description": "JSON Schema for Rhumb Workflow Protocol (RWP) Manifest artifacts (manifest.yaml). Tracks all files, directories, and deliverables produced by a workflow.",
+  "required": ["plan_id", "manifest_version", "created"],
+  "additionalProperties": false,
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "pattern": "^MP-[0-9]{4}-[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Reference to parent plan identifier"
+    },
+    "manifest_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "description": "Schema version (e.g., 1.0)"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when manifest was created"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of last update"
+    },
+    "summary": {
+      "type": "object",
+      "description": "High-level statistics about the manifest",
+      "additionalProperties": true,
+      "properties": {
+        "total_files": { "type": "integer", "minimum": 0 },
+        "total_directories": { "type": "integer", "minimum": 0 },
+        "total_size_bytes": { "type": "integer", "minimum": 0 },
+        "completed_phases": { "type": "integer", "minimum": 0 },
+        "in_progress_phases": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "files": {
+      "type": "array",
+      "description": "All files created/modified per phase",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "type", "phase"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^FILE-[0-9]{3,}$",
+            "description": "File identifier (e.g., FILE-001)"
+          },
+          "path": {
+            "type": "string",
+            "description": "Relative file path in project"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["source", "test", "schema", "documentation", "config", "other"],
+            "description": "Type of file"
+          },
+          "phase": {
+            "type": "string",
+            "pattern": "^P-[0-9]{2}(-[A-Z])?$",
+            "description": "Phase that created this file"
+          },
+          "language": {
+            "type": "string",
+            "description": "Programming language (e.g., python, typescript)"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 creation timestamp"
+          },
+          "modified": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 last modification timestamp"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "File size in bytes"
+          },
+          "checksum_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA256 checksum for integrity verification"
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Has this file been verified?"
+          },
+          "lines_of_code": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of lines (for source/test files)"
+          },
+          "test_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of tests (for test files)"
+          },
+          "test_coverage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Code coverage percentage"
+          },
+          "test_result": {
+            "type": "string",
+            "description": "Test execution result (e.g., '24 passed, 0 failed')"
+          },
+          "related_deliverable": {
+            "type": "string",
+            "description": "Name of the deliverable this file fulfills"
+          }
+        }
+      }
+    },
+    "directories": {
+      "type": "array",
+      "description": "Directory-level tracking",
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "type", "phase"],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^DIR-[0-9]{3,}$",
+            "description": "Directory identifier (e.g., DIR-001)"
+          },
+          "path": {
+            "type": "string",
+            "description": "Relative directory path"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["source", "test", "schema", "documentation", "other"],
+            "description": "Primary type of files in directory"
+          },
+          "phase": {
+            "type": "string",
+            "pattern": "^P-[0-9]{2}(-[A-Z])?$",
+            "description": "Phase that created this directory"
+          },
+          "file_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of files in directory"
+          },
+          "lines_of_code": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total lines of code in directory"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total directory size in bytes"
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Has this directory been verified?"
+          }
+        }
+      }
+    },
+    "expected_outputs": {
+      "type": "object",
+      "description": "Expected deliverables per phase",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "deliverables": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "List of promised deliverables"
+          },
+          "delivered": {
+            "type": "boolean",
+            "description": "Were all deliverables delivered?"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "in_progress", "completed", "failed", "skipped"],
+            "description": "Current status of deliverables"
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Have deliverables been verified?"
+          },
+          "verification_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of verification"
+          },
+          "verification_notes": {
+            "type": "string",
+            "description": "Notes from verification"
+          },
+          "completion_estimate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Estimated completion if in progress"
+          }
+        }
+      }
+    },
+    "statistics": {
+      "type": "object",
+      "description": "Aggregate statistics across all files",
+      "additionalProperties": true,
+      "properties": {
+        "total_lines_of_code": { "type": "integer" },
+        "completed_lines_of_code": { "type": "integer" },
+        "in_progress_lines_of_code": { "type": "integer" },
+        "projected_lines_of_code": { "type": "integer" },
+        "phases_completed": { "type": "integer" },
+        "phases_in_progress": { "type": "integer" },
+        "phases_pending": { "type": "integer" },
+        "average_files_per_phase": { "type": "number" },
+        "average_test_coverage_completed": { "type": "number" }
+      }
+    },
+    "verification_by": {
+      "type": "string",
+      "description": "Who performed verification"
+    }
+  },
+  "$examples": [
+    {
+      "plan_id": "MP-0001-example-plan",
+      "manifest_version": "1.0",
+      "created": "2026-03-04T08:00:00Z",
+      "updated": "2026-03-04T12:00:00Z",
+      "summary": {
+        "total_files": 47,
+        "total_directories": 8,
+        "total_size_bytes": 2850432,
+        "completed_phases": 2
+      },
+      "files": [
+        {
+          "id": "FILE-001",
+          "path": "src/schema.sql",
+          "type": "schema",
+          "phase": "P-01",
+          "created": "2026-03-04T08:15:00Z",
+          "size_bytes": 2048,
+          "verified": true,
+          "related_deliverable": "schema.sql with 15 tables"
+        }
+      ],
+      "expected_outputs": {
+        "P-01": {
+          "deliverables": ["schema.sql", "ETL job"],
+          "delivered": true,
+          "verified": true
+        }
+      }
+    }
+  ]
+}

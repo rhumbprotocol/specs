@@ -1,0 +1,19 @@
+# Valid adapter manifest with non-empty components — fixture
+# demonstrating that arbitrary component categories are accepted as
+# long as the structural shape is correct. The validator checks shape,
+# not adoption depth (see adapter.rs module-doc "out of scope").
+
+integration:
+  name: "Adapter With Components"
+  platform: "with-components-platform"
+  rwp_version: "0.31.0"
+  version: "0.2.0"
+  description: "Optional description field — accepted but not required."
+
+components:
+  commands:
+    - name: plan
+      path: commands/plan.md
+  project_instructions:
+    - name: PROJECT-RWP
+      path: PROJECT-RWP.md

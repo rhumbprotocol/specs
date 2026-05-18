@@ -1,0 +1,18 @@
+# Negative fixture for INV-2 (current_phase mismatch).
+# state.yaml's execution.current_phase intentionally differs from PLAN.md.
+
+plan_id: MP-2222-current-phase-mismatch
+title: "Current Phase Mismatch (negative fixture)"
+rwp_version: "0.31.0"
+
+execution:
+  status: in_progress
+  current_phase: P-02
+
+phases:
+  P-01:
+    title: "First phase"
+    status: completed
+  P-02:
+    title: "Second phase"
+    status: in_progress

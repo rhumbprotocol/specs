@@ -1,0 +1,13 @@
+{
+  "id": "IDEA-0023",
+  "type": "idea",
+  "title": "Invalid: smuggles a stripped Meridian-runtime field (KD-38.3 anti-leak — additionalProperties: false must reject)",
+  "status": "captured",
+  "classification": "public",
+  "created": "2026-05-01T18:30:00Z",
+  "updated": "2026-05-01T18:30:00Z",
+  "authors": [
+    { "name": "Tester", "role": "engineer" }
+  ],
+  "meridian_version": "0.61.0"
+}

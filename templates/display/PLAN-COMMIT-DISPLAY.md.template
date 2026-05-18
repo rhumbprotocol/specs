@@ -1,0 +1,43 @@
+═══════════════════════════════════════════════════════════════════════════════
+                        ✓ PLAN COMMITTED: {{PLAN_ID}}
+                              {{TITLE}}
+═══════════════════════════════════════════════════════════════════════════════
+
+STATUS
+  Committed to workflow
+
+CREATED AT
+  {{CREATED_TIMESTAMP}}
+
+PLAN LOCATION
+  .meridian/.private/plans/processing/{{PLAN_ID}}/
+
+FILES CREATED
+  ✓ PLAN.md - Full plan document with all phases
+  ✓ MASTERPLAN.yaml - Hierarchical phase structure
+  ✓ INTAKE.yaml - Domain requirements
+  ✓ PLAN-STATE.yaml - Execution tracking
+  ✓ DEPENDENCIES.yaml - Phase dependencies
+  ✓ MANIFEST-PLAN.yaml - File manifest
+
+FIRST PHASE
+  {{FIRST_PHASE_TITLE}} (~{{FIRST_PHASE_DURATION}} minutes)
+
+────────────────────────────────────────────────────────────────────────────
+
+What happens next?
+
+  1. Start Phase 1: Type 'next phase' to begin {{FIRST_PHASE_ID}}
+  2. Track progress: state.yaml updates after each phase
+  3. Audits: Performed at scheduled checkpoints (every 3 phases + final)
+
+Ready to begin?
+  → Type 'next phase' to start {{FIRST_PHASE_ID}}
+
+Or review files first:
+  → Run: cat .meridian/.private/plans/processing/{{PLAN_ID}}/PLAN.md
+
+───────────────────────────────────────────────────────────────────────────────
+Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}
+Homepage: https://rhumbprotocol.dev
+───────────────────────────────────────────────────────────────────────────────

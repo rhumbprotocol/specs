@@ -1,0 +1,206 @@
+# Rhumb Workflow Protocol: Plan State
+# Example: Multi-Phase Project - API Rate Limiter Service
+# Snapshot: After P-02-A completion, P-02-B in progress
+
+plan_id: MP-0087-api-rate-limiter
+request_id: REQ-00312
+title: "API Rate Limiter Service"
+rwp_version: "0.31.0"
+
+execution:
+  status: in_progress
+  current_phase: P-02-B
+  started_at: "2026-02-15T10:00:00Z"
+  completed_at: null
+  last_heartbeat: "2026-02-15T13:30:00Z"
+  heartbeat_timeout_minutes: 30
+
+phases:
+  P-01:
+    title: "Redis Module and Sliding Window Algorithm"
+    status: completed
+    started_at: "2026-02-15T10:00:00Z"
+    completed_at: "2026-02-15T11:30:00Z"
+    estimated_duration_minutes: 90
+    actual_duration_minutes: 90
+  P-02:
+    title: "Gateway Middleware Integration"
+    status: in_progress
+    started_at: "2026-02-15T11:45:00Z"
+    completed_at: null
+    estimated_duration_minutes: 90
+    actual_duration_minutes: null
+    sub_phases:
+      P-02-A:
+        title: "Middleware Skeleton and Request Interception"
+        status: completed
+        started_at: "2026-02-15T11:45:00Z"
+        completed_at: "2026-02-15T12:15:00Z"
+        estimated_duration_minutes: 30
+        actual_duration_minutes: 30
+      P-02-B:
+        title: "Rate Limit Headers and Fail-Open Logic"
+        status: in_progress
+        started_at: "2026-02-15T13:00:00Z"
+        completed_at: null
+        estimated_duration_minutes: 30
+        actual_duration_minutes: null
+      P-02-C:
+        title: "Dynamic Configuration and Hot Reload"
+        status: pending
+        started_at: null
+        completed_at: null
+        estimated_duration_minutes: 30
+        actual_duration_minutes: null
+  P-03:
+    title: "Testing and Benchmarks"
+    status: pending
+    started_at: null
+    completed_at: null
+    estimated_duration_minutes: 60
+    actual_duration_minutes: null
+  AUDIT:
+    title: "Post-Implementation Audit"
+    status: pending
+    started_at: null
+    completed_at: null
+    estimated_duration_minutes: 30
+    actual_duration_minutes: null
+    is_audit: true
+  P-04:
+    title: "Usage Dashboard"
+    status: pending
+    started_at: null
+    completed_at: null
+    estimated_duration_minutes: 90
+    actual_duration_minutes: null
+  P-05:
+    title: "Documentation and Deployment"
+    status: pending
+    started_at: null
+    completed_at: null
+    estimated_duration_minutes: 45
+    actual_duration_minutes: null
+
+audit_schedule:
+  enabled: true
+  checkpoints:
+    - id: AUD-01
+      phase: AUDIT
+      status: pending
+      scheduled_after: P-03
+      started_at: null
+      completed_at: null
+      report_file: "audits/AUD-MP-0087-api-rate-limiter-2026-02-20.md"
+
+errors:
+  total_count: 0
+  current: []
+
+handoffs:
+  last_handoff: "handoffs/HO-MP-0087-api-rate-limiter-P-02-A-2026-02-15.md"
+  pending_handoff: false
+  handoff_files:
+    - file: "handoffs/HO-MP-0087-api-rate-limiter-P-01-2026-02-15.md"
+      phase: P-01
+      created_at: "2026-02-15T11:35:00Z"
+    - file: "handoffs/HO-MP-0087-api-rate-limiter-P-02-A-2026-02-15.md"
+      phase: P-02-A
+      created_at: "2026-02-15T12:20:00Z"
+
+deliverables:
+  total_expected: 14
+  completed: 7
+  in_progress: 2
+  pending: 5
+  items:
+    - id: D-001
+      name: "Sliding window module"
+      status: completed
+      target_phase: P-01
+      location: "packages/rate-limiter/src/window.ts"
+      completed_at: "2026-02-15T10:45:00Z"
+    - id: D-002
+      name: "Config types"
+      status: completed
+      target_phase: P-01
+      location: "packages/rate-limiter/src/config.ts"
+      completed_at: "2026-02-15T10:30:00Z"
+    - id: D-003
+      name: "Redis client"
+      status: completed
+      target_phase: P-01
+      location: "packages/rate-limiter/src/client.ts"
+      completed_at: "2026-02-15T10:50:00Z"
+    - id: D-004
+      name: "Public API"
+      status: completed
+      target_phase: P-01
+      location: "packages/rate-limiter/src/index.ts"
+      completed_at: "2026-02-15T11:00:00Z"
+    - id: D-005
+      name: "Unit tests"
+      status: completed
+      target_phase: P-01
+      location: "packages/rate-limiter/tests/window.test.ts"
+      completed_at: "2026-02-15T11:25:00Z"
+    - id: D-006
+      name: "Express middleware"
+      status: completed
+      target_phase: P-02-A
+      location: "packages/api-gateway/src/middleware/rate-limit.ts"
+      completed_at: "2026-02-15T12:05:00Z"
+    - id: D-007
+      name: "Gateway app mount"
+      status: completed
+      target_phase: P-02-A
+      location: "packages/api-gateway/src/app.ts"
+      completed_at: "2026-02-15T12:10:00Z"
+    - id: D-008
+      name: "Rate limit headers"
+      status: in_progress
+      target_phase: P-02-B
+      location: "packages/api-gateway/src/middleware/rate-limit.ts"
+    - id: D-009
+      name: "Health check + circuit breaker"
+      status: in_progress
+      target_phase: P-02-B
+      location: "packages/rate-limiter/src/health.ts"
+    - id: D-010
+      name: "Dynamic config"
+      status: pending
+      target_phase: P-02-C
+      location: "packages/rate-limiter/src/config.ts"
+    - id: D-011
+      name: "Integration tests"
+      status: pending
+      target_phase: P-03
+      location: "packages/rate-limiter/tests/integration.test.ts"
+    - id: D-012
+      name: "Usage API endpoint"
+      status: pending
+      target_phase: P-04
+      location: "packages/api-gateway/src/routes/usage.ts"
+    - id: D-013
+      name: "Usage dashboard"
+      status: pending
+      target_phase: P-04
+      location: "packages/dashboard-frontend/src/components/UsageChart.svelte"
+    - id: D-014
+      name: "API documentation"
+      status: pending
+      target_phase: P-05
+      location: "docs/rate-limiting.md"
+
+statistics:
+  phases_completed: 1
+  phases_in_progress: 1
+  phases_pending: 4
+  estimated_total_duration_minutes: 405
+  actual_elapsed_minutes: 120
+  percentage_complete: 30
+
+---
+
+Produced: 2026-02-15T13:30:00Z
+By: Rhumb Protocol Contributors - https://rhumbprotocol.dev

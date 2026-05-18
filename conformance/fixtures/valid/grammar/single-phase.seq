@@ -1,0 +1,3 @@
+; Smallest valid sequence: a single phase ID with no operators.
+; Demonstrates that phase-id alone is a complete sequence.
+P-01

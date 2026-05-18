@@ -1,0 +1,38 @@
+═══════════════════════════════════════════════════════════════════════════════
+                          PLAN DRAFT: {{PLAN_ID}}
+                              {{TITLE}}
+═══════════════════════════════════════════════════════════════════════════════
+
+OBJECTIVE
+  {{OBJECTIVE}}
+
+STRUCTURE
+  {{PHASE_SUMMARY}}
+
+ESTIMATED TIME
+  ~{{TOTAL_DURATION}} minutes
+  {{PHASE_BREAKDOWN}}
+
+KEY DELIVERABLES
+  {{DELIVERABLE_LIST}}
+
+CONSTRAINTS & CONSIDERATIONS
+  {{CONSTRAINTS}}
+
+─────────────────────────────────────────────────────────────────────────────
+
+⚬ This is a draft plan - not yet committed to the workflow.
+
+Ready to create this plan officially?
+  Say 'create it' and I'll commit it to the Meridian workflow.
+
+Alternatively, you can:
+  • Ask me to modify any phase
+  • Adjust the estimated duration
+  • Add or remove deliverables
+  • Change the objective
+
+───────────────────────────────────────────────────────────────────────────────
+Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}
+Homepage: https://rhumbprotocol.dev
+───────────────────────────────────────────────────────────────────────────────

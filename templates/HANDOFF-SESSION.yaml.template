@@ -1,0 +1,246 @@
+# Session-Bridge Handoff Template v0.1.0 (first pass) — Pure YAML, machine-readable
+#
+# Purpose
+# -------
+# Captures handoffs that are NOT phase transitions inside an MP — i.e., session
+# bridges where work continues across sessions without an active phase ladder.
+# Examples:
+#   - Pause-thinking sessions (paused AVD/MP/IDEA being deliberated)
+#   - IP Cycle™ continuations
+#   - Discovery / triage / cleanup sessions
+#   - Research / learning sessions that produce captured items but not code
+#
+# When to use this template vs. canonical HANDOFF.yaml.template
+# ------------------------------------------------------------
+# Use HANDOFF.yaml.template when:
+#   - An MP is in motion AND a phase boundary is being crossed
+#   - Code, tests, or builds were touched
+#   - The next consumer is a phase-execution session
+# Use HANDOFF-SESSION.yaml.template (THIS template) when:
+#   - No active phase ladder
+#   - Work is conversational / capture / triage / thinking
+#   - The next consumer is another thinking/discovery session
+##
+# Placeholder syntax
+# ------------------
+# This template uses Handlebars-style placeholders: {{VAR_NAME}}
+# Rationale: Widespread development knowledge.
+# Convention: {{UPPER_SNAKE_CASE}} for variables; no spaces inside braces.
+
+# ============================================================================
+# SESSION METADATA
+# ============================================================================
+schema_version: "{{SCHEMA_VERSION}}"
+type: session_handoff
+
+plan:
+  id: {{PLAN_ID_OR_NULL}}                 # MP-NNNN if active, otherwise null
+  request_id: {{REQUEST_ID_OR_NULL}}      # REQ-NNNNN if active, otherwise null
+  title: "{{SESSION_TOPIC}}"              # What the session was about
+  classification: {{CLASSIFICATION}}      # public | confidential
+  topic_anchor: {{TOPIC_ANCHOR_ARTIFACT}} # Artifact this session orbited (e.g., AVD-0008, IDEA-0049)
+
+timestamps:
+  created: "{{CREATED_ISO8601}}"          # When this session began
+  completed: "{{COMPLETED_ISO8601}}"      # When this handoff was written
+
+author:
+  agent: {{AGENT}}                        # claude | codex | gemini | human
+  model: "{{MODEL}}"                      # specific model used
+
+status: {{STATUS}}                        # paused | thinking | continuation | completed | blocked
+                                          # NOTE: extends canonical enum; "paused" and "thinking"
+                                          # are session-bridge-specific values
+
+# Pointers for chain reconstruction across multi-session arcs
+prior_session_record: "{{PRIOR_SESSION_PATH_OR_NULL}}"   # Previous session's handoff or note; null if first
+
+pause_state:                              # Optional; include when session is inside a pause
+  active: {{PAUSE_ACTIVE_BOOL}}           # true | false
+  inside_pause_for: {{PAUSED_ARTIFACT}}   # Artifact paused (AVD-NNNN, MP-NNNN, etc.)
+  pause_gate: "{{PAUSE_LIFT_CONDITION}}"  # What needs to happen to resume
+
+tags: {{TAG_LIST}}                        # YAML list — searchable; per user capture/tag/search principle
+
+# ============================================================================
+# FILES CHANGED
+# ============================================================================
+
+files:
+  created:
+    - path: "{{PATH}}"
+      purpose: "{{BRIEF_DESCRIPTION}}"
+      lines: {{LINES}}
+
+  modified:
+    - path: "{{PATH}}"
+      changes: "{{WHAT_CHANGED}}"
+      lines_changed: {{LINES_CHANGED}}
+
+  deleted: []                             # Sessions that don't delete leave empty
+
+  files_NOT_touched:                      # OPTIONAL — call out files deliberately untouched
+    - path: "{{PATH}}"
+      reason: "{{WHY_NOT_TOUCHED}}"
+
+# ============================================================================
+# DEPENDENCIES — usually N/A for thinking sessions; section retained for parity
+# with canonical HANDOFF.yaml.template so tooling reads both shapes uniformly.
+# ============================================================================
+
+dependencies:
+  packages_added: []
+  packages_removed: []
+  env_vars_added: []
+
+# ============================================================================
+# TESTING — usually N/A for thinking sessions
+# ============================================================================
+
+tests:
+  added: 0
+  modified: 0
+  deleted: 0
+  status: skipped                         # passing | failing | skipped
+  coverage_delta: null
+  note: "{{TEST_RATIONALE_OR_BLANK}}"     # e.g., "Thinking-session arc; no code, no tests"
+
+# ============================================================================
+# VERIFICATION — adapted: artifact-existence and convention-honored checks
+# (canonical lists build/test commands; replaced for session bridges)
+# ============================================================================
+
+verification:
+  - check: "{{WHAT_TO_VERIFY}}"           # e.g., "Pause durable in AVD-NNNN frontmatter"
+    artifact: "{{ARTIFACT_PATH}}"
+    expected: "{{EXPECTED_STATE}}"
+    actual: "{{ACTUAL_STATE}}"
+    status: pass                          # pass | fail | skip
+
+# ============================================================================
+# ISSUES — TODO / TECH_DEBT / CONVENTION / BLOCKER surfaced this session
+# ============================================================================
+
+issues:
+  - type: {{ISSUE_TYPE}}                  # TODO | FIXME | TECH_DEBT | CONVENTION | BLOCKER
+    location: "{{LOCATION}}"              # File path, rule ID, artifact ID, etc.
+    description: "{{WHAT}}"
+    priority: {{PRIORITY}}                # low | medium | high | critical
+
+# ============================================================================
+# OPEN QUESTIONS — unresolved threads to resume next session
+# ============================================================================
+
+open_questions:
+  count: {{COUNT}}                        # 0 if none
+  source: "{{SOURCE_PATH_OR_INLINE}}"     # Where the questions live; or "inline below"
+  inline:                                 # Optional — only if questions don't live elsewhere
+    - id: {{QUESTION_ID}}
+      text: "{{QUESTION_TEXT}}"
+      blocks: {{WHAT_THIS_BLOCKS}}        # null | artifact-id | "decision X"
+
+# ============================================================================
+# ACTIONS ON TABLE — concrete actions awaiting user decision
+# ============================================================================
+
+actions_on_table:
+  - id: {{ACTION_ID}}                     # A | B | C | ...
+    title: "{{ACTION_TITLE}}"
+    estimated_files: {{COUNT_OR_NULL}}
+    estimated_size_per_file: "{{SIZE_OR_NULL}}"
+    blockers: {{BLOCKERS_OR_NONE}}        # null | "user approval" | description
+    user_status: "not yet picked"
+
+recommended_order: {{ORDER_LIST}}       # e.g., [B, A, C]
+rationale: "{{RECOMMENDATION_RATIONALE}}"
+
+# ============================================================================
+# SESSION METRICS
+# ============================================================================
+
+metrics:
+  turns:
+    total: {{TOTAL_TURNS}}
+    implementation: 0                     # Usually 0 for thinking sessions
+    handoff: {{HANDOFF_TURNS}}
+    discussion: {{DISCUSSION_TURNS}}      # NEW relative to canonical
+  tool_calls:
+    read: {{READ_COUNT}}
+    write: {{WRITE_COUNT}}
+    edit: {{EDIT_COUNT}}
+    bash: {{BASH_COUNT}}
+    grep: {{GREP_COUNT}}
+    glob: {{GLOB_COUNT}}
+  context:
+    files_read:
+      - path: "{{PATH}}"
+        lines: {{LINES}}
+    total_lines_read: {{TOTAL_LINES_READ}}
+  output:
+    files_created: {{CREATED_COUNT}}
+    files_modified: {{MODIFIED_COUNT}}
+    lines_written: {{LINES_WRITTEN}}
+  quality:
+    # tests_added / build_attempts / test_attempts: dropped — code-execution
+    # metrics don't apply to thinking sessions. Add back via canonical template
+    # if a session crosses into code work.
+    errors_encountered: {{ERROR_COUNT}}
+  timing:
+    wall_clock_minutes: {{WALL_CLOCK}}
+
+# ============================================================================
+# NEXT SESSION CONTEXT (renamed from canonical's next_phase)
+# ============================================================================
+
+next_session:
+  purpose: "{{NEXT_SESSION_PURPOSE}}"
+  entry_action: "{{FIRST_THING_TO_DO}}"
+
+  critical_reading:                       # Renamed from critical_files; broader scope
+    - path: "{{PATH}}"
+      reason: "{{WHY_IMPORTANT}}"
+
+  assumptions:
+    - assumption: "{{WHAT}}"
+      based_on: "{{EVIDENCE}}"
+      impact_if_wrong: "{{CONSEQUENCE}}"
+
+  constraints:
+    - type: {{CONSTRAINT_TYPE}}           # must | must_not
+      action: "{{ACTION}}"
+      reason: "{{WHY}}"
+
+  failure_modes:
+    - scenario: "{{WHAT_GOES_WRONG}}"
+      symptom: "{{WHAT_YOULL_SEE}}"
+      fix: "{{HOW_TO_RESOLVE}}"
+
+# ============================================================================
+# ROLLING CONTEXT — chronological summary for resumption
+# ============================================================================
+
+rolling_context:
+  - phase: "{{PHASE_OR_SESSION_LABEL}}"   # e.g., "AVD-0008-REVIEW-AND-PAUSE"
+    when: "{{WHEN_ISO8601}}"
+    summary: "{{ONE_PARAGRAPH}}"
+
+# ============================================================================
+# NARRATIVE — semi-structured prose for what YAML loses
+# ============================================================================
+
+narrative:
+  completion_status:
+    - task: "{{TASK}}"
+      done: {{BOOL}}
+      result: "{{RESULT_OR_BLANK}}"       # NEW relative to canonical
+      reason: "{{REASON_IF_NOT_DONE}}"    # Optional; explains incomplete tasks
+
+  decisions:
+    - decision: "{{WHAT_WAS_DECIDED}}"
+      rationale: "{{WHY}}"
+      alternatives_rejected: "{{OPTION_A}}: {{WHY_NOT}}"
+
+  warnings:
+    - type: {{WARNING_TYPE}}              # must | must_not
+      action: "{{ACTION}}"
+      reason: "{{REASON}}"

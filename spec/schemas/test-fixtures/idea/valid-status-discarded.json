@@ -1,0 +1,15 @@
+{
+  "id": "IDEA-0005",
+  "type": "idea",
+  "title": "Discarded IDEA — discarded_* fields populated",
+  "status": "discarded",
+  "classification": "public",
+  "created": "2026-02-10T11:00:00Z",
+  "updated": "2026-03-15T13:00:00Z",
+  "authors": [
+    { "name": "R. Eviewer", "role": "reviewer" }
+  ],
+  "discarded_by": "R. Eviewer",
+  "discarded_at": "2026-03-15T13:00:00Z",
+  "discarded_reason": "Superseded by IDEA-0007 which addresses the same problem with broader scope"
+}

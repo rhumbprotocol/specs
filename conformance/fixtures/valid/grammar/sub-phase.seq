@@ -1,0 +1,4 @@
+; Sub-phase notation: P-NN-X where X is uppercase A-Z.
+; Reference parser (util/sequence-parser.ts) accepts uppercase only;
+; this validator follows that contract.
+P-01-A

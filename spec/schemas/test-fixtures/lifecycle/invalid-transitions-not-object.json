@@ -1,0 +1,5 @@
+{
+  "states": ["captured", "refining", "ready", "approved", "promoted", "parked", "discarded"],
+  "initial_state": "captured",
+  "transitions": ["captured -> refining"]
+}

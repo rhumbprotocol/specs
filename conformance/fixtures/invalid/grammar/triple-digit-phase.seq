@@ -1,0 +1,3 @@
+; GRM-2: phase number must be exactly two digits, not three.
+; The grammar's "P-NN" production is fixed-width.
+P-100

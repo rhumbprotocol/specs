@@ -1,0 +1,219 @@
+name: Release rhumb-validate
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+  BINARY_NAME: rhumb-validate
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+            artifact: rhumb-validate-linux-x86_64
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+            artifact: rhumb-validate-linux-aarch64
+            cross: true
+          - target: x86_64-apple-darwin
+            os: macos-13
+            artifact: rhumb-validate-macos-x86_64
+          - target: aarch64-apple-darwin
+            os: macos-14
+            artifact: rhumb-validate-macos-aarch64
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+            artifact: rhumb-validate-windows-x86_64
+            ext: .exe
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Install cross (Linux aarch64)
+        if: matrix.cross
+        run: cargo install cross --git https://github.com/cross-rs/cross
+
+      - name: Cache cargo
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: conformance -> conformance/target
+          key: ${{ matrix.target }}
+
+      - name: Run tests
+        if: ${{ !matrix.cross }}
+        run: cargo test --manifest-path conformance/Cargo.toml
+
+      - name: Build release
+        run: |
+          ${{ matrix.cross && 'cross' || 'cargo' }} build \
+            --manifest-path conformance/Cargo.toml \
+            --release \
+            --target ${{ matrix.target }}
+
+      - name: Package (unix)
+        if: runner.os != 'Windows'
+        run: |
+          cd conformance/target/${{ matrix.target }}/release
+          tar czf ${{ github.workspace }}/${{ matrix.artifact }}.tar.gz ${{ env.BINARY_NAME }}
+          cd ${{ github.workspace }}
+          shasum -a 256 ${{ matrix.artifact }}.tar.gz > ${{ matrix.artifact }}.tar.gz.sha256
+
+      - name: Package (windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Compress-Archive `
+            -Path "conformance/target/${{ matrix.target }}/release/${{ env.BINARY_NAME }}${{ matrix.ext }}" `
+            -DestinationPath "${{ matrix.artifact }}.zip"
+          (Get-FileHash "${{ matrix.artifact }}.zip" -Algorithm SHA256).Hash.ToLower() + "  ${{ matrix.artifact }}.zip" `
+            | Out-File -Encoding ascii "${{ matrix.artifact }}.zip.sha256"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: |
+            ${{ matrix.artifact }}.tar.gz
+            ${{ matrix.artifact }}.tar.gz.sha256
+            ${{ matrix.artifact }}.zip
+            ${{ matrix.artifact }}.zip.sha256
+          if-no-files-found: ignore
+
+  release:
+    name: Create GitHub Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: artifacts/*
+
+  upload-r2:
+    name: Upload to R2
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Upload to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          for file in artifacts/*; do
+            KEY="rhumb-validate/${VERSION}/$(basename "$file")"
+            KEY_LATEST="rhumb-validate/latest/$(basename "$file")"
+            aws s3 cp "$file" "s3://${R2_BUCKET}/${KEY}" --endpoint-url "${R2_ENDPOINT}"
+            aws s3 cp "$file" "s3://${R2_BUCKET}/${KEY_LATEST}" --endpoint-url "${R2_ENDPOINT}"
+          done
+
+  update-homebrew:
+    name: Update Homebrew tap
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tap repo
+        uses: actions/checkout@v4
+        with:
+          repository: rhumbprotocol/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: tap
+
+      - name: Download artifacts for checksums
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Update formula
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          TAG="${GITHUB_REF_NAME}"
+          LINUX_X86_SHA=$(cat artifacts/rhumb-validate-linux-x86_64.tar.gz.sha256 | awk '{print $1}')
+          LINUX_ARM_SHA=$(cat artifacts/rhumb-validate-linux-aarch64.tar.gz.sha256 | awk '{print $1}')
+          MACOS_X86_SHA=$(cat artifacts/rhumb-validate-macos-x86_64.tar.gz.sha256 | awk '{print $1}')
+          MACOS_ARM_SHA=$(cat artifacts/rhumb-validate-macos-aarch64.tar.gz.sha256 | awk '{print $1}')
+          BASE="https://github.com/rhumbprotocol/specs/releases/download/${TAG}"
+
+          cat > tap/Formula/rhumb-validate.rb << FORMULA
+          # typed: false
+          # frozen_string_literal: true
+
+          class RhumbValidate < Formula
+            desc "Conformance validator for the Rhumb Workflow Protocol (RWP)"
+            homepage "https://rhumbprotocol.dev"
+            license "Apache-2.0"
+            version "${VERSION}"
+
+            on_macos do
+              if Hardware::CPU.arm?
+                url "${BASE}/rhumb-validate-macos-aarch64.tar.gz"
+                sha256 "${MACOS_ARM_SHA}"
+              else
+                url "${BASE}/rhumb-validate-macos-x86_64.tar.gz"
+                sha256 "${MACOS_X86_SHA}"
+              end
+            end
+
+            on_linux do
+              if Hardware::CPU.arm?
+                url "${BASE}/rhumb-validate-linux-aarch64.tar.gz"
+                sha256 "${LINUX_ARM_SHA}"
+              else
+                url "${BASE}/rhumb-validate-linux-x86_64.tar.gz"
+                sha256 "${LINUX_X86_SHA}"
+              end
+            end
+
+            def install
+              bin.install "rhumb-validate"
+            end
+
+            test do
+              assert_match "rhumb-validate", shell_output("#{bin}/rhumb-validate --version")
+            end
+          end
+          FORMULA
+
+      - name: Commit and push
+        working-directory: tap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          VERSION="${GITHUB_REF_NAME#v}"
+          git add Formula/rhumb-validate.rb
+          git commit -m "rhumb-validate ${VERSION}"
+          git push

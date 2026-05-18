@@ -1,0 +1,19 @@
+{
+  "states": ["captured", "refining", "ready", "approved", "promoted", "parked", "discarded"],
+  "initial_state": "captured",
+  "transitions": {
+    "captured": ["refining", "parked", "discarded"],
+    "refining": ["ready", "parked", "discarded"],
+    "ready": ["approved", "parked", "discarded"],
+    "approved": ["promoted", "discarded"],
+    "promoted": [],
+    "parked": ["refining", "ready", "approved", "discarded"],
+    "discarded": []
+  },
+  "required_fields_per_state": {
+    "approved": ["approved_by", "approved_at", "approval_policy"],
+    "promoted": ["promoted_to", "promoted_at", "promoted_pipeline"],
+    "parked": ["parked_as", "parked_reason"],
+    "discarded": ["discarded_by", "discarded_at", "discarded_reason"]
+  }
+}

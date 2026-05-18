@@ -1,0 +1,232 @@
+# Rhumb Workflow Protocol: Plan Manifest Template
+# Tracks files, deliverables, and audit schedule for a plan
+#
+# This manifest serves as the source of truth for:
+# - What files are created/modified by each phase
+# - What deliverables are produced
+# - When audits should occur
+# - Phase handoff tracking
+#
+# Usage:
+#   1. Create a copy of this template as manifest.yaml in your plan directory
+#   2. List files created/modified in each phase section
+#   3. Document deliverable locations
+#   4. Define audit checkpoints
+
+# Plan identification
+plan_id: MP-NNNN-short-name
+request_id: REQ-NNNNN | null
+title: "{Plan Title}"
+rwp_version: "{{RWP_VERSION}}"
+created: "{ISO 8601}"
+
+# ============================================================================
+# PLAN-LEVEL METADATA
+# ============================================================================
+plan_metadata:
+  total_phases: NN  # Number of phases in this plan
+  total_deliverables: NN
+  target_completion_date: "{ISO 8601 date}"
+  owner: "{Person or team}"
+  reviewers: []  # People who will review this plan
+
+# ============================================================================
+# PHASE FILE TRACKING
+# ============================================================================
+# Track files created/modified in each phase
+# This helps plan reviewers understand the blast radius of each phase
+
+phases:
+  # -------------------------------------------------------------------------
+  # P-01: Foundation
+  # -------------------------------------------------------------------------
+  P-01:
+    title: "Foundation Phase"
+    status: pending  # pending | in_progress | completed | failed
+    started_at: null
+    completed_at: null
+    files:
+      created:
+        - path: "{path/to/file1}"
+          description: "What this file does"
+          type: code | config | test | doc | other
+        - path: "{path/to/file2}"
+          description: "What this file does"
+          type: doc
+      modified:
+        - path: "{path/to/existing}"
+          description: "What changed"
+      deleted: []
+
+  # -------------------------------------------------------------------------
+  # P-02: Implementation (Track sub-phases)
+  # -------------------------------------------------------------------------
+  P-02:
+    title: "Implementation Phase"
+    status: pending
+    started_at: null
+    completed_at: null
+    files: {}
+
+    # Sub-phase file tracking
+    sub_phases:
+      P-02-A:
+        title: "Sub-Phase 2-A"
+        status: pending
+        started_at: null
+        completed_at: null
+        files:
+          created: []
+          modified: []
+          deleted: []
+
+      P-02-B:
+        title: "Sub-Phase 2-B"
+        status: pending
+        started_at: null
+        completed_at: null
+        files:
+          created: []
+          modified: []
+          deleted: []
+
+      P-02-C:
+        title: "Sub-Phase 2-C"
+        status: pending
+        started_at: null
+        completed_at: null
+        files:
+          created: []
+          modified: []
+          deleted: []
+
+  # -------------------------------------------------------------------------
+  # P-03: Final Phase
+  # -------------------------------------------------------------------------
+  P-03:
+    title: "Final Phase"
+    status: pending
+    started_at: null
+    completed_at: null
+    files:
+      created: []
+      modified: []
+      deleted: []
+
+# ============================================================================
+# DELIVERABLES
+# ============================================================================
+# Document what is being delivered and where it lives
+
+deliverables:
+  - id: D-001
+    name: "{Deliverable name}"
+    description: "What this deliverable is"
+    type: code | feature | service | documentation | package
+    target_phase: P-02-A
+    location: "{packages/package-name/}"
+    owner: "{Person or team responsible}"
+    status: pending  # pending | in_progress | completed | blocked
+    completed_at: null
+
+  - id: D-002
+    name: "{Another deliverable}"
+    description: "What this is"
+    type: feature
+    target_phase: P-03
+    location: "{packages/another-package/}"
+    owner: "{Owner}"
+    status: pending
+    completed_at: null
+
+# ============================================================================
+# AUDIT SCHEDULE
+# ============================================================================
+# Define when audits should occur and what they verify
+
+audit_schedule:
+  checkpoints:
+    - id: AUD-01
+      title: "Phase 3 Checkpoint Audit"
+      trigger_after: P-03
+      status: pending  # pending | in_progress | completed | skipped
+      scheduled_at: null
+      started_at: null
+      completed_at: null
+      scope: "Review P-01 through P-03"
+      report_location: "audits/AUD-01-YYYY-MM-DD.md"
+      verification_checklist:
+        - "All created files exist"
+        - "All modifications are correct"
+        - "All tests pass"
+        - "No regressions introduced"
+        - "Documentation is accurate"
+
+  final:
+    id: FINAL
+    title: "Final Plan Audit"
+    trigger_after: "P-03"
+    status: pending
+    scheduled_at: null
+    started_at: null
+    completed_at: null
+    scope: "Full plan verification"
+    report_location: "audits/FINAL-YYYY-MM-DD.md"
+    verification_checklist:
+      - "All deliverables completed"
+      - "All files created/modified as planned"
+      - "All tests pass"
+      - "All documentation updated"
+      - "No outstanding issues"
+      - "Plan ready for release"
+
+# ============================================================================
+# HANDOFF TRACKING
+# ============================================================================
+# Track handoff documents created between phases
+
+handoffs:
+  - phase: P-01
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-01-2026-MM-DD.md"
+    created_at: null
+    status: pending
+
+  - phase: P-02-A
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-02-A-2026-MM-DD.md"
+    created_at: null
+    status: pending
+
+  - phase: P-02-B
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-02-B-2026-MM-DD.md"
+    created_at: null
+    status: pending
+
+  - phase: P-02-C
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-02-C-2026-MM-DD.md"
+    created_at: null
+    status: pending
+
+  - phase: P-03
+    handoff_file: "handoffs/HO-MP-NNNN-short-name-P-03-2026-MM-DD.md"
+    created_at: null
+    status: pending
+
+# ============================================================================
+# SUMMARY
+# ============================================================================
+
+summary:
+  total_files_created: 0
+  total_files_modified: 0
+  total_files_deleted: 0
+  deliverables_count: 0
+  audit_checkpoints: 1
+  final_audit_scheduled: true
+  estimated_completion_date: "{ISO 8601}"
+  actual_completion_date: null
+  overall_status: planning  # planning | in_progress | on_hold | completed | failed
+
+---
+Produced: {{TIMESTAMP}}
+By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
+Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

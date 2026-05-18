@@ -1,0 +1,153 @@
+# Rhumb Workflow Protocol: Intake
+# Example: Multi-Phase Project - API Rate Limiter Service
+
+id: INT-0087
+captured: "2026-02-15T09:00:00Z"
+title: "API Rate Limiter Service"
+summary: "Build a distributed rate limiting service for the public API. The current naive per-instance approach causes inconsistent enforcement, allows burst abuse, and lacks visibility into usage patterns."
+classification: confidential
+rwp_version: "0.31.0"
+
+pain_points:
+  - id: PP-01
+    description: "Rate limits are enforced per-instance, not globally - users hitting different instances get N x the limit"
+    impact: critical
+    frequency: always
+    affected_areas:
+      - "API Gateway"
+      - "Backend services"
+      - "Billing accuracy"
+    examples:
+      - "Customer with 100 req/min limit made 800 req/min across 8 instances"
+      - "Billing reports show usage that exceeds plan limits without throttling"
+
+  - id: PP-02
+    description: "No visibility into rate limit consumption - support cannot tell customers how close they are to their limit"
+    impact: high
+    frequency: often
+    affected_areas:
+      - "Customer support"
+      - "Developer dashboard"
+    examples:
+      - "Support tickets asking 'why was I rate limited?' take 30+ min to investigate"
+      - "No API endpoint to check remaining quota"
+
+  - id: PP-03
+    description: "Burst traffic from a single customer can degrade service for others on shared infrastructure"
+    impact: high
+    frequency: sometimes
+    affected_areas:
+      - "Shared infrastructure"
+      - "Other customers' latency"
+    examples:
+      - "Marketing campaign spike from Customer X caused p99 latency to 2s for all customers"
+
+requirements:
+  - id: REQ-01
+    description: "Distributed rate limiting with global state shared across all API gateway instances"
+    type: functional
+    verification: "Send requests round-robin across instances; total accepted matches single-instance limit"
+    priority: P0
+
+  - id: REQ-02
+    description: "Sliding window algorithm (not fixed window) to prevent boundary burst attacks"
+    type: functional
+    verification: "Send burst at window boundary; requests are correctly throttled across the boundary"
+    priority: P0
+
+  - id: REQ-03
+    description: "Rate limit headers in every API response (X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset)"
+    type: functional
+    verification: "Inspect response headers on any API call; all three headers present with correct values"
+    priority: P1
+
+  - id: REQ-04
+    description: "Sub-5ms p99 latency overhead for rate limit checks"
+    type: non-functional
+    verification: "Load test with rate limiter enabled vs disabled; p99 difference < 5ms"
+    priority: P1
+
+  - id: REQ-05
+    description: "Graceful degradation: if rate limit store is unavailable, allow traffic (fail open)"
+    type: non-functional
+    verification: "Kill Redis; verify API continues serving with log warnings"
+    priority: P1
+
+  - id: REQ-06
+    description: "Per-customer usage dashboard showing current consumption vs. plan limits"
+    type: functional
+    verification: "Login to dashboard; see real-time usage bar chart for each API key"
+    priority: P2
+
+constraints:
+  - id: CON-01
+    description: "Must use existing Redis cluster (no new infrastructure)"
+    type: technical
+    rationale: "Approved infrastructure budget is exhausted for Q1; Redis cluster has spare capacity"
+    negotiable: false
+
+  - id: CON-02
+    description: "Must not break existing API contracts - rate limit enforcement is additive"
+    type: compatibility
+    rationale: "Existing customers must not experience breaking changes"
+    negotiable: false
+
+  - id: CON-03
+    description: "Production deployment by March 1, 2026"
+    type: timeline
+    rationale: "Enterprise customer contract requires rate limiting before renewal date"
+    negotiable: true
+
+  - id: CON-04
+    description: "Rate limit configuration must be changeable without redeployment"
+    type: technical
+    rationale: "Sales team needs to adjust limits for enterprise customers on the fly"
+    negotiable: false
+
+deliverable:
+  type: module
+  name: "API Rate Limiter Service"
+  description: "A distributed rate limiting service using Redis-backed sliding window counters, integrated into the API gateway as middleware, with per-customer usage dashboards and dynamic configuration"
+  success_criteria:
+    - description: "Global rate limiting works across all gateway instances"
+      verification: "Multi-instance load test with round-robin client"
+      measurable: true
+    - description: "Sliding window prevents boundary burst attacks"
+      verification: "Boundary burst test shows correct throttling"
+      measurable: true
+    - description: "Rate limit check adds < 5ms p99 latency"
+      verification: "Benchmark with and without rate limiter"
+      measurable: true
+    - description: "Usage dashboard shows real-time consumption"
+      verification: "Dashboard displays correct values during load test"
+      measurable: true
+  target_location: "packages/rate-limiter/"
+
+custom_fields:
+  domain: "platform-infrastructure"
+  owning_team: "Backend"
+  collaborating_teams:
+    - "Platform"
+    - "Frontend"
+  stakeholder_groups:
+    - group: "Engineering"
+      contact: "Backend Tech Lead"
+    - group: "Sales"
+      contact: "Enterprise Account Manager"
+  timeline:
+    target_start: "2026-02-15"
+    target_completion: "2026-03-01"
+
+metadata:
+  request_id: REQ-00312
+  original_plan: MP-0087-api-rate-limiter
+  classification: confidential
+  parent_plan: null
+  sub_plans: []
+  dependencies_met: []
+  dependencies_unmet: []
+
+---
+
+Produced: 2026-02-15T09:00:00Z
+By: Rhumb Protocol Contributors - https://rhumbprotocol.dev

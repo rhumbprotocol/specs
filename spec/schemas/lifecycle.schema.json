@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rhumbprotocol.dev/schemas/v0.31.0/lifecycle.schema.json",
+  "$comment": "Schema-of-state-machines for the RWP IDEA lifecycle. Validates the SHAPE of a lifecycle state-machine definition (states list, initial state, transition graph, optional per-state required-fields metadata). Per ACS-0038 KD-38.6, this schema validates structural shape and per-field enum membership only; cross-array consistency (initial_state must be a member of states; transition source/target keys must be members of states; required_fields_per_state keys must be members of states) is enforced by Level-3 rhumb-validate (ACS-0041), not by JSON Schema. Per ACS-0038 KD-38.6 reject, no if/then/else conditional required is used. State-name validation is delegated via $ref to idea.schema.json#/properties/status — that schema is the single source of truth for the 7-state enum, and any drift between the two schemas is detected by JSON Schema $ref resolution at compile time. Authored under MP-0288-idea-artifact (ACS-0038 / AVD-0009 OPEN-row inheritance: Apache 2.0).",
+  "title": "RWP IDEA Lifecycle State Machine Schema",
+  "description": "JSON Schema for the IDEA lifecycle state-machine definition consumed by the Rhumb Workflow Protocol (RWP). Describes the data shape of a state-machine specification: the set of valid lifecycle states, the initial state (entry point for newly captured IDEAs), the transition graph (per-state allowed targets), and optional metadata about which IDEA frontmatter fields are required when an IDEA is in a given state. Per KD-38.6, the required_fields_per_state map is metadata only — it does NOT condition idea.schema.json's required[] (which is unconditional); Level-3 rhumb-validate (ACS-0041) consumes this metadata to perform per-state required-field checks at runtime. Per KD-38.2, frontmatter is the source of truth on conflict with file location; this schema validates frontmatter-derived state-machine definitions, not file-system organization.",
+  "type": "object",
+  "required": [
+    "states",
+    "initial_state",
+    "transitions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "states": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Lifecycle states. Each entry must be a valid IDEA status value as declared in idea.schema.json#/properties/status (the canonical 7-state enum). The single source of truth for state names is idea.schema.json; this schema does not redeclare the enum, it references it. Cross-reference validation (every state machine state appears at least once as a transition source or target) is Level-3 rhumb-validate territory.",
+      "items": {
+        "$ref": "idea.schema.json#/properties/status"
+      }
+    },
+    "initial_state": {
+      "$ref": "idea.schema.json#/properties/status",
+      "description": "Entry point for a newly captured IDEA. Must be a valid status value (enum-checked via $ref to idea.schema.json#/properties/status). Cross-array check that initial_state is a member of states[] is Level-3 rhumb-validate territory; this schema only checks the value belongs to the canonical 7-state enum."
+    },
+    "transitions": {
+      "type": "object",
+      "description": "Transition graph. Keys are source states; values are arrays of allowed target states. Empty array means terminal (no outgoing transitions). Source keys and target values are both enum-checked via $ref to idea.schema.json#/properties/status. Cross-array checks (every key and every target appears in states[]) are Level-3 rhumb-validate territory.",
+      "propertyNames": {
+        "$ref": "idea.schema.json#/properties/status"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "description": "Allowed transition targets from this source state. Empty array marks the source as a terminal state (no outgoing transitions allowed).",
+        "items": {
+          "$ref": "idea.schema.json#/properties/status"
+        }
+      }
+    },
+    "required_fields_per_state": {
+      "type": "object",
+      "description": "Optional metadata declaring which IDEA frontmatter fields MUST be populated when an IDEA is in a given state. Per KD-38.6, this is metadata only — it does NOT condition idea.schema.json's required[] (JSON Schema's required[] is unconditional and KD-38.6 explicitly rejects if/then/else for per-state required). Level-3 rhumb-validate consumes this metadata to perform per-state required-field checks at runtime. Keys are state names (enum-checked via $ref); values are arrays of frontmatter field names (free strings, intentionally not enum-restricted because the validator must tolerate state machines that reference custom IDEA extension fields).",
+      "propertyNames": {
+        "$ref": "idea.schema.json#/properties/status"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "description": "Frontmatter field names required by Level-3 rhumb-validate when an IDEA is in this state. Each entry is a free string matching an IDEA frontmatter property name (e.g., approved_by, promoted_to, parked_reason, discarded_reason).",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

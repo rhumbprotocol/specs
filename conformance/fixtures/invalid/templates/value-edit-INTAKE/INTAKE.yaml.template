@@ -1,0 +1,178 @@
+# Rhumb Workflow Protocol: Intake Template
+# Layer 0: Captures WHAT needs to be built
+#
+# The intake document captures the problem space:
+# - Pain points: What problems exist (modified)
+# - Requirements: What must be true when complete
+# - Constraints: Limitations and boundaries
+# - Deliverable: What will be built
+#
+# Usage:
+#   1. Copy this template to your plan directory as INTAKE.yaml
+#   2. Replace placeholders with actual content
+#   3. Consider validating with your workflow system
+
+# Unique intake identifier (auto-generated or manual)
+id: INT-{NNNN}
+
+# Capture timestamp (ISO 8601)
+captured: "{ISO 8601}"
+
+# Human-readable title
+title: "{Plan Title}"
+
+# Brief summary of the work
+summary: "{Brief description of the work}"
+
+# Classification level
+classification: public  # public | confidential
+
+# RWP Version
+rwp_version: "0.26.0"
+
+# =============================================================================
+# PAIN POINTS
+# =============================================================================
+# Describe the problems or issues that need to be solved.
+# Each pain point should have:
+#   - id: Unique identifier (PP-01, PP-02, etc.)
+#   - description: Clear description of the problem
+#   - impact: How severe is this problem (low|medium|high|critical)
+#   - frequency: How often does this occur (rarely|sometimes|often|always)
+#   - affected_areas: What parts of the system are affected
+#   - examples: Concrete examples of the problem
+
+pain_points:
+  - id: PP-01
+    description: "{Problem or pain point}"
+    impact: high  # low | medium | high | critical
+    frequency: often  # rarely | sometimes | often | always
+    affected_areas:
+      - "{Area 1}"
+      - "{Area 2}"
+    examples:
+      - "{Example of the problem}"
+      - "{Another example}"
+
+  # Add more pain points as needed:
+  # - id: PP-02
+  #   description: ""
+  #   impact: medium
+  #   frequency: sometimes
+  #   affected_areas: []
+  #   examples: []
+
+# =============================================================================
+# REQUIREMENTS
+# =============================================================================
+# What must be true when the work is complete.
+# Each requirement should have:
+#   - id: Unique identifier (REQ-01, REQ-02, etc.)
+#   - description: Clear statement of what must be true
+#   - type: Category of requirement
+#   - verification: How to verify this requirement is met
+#   - priority: Importance level (P0=critical, P3=nice-to-have)
+#   - dependencies: Other requirements this depends on (optional)
+
+requirements:
+  - id: REQ-01
+    description: "{What must be true when complete}"
+    type: functional  # functional | non-functional | constraint | assumption
+    verification: "{How to verify this requirement}"
+    priority: P1  # P0 | P1 | P2 | P3
+    # dependencies:
+    #   - REQ-02
+
+  # Add more requirements as needed:
+  # - id: REQ-02
+  #   description: ""
+  #   type: non-functional
+  #   verification: ""
+  #   priority: P2
+
+# =============================================================================
+# CONSTRAINTS
+# =============================================================================
+# Limitations and boundaries that must be respected.
+# Each constraint should have:
+#   - id: Unique identifier (CON-01, CON-02, etc.)
+#   - description: Clear statement of the constraint
+#   - type: Category of constraint
+#   - rationale: Why this constraint exists
+#   - negotiable: Can this constraint be relaxed if needed
+
+constraints:
+  - id: CON-01
+    description: "{Limitation or constraint}"
+    type: technical  # technical | compatibility | performance | security | legal | timeline
+    rationale: "{Why this constraint exists}"
+    negotiable: false  # true | false
+
+  # Add more constraints as needed:
+  # - id: CON-02
+  #   description: ""
+  #   type: compatibility
+  #   rationale: ""
+  #   negotiable: true
+
+# =============================================================================
+# DELIVERABLE
+# =============================================================================
+# What will be built or delivered.
+# The deliverable should have:
+#   - type: What kind of thing is being delivered
+#   - name: Name of the deliverable
+#   - description: Detailed description
+#   - success_criteria: Measurable criteria for success
+#   - target_location: Where the deliverable will live
+
+deliverable:
+  type: feature  # project | package | module | class | feature | fix
+  name: "{Deliverable name}"
+  description: "{What will be delivered}"
+  success_criteria:
+    - description: "{First success criterion}"
+      verification: "{How to verify this criterion}"
+      measurable: true  # true | false
+    - description: "{Second success criterion}"
+      verification: "{How to verify this criterion}"
+      measurable: true
+  target_location: "{packages/package-name/}"
+
+# =============================================================================
+# CUSTOM FIELDS
+# =============================================================================
+# RWP supports arbitrary custom fields for domain-specific needs.
+# The following pattern is commonly used:
+#
+# custom_fields:
+#   domain: "{Domain name - e.g., security, performance, ui}"
+#   related_initiatives: []
+#   stakeholder_groups:
+#     - group: "{Group name}"
+#       contact: "{Person or team}"
+#   timeline:
+#     target_start: "{ISO 8601 date}"
+#     target_completion: "{ISO 8601 date}"
+
+custom_fields: {}
+
+# =============================================================================
+# METADATA
+# =============================================================================
+# Additional tracking information
+
+metadata:
+  request_id: REQ-NNNNN | null  # Origin request that spawned this plan
+  original_plan: MP-NNNN-short-name  # Plan ID this intake belongs to
+  classification: public  # public | confidential
+  parent_plan: null  # Parent plan if this is a sub-plan
+  sub_plans: []  # List of sub-plan IDs
+  dependencies_met: []  # Plan IDs that have been completed
+  dependencies_unmet: []  # Plan IDs that must complete first
+
+---
+
+Produced: {{TIMESTAMP}}
+By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
+Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

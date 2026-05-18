@@ -1,0 +1,22 @@
+# Negative fixture for INV-5 (handoff entry references undefined phase).
+
+plan_id: MP-4444-unknown-handoff
+title: "Unknown Handoff Phase (negative fixture)"
+rwp_version: "0.31.0"
+
+execution:
+  status: in_progress
+  current_phase: P-01
+
+phases:
+  P-01:
+    title: "Sole defined phase"
+    status: completed
+
+handoffs:
+  last_handoff: "handoffs/HO-MP-4444-unknown-handoff-P-01-2026-04-30.md"
+  pending_handoff: false
+  handoff_files:
+    - file: "handoffs/HO-MP-4444-unknown-handoff-P-01-2026-04-30.md"
+      phase: P-99
+      created_at: "2026-04-30T12:00:00Z"

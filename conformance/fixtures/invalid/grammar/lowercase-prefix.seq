@@ -1,0 +1,3 @@
+; GRM-1: lowercase 'p' is not part of the grammar's vocabulary.
+; The grammar's phase-number production is "P-" 2DIGIT (uppercase P only).
+p-01

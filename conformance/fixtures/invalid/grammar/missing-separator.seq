@@ -1,0 +1,3 @@
+; GRM-3: phase IDs must be separated by an operator (',' or '+').
+; Whitespace alone is not a valid separator in the grammar.
+P-01 P-02

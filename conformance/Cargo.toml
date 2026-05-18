@@ -1,0 +1,75 @@
+# SPDX-License-Identifier: Apache-2.0
+# rhumb-validate — Rhumb Workflow Protocol conformance test runner.
+# Distributed under Apache 2.0 (see ../LICENSE).
+
+[package]
+name = "rhumb-validate"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.74"
+license = "Apache-2.0"
+authors = ["YAKKL®, Inc."]
+description = "Conformance test runner for the Rhumb Workflow Protocol™ (RWP™)."
+homepage = "https://rhumbprotocol.dev"
+repository = "https://github.com/rhumbprotocol/specs"
+documentation = "https://rhumbprotocol.dev"
+readme = "README.md"
+keywords = ["rhumb", "rwp", "conformance", "validator", "workflow"]
+categories = ["command-line-utilities", "development-tools::testing"]
+publish = false
+
+[lib]
+name = "rhumb_validate"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rhumb-validate"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+# JSON Schema validator. default-features disabled to drop:
+#   - resolve-http  (pulls reqwest → forbidden by OQ-15.6)
+#   - resolve-file  (unnecessary; RWP schemas have zero $ref so no resolver runs)
+# Result: pure-Rust offline validator with no network surface.
+jsonschema = { version = "0.33", default-features = false }
+# SHA-256 for the template-drift validator (Category 2, MP-0276 P-03).
+# default-features disabled to drop the `std` feature's optional asm/simd
+# backends and keep the dep tree minimal. sha2 is pure-Rust offline.
+sha2 = { version = "0.10", default-features = false }
+# YAML parser for the workflow validator (Category 3, MP-0276 P-04). Used
+# to read state.yaml and PLAN.md frontmatter for cross-file invariant
+# checks (plan_id agreement, current_phase agreement, handoff file/phase
+# existence). serde_yml is the maintained drop-in fork of the unmaintained
+# serde_yaml crate; closure is pure-Rust offline (libyaml port via
+# unsafe-libyaml is a pure-Rust transliteration, not C bindings). Selected
+# over yaml-rust2 because typed serde derives keep the validator code
+# self-documenting and trivially evolvable.
+serde_yml = "0.0.12"
+# UTC wall-clock + ISO-8601/RFC-3339 formatting for Report.started_at /
+# completed_at and Instant-derived total_duration_ms (MP-0276 P-08; replaces
+# the "1970-01-01T00:00:00Z" placeholder shipped in P-01..P-07).
+# default-features = false drops the `local-offset` feature, which is the
+# only thing in this crate that would pull `iana-time-zone` / `tz-rs` —
+# both forbidden by OQ-15.6 (no system-tz reads, no iana database). We
+# only need wall-clock UTC + ISO-8601 string formatting, so `std` (for
+# `OffsetDateTime::now_utc`) and `formatting` (for `format(&Rfc3339)`)
+# are sufficient. Resulting tree: `time` + `time-core`, pure-Rust offline.
+time = { version = "0.3", default-features = false, features = ["std", "formatting"] }
+
+[dev-dependencies]
+# Process-spawning integration test driver for tests/cli.rs (MP-0276 P-08).
+# Dev-only: never compiled into the shipped `rhumb-validate` binary or
+# `rhumb_validate` library. predicates is the matcher half of the same
+# project, used to assert against stdout/stderr.
+assert_cmd = "2.0"
+predicates = "3.0"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = "symbols"

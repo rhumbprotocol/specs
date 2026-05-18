@@ -1,0 +1,310 @@
+---
+id: AVD-NNNN
+type: architecture_vision
+title: "Descriptive Title"
+status: draft
+classification: confidential
+created: 2026-03-04T00:00:00Z
+updated: 2026-03-04T00:00:00Z
+author: "Author Name"
+parent: null
+children: []
+tags: []
+rwp_version: "{{RWP_VERSION}}"
+---
+
+# Architecture Vision Document: {Title}
+
+## Executive Summary
+
+Provide 1-2 paragraphs capturing the essence of this architecture in a way that any stakeholder-technical or non-technical-can quickly understand. The summary should answer: **What problem does this solve? Why does it matter?**
+
+Example: "This document outlines a distributed event streaming architecture for real-time data processing across thousands of producers. By separating concerns into stateless processors and a persistent event log, we enable horizontal scaling, point-in-time recovery, and real-time analytics without coupling systems."
+
+---
+
+## Goals & Constraints
+
+### Goals
+- **Primary Goal 1**: Specific, measurable outcome (e.g., "Support 1M events/second with <100ms latency")
+- **Primary Goal 2**: Another measurable objective
+- **Secondary Goal 1**: Nice-to-have capabilities
+
+### Constraints
+- **Technical Constraints**: Existing systems we must integrate with, technology choices already locked in
+- **Organizational Constraints**: Team size, expertise, time to delivery
+- **Financial Constraints**: Budget caps, cost targets per unit
+- **Operational Constraints**: Uptime requirements, SLA targets, on-call expectations
+
+---
+
+## Architecture Overview
+
+[Provide a narrative description of the high-level architecture-how the major pieces fit together.]
+
+Example: "The system consists of three layers: a stateless ingestion layer that accepts events over HTTP/gRPC, a processing layer using a distributed stream processor, and a persistence layer with hot and cold storage. Event routing is determined by topic subscriptions; processing pipelines are defined declaratively."
+
+### Diagram
+
+```
+┌──────────────────────────┐
+│   Event Producers       │
+│   (HTTP/gRPC clients)   │
+└────────────┬─────────────┘
+            │
+            ▼
+┌──────────────────────────────────────┐
+│   Ingestion Layer (Stateless)       │
+│   - Load balancer                   │
+│   - Request validation              │
+│   - Topic routing                   │
+└────────┬───────────────────┬─────────┘
+        │                   │
+        ▼                   ▼
+┌─────────────────┐  ┌──────────────────┐
+│  Stream Proc.  │  │  Stream Proc.    │
+│  (Instance 1)  │  │  (Instance N)    │
+└────────┬────────┘  └────────┬─────────┘
+        │                    │
+         └────────┬───────────┘
+                  ▼
+       ┌────────────────────────┐
+       │  Persistence Layer    │
+       │  - Hot (SSD)          │
+       │  - Cold (Blob store)  │
+       └────────────────────────┘
+```
+
+---
+
+## Components
+
+Describe the major functional components and how they interact. For each significant component, explain:
+- **Purpose**: What does it do?
+- **Responsibilities**: What is it NOT responsible for?
+- **Dependencies**: What other components does it depend on?
+- **Scaling characteristics**: Does it scale horizontally? Vertically? What limits it?
+
+Example:
+
+**Ingestion Layer**
+- Purpose: Accept events from clients, validate schema, route to appropriate stream
+- Responsibilities: NOT responsible for persistence or transformation
+- Dependencies: Depends on stream broker for routing
+- Scaling: Scales horizontally behind a load balancer; limited by broker throughput
+
+**Stream Processor**
+- Purpose: Consume events, apply transformations, enrich data, filter, aggregate
+- Responsibilities: NOT responsible for input/output; NOT responsible for storage decisions
+- Dependencies: Depends on stream broker for input; depends on persistence layer for output
+- Scaling: Scales horizontally via partitioned consumption; limited by CPU and memory
+
+---
+
+## Data Model
+
+Describe the data structures, schemas, and storage patterns used throughout the system.
+
+### Event Schema
+
+Include actual schema examples (JSON, Avro, Protobuf, SQL, etc.):
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for this event"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event creation time (ISO 8601)"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Routing topic"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific data"
+    }
+  },
+  "required": ["event_id", "timestamp", "topic", "payload"]
+}
+```
+
+### Storage Layout
+
+Document table/collection/index schemas, partitioning strategies, retention policies:
+
+- **Hot Storage**: Events < 7 days old, indexed by timestamp and topic
+- **Cold Storage**: Events > 7 days old, compressed, archived to blob store
+- **Index Strategy**: Bloom filters for quick existence checks; hash indexes on event_id for point lookups
+
+---
+
+## API Surface
+
+List the major interfaces, endpoints, and protocols that other systems use to interact with this architecture.
+
+### Event Ingestion API
+
+```
+POST /events
+Content-Type: application/json
+
+{
+  "events": [ {...}, {...} ]
+}
+
+Response: 202 Accepted
+Headers:
+  X-Batch-ID: batch-uuid
+  X-Processed-Count: 50
+```
+
+### Event Query API
+
+```
+GET /queries/{query_id}/results
+Response: 200 OK
+{
+  "query_id": "...",
+  "status": "complete",
+  "results": [ {...}, {...} ]
+}
+```
+
+### Stream Subscription API
+
+Define how downstream systems subscribe to streams, apply filters, manage backpressure, etc.
+
+---
+
+## Cost Estimates
+
+Provide infrastructure and operational cost analysis to help with feasibility decisions.
+
+### Infrastructure Costs (monthly)
+
+| Component | Unit | Qty | Unit Cost | Total |
+|-----------|------|-----|-----------|-------|
+| Ingestion (compute) | vCPU | 32 | $0.50 | $16,000 |
+| Stream broker (broker nodes) | Node | 5 | $800 | $4,000 |
+| Hot storage (SSD) | GB | 2,000 | $0.15 | $300 |
+| Cold storage (archive) | GB | 100,000 | $0.02 | $2,000 |
+| Network egress | TB | 50 | $12 | $600 |
+| **Total** | | | | **$22,900/mo** |
+
+### Operational Costs
+
+- **On-call runbook**: 2 days per engineer per month
+- **Capacity planning**: Quarterly analysis, estimated 40 hours
+- **Monitoring & alerting**: Existing shared infrastructure
+- **SLA costs**: If we violate uptime SLA, $X per incident
+
+---
+
+## Risks & Mitigations
+
+Identify what could go wrong and how to prevent or recover from it.
+
+### Risk 1: Stream Broker Failure
+
+**Impact**: All ingestion stops; events in-flight are lost
+**Probability**: Low (99.9% uptime SLA on broker)
+**Mitigation**:
+- Deploy broker in HA cluster with automatic failover
+- Buffer ingestion requests in local queue (5-min window)
+- Implement circuit breaker to gracefully degrade
+
+**Recovery**: Restore from persistent event log; verify no duplicates on replay
+
+### Risk 2: Processor Lag Grows Unbounded
+
+**Impact**: Real-time queries serve stale data; users see inconsistencies
+**Probability**: Medium (during traffic spikes)
+**Mitigation**:
+- Set alert thresholds (e.g., lag > 5 minutes triggers page)
+- Auto-scaling policy: add processors if lag exceeds threshold
+- Rate-limit ingestion during outages
+
+**Recovery**: Manual processor restart with state reset; re-process lag window
+
+---
+
+## Implementation Phases
+
+Describe how to build this incrementally, reducing risk and enabling early validation.
+
+### Phase 1: Core Stream Broker (Week 1-2)
+- Deploy broker cluster (3 nodes)
+- Create topic management UI
+- Build client libraries (Go, Python, JS)
+- **Success Criteria**: Can ingest and subscribe to 10K events/sec
+
+### Phase 2: Stream Processor (Week 3-4)
+- Build processor runtime (stateless execution model)
+- Implement declarative pipeline definitions
+- Deploy 2-3 processor instances
+- **Success Criteria**: Can apply transformations at 50K events/sec with <100ms latency
+
+### Phase 3: Persistence & Storage (Week 5-6)
+- Integrate hot/cold storage
+- Build archival policies
+- Implement retention cleanup
+- **Success Criteria**: Data durability verified; archival tested
+
+### Phase 4: Observability & Operations (Week 7-8)
+- Build dashboards, alerts, runbooks
+- Load test to 1M events/sec
+- Conduct failure mode analysis
+- **Success Criteria**: On-call engineer can troubleshoot autonomously
+
+---
+
+## Key Decisions & Rationale
+
+Explain the "why" behind major design choices. This helps future architects understand constraints and tradeoffs.
+
+### Decision 1: Event Sourcing over State Snapshots
+
+**Choice**: Store immutable event log; derive state on-demand
+**Rationale**:
+- Enables point-in-time recovery and replay
+- Provides complete audit trail
+- Decouples event producers from processing logic
+
+**Alternatives Considered**:
+- State snapshots + deltas (simpler initially, but harder to debug)
+- Pure request/response model (less flexible for complex workflows)
+
+### Decision 2: Stateless Stream Processors
+
+**Choice**: Processors have no local state; all state stored externally
+**Rationale**:
+- Enables horizontal scaling
+- Simplifies failure recovery
+- Allows processor replacement without data loss
+
+**Tradeoff**: Slightly higher latency due to state lookups; acceptable given our SLA
+
+---
+
+## Open Questions
+
+List unresolved decisions or areas requiring further exploration. These invite collaborative refinement.
+
+- **Exactly-once processing semantics**: Current design provides at-least-once. Should we upgrade to exactly-once? Cost/complexity analysis needed.
+- **Geographic distribution**: Should we support multi-region deployment? Requires careful handling of event ordering across regions.
+- **Schema evolution**: How do we handle breaking changes to event schemas? Need a versioning and migration strategy.
+- **Consumer group management**: How should downstream systems manage parallel consumption without duplicates?
+
+---
+Produced: {{TIMESTAMP}}
+By: Rhumb Workflow Protocol™ (RWP) - https://rhumbprotocol.dev
+Reference Implementation: YAKKL® Meridian™ - https://meridian.yakkl.com
+Copyright: Copyright © 2026 Rhumb Protocol Contributors. Licensed under Apache-2.0.

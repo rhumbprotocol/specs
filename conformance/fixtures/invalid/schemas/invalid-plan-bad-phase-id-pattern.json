@@ -1,0 +1,14 @@
+{
+  "title": "Plan with malformed phase_id",
+  "overview": "Phase id 'NOT-A-VALID-ID' fails the ^P-[0-9]{2}(-[A-Z])?$ pattern.",
+  "phases": [
+    {
+      "phase_id": "NOT-A-VALID-ID",
+      "title": "Phase",
+      "objective": "Do the thing.",
+      "deliverables": ["x"],
+      "tasks": ["x"],
+      "verification": ["x"]
+    }
+  ]
+}

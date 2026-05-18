@@ -1,0 +1,32 @@
+{
+  "$schema": "https://rhumbprotocol.dev/schemas/intake.schema.json",
+  "id": "INT-0001",
+  "title": "Minimal RWP™ Intake Fixture",
+  "captured": "2026-04-30T22:00:00Z",
+  "pain_points": [
+    {
+      "id": "PP-01",
+      "description": "Conformance fixtures do not yet exist for the RWP schemas.",
+      "impact": "high"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-01",
+      "type": "functional",
+      "description": "Provide one minimal valid fixture per schema.",
+      "acceptance": "rhumb-validate exits 0 against fixtures/valid/schemas/."
+    }
+  ],
+  "constraints": [
+    {
+      "id": "CON-01",
+      "type": "technical",
+      "description": "All fixtures must be checked into the conformance crate."
+    }
+  ],
+  "success_criteria": [
+    "Five valid fixtures pass schema validation",
+    "Five or more invalid fixtures fail schema validation"
+  ]
+}

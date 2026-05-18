@@ -1,0 +1,85 @@
+# Rhumb Workflow Protocol: Intake
+# Example: Simple Feature - Add Dark Mode Toggle
+
+id: INT-0042
+captured: "2026-03-01T10:00:00Z"
+title: "Add Dark Mode Toggle to Settings Page"
+summary: "Users want dark mode. Add a toggle in the settings page that switches between light and dark themes, persisting the preference in localStorage."
+classification: public
+rwp_version: "0.31.0"
+
+pain_points:
+  - id: PP-01
+    description: "Users report eye strain when using the app at night"
+    impact: medium
+    frequency: often
+    affected_areas:
+      - "Settings page"
+      - "Global CSS"
+    examples:
+      - "Multiple support tickets requesting dark mode"
+      - "Users working late shifts find the bright UI uncomfortable"
+
+requirements:
+  - id: REQ-01
+    description: "A toggle switch in the settings page that switches between light and dark themes"
+    type: functional
+    verification: "Toggle is visible and clickable on the settings page"
+    priority: P1
+
+  - id: REQ-02
+    description: "Theme preference persists across browser sessions via localStorage"
+    type: functional
+    verification: "Reload the page after selecting dark mode; dark mode remains active"
+    priority: P1
+
+  - id: REQ-03
+    description: "Respect the user's OS-level color scheme preference as the default"
+    type: non-functional
+    verification: "Set OS to dark mode, open app fresh - dark mode is active without manual toggle"
+    priority: P2
+
+constraints:
+  - id: CON-01
+    description: "Must work in Chrome, Firefox, and Safari (latest versions)"
+    type: compatibility
+    rationale: "These browsers represent 95% of our user base"
+    negotiable: false
+
+  - id: CON-02
+    description: "No additional CSS framework dependencies"
+    type: technical
+    rationale: "Bundle size must stay under 200KB"
+    negotiable: true
+
+deliverable:
+  type: feature
+  name: "Dark Mode Toggle"
+  description: "A settings page toggle that switches between light and dark themes with localStorage persistence and OS preference detection"
+  success_criteria:
+    - description: "Toggle switch renders on settings page"
+      verification: "Visual inspection"
+      measurable: true
+    - description: "Theme persists across page reloads"
+      verification: "Set dark mode, reload, verify dark mode active"
+      measurable: true
+    - description: "OS preference respected on first visit"
+      verification: "Clear localStorage, set OS dark mode, load app"
+      measurable: true
+  target_location: "src/components/settings/"
+
+custom_fields: {}
+
+metadata:
+  request_id: null
+  original_plan: MP-0042-dark-mode-toggle
+  classification: public
+  parent_plan: null
+  sub_plans: []
+  dependencies_met: []
+  dependencies_unmet: []
+
+---
+
+Produced: 2026-03-01T10:00:00Z
+By: Rhumb Protocol Contributors - https://rhumbprotocol.dev

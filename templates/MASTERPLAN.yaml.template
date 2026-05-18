@@ -1,0 +1,401 @@
+# Rhumb Workflow Protocol: Master Plan Template
+# Layer 2: Defines HOW to build it
+#
+# HIERARCHY (4 levels):
+#   P-01 (Phase)                    - Top-level phase
+#   P-02 (Phase)                    - Another top-level phase
+#     └── P-02-A (Sub-phase)        - Optional sub-phase within P-02
+#     └── P-02-B (Sub-phase)        - Another sub-phase
+#           └── Task T-02-B-01      - Task within sub-phase (if needed)
+#                 └── MT-001        - Micro-task within task (if needed)
+#   P-03 (Phase)                    - Simple phase without sub-phases
+#   AUDIT                           - Special audit phase
+#   P-04 (Phase)
+#     └── P-04-A (Sub-phase)
+#     └── P-04-B (Sub-phase)
+#
+# Sub-phases are OPTIONAL and nested within phases:
+#   - Consider using when a phase exceeds ~60 minutes of work
+#   - Each sub-phase should target ~30 minutes for crash resilience
+#   - Not all phases need sub-phases
+#
+# AUDIT phases are special:
+#   - Placed after every 3 phases (configurable)
+#   - Should run tests, verify deliverables, create audit reports
+#
+# Usage:
+#   1. Copy this template to your plan directory as MASTERPLAN.yaml
+#   2. Replace placeholders with actual content
+#   3. Add sub-phases only where needed for complex phases
+#   4. Consider customizing audit_schedule if defaults don't fit
+
+master_plan:
+  # =============================================================================
+  # PLAN METADATA
+  # =============================================================================
+
+  id: "MP-NNNN-short-name"
+  request_id: "REQ-NNNNN | null"          # Origin request that spawned this plan
+  title: "{Plan Title}"
+  description: "{Detailed description of the plan}"
+  intake_id: "INT-NNNN"
+  status: planning  # planning | approved | processing | completed | failed | cancelled
+  classification: public  # public | confidential
+  created: "{ISO 8601}"
+  rwp_version: "{{RWP_VERSION}}"                    # Rhumb Workflow Protocol version
+
+  # =============================================================================
+  # ARCHITECTURE METADATA (Optional)
+  # =============================================================================
+  architecture:
+    components_affected: []
+    data_flows: []
+    api_changes: []
+    layers_touched: []  # ui | service | data | infra | config | test
+
+  # =============================================================================
+  # EXECUTION TRACKING
+  # =============================================================================
+  # Controls how the plan integrates with session task systems for real-time
+  # progress visibility. Consider enabling for complex plans.
+  #
+  execution_tracking:
+    auto_hydrate: true           # Automatically create session tasks from micro-tasks
+    sync_on_complete: true       # Sync task completion back to MASTERPLAN state
+    checkpoint_on_micro_task: false  # Create checkpoints after each micro-task
+    track_duration: true         # Track actual duration of micro-tasks
+
+  # =============================================================================
+  # AUDIT SCHEDULE
+  # =============================================================================
+  # Consider running audits at regular intervals (every 3 phases recommended).
+  # Audits verify quality and help catch issues early.
+  #
+  audit_schedule:
+    enabled: true
+    checkpoint:
+      phase_frequency: 3  # Audit after every 3rd phase (P-03, P-06, P-09, ...)
+      type: checkpoint
+      session: same_ok
+    full:
+      schedule:
+        - trigger_after: "P-03"
+          audit_id: "AUD-01"
+          scope: "P-01 through P-03"
+      type: full
+      session: fresh_recommended
+      before_completion: true
+      final_audit_id: "FINAL"
+    skip_policy:
+      allowed: true
+      require_reason: true
+      require_acknowledgment: true
+      max_consecutive_skips: 2
+
+  # =============================================================================
+  # PHASES
+  # =============================================================================
+  # Phases are top-level work units. Sub-phases are optional children.
+  # Structure:
+  #   phases:
+  #     - id: "P-01"           # Simple phase (no sub-phases)
+  #       ...
+  #     - id: "P-02"           # Complex phase with sub-phases
+  #       sub_phases:
+  #         - id: "P-02-A"
+  #         - id: "P-02-B"
+  #     - id: "AUDIT"          # Special audit phase
+  #     - id: "P-03"           # Another phase
+
+  phases:
+    # -------------------------------------------------------------------------
+    # P-01: Foundation / Setup (Simple phase - no sub-phases)
+    # -------------------------------------------------------------------------
+    - id: "P-01"
+      parent_mp: "MP-NNNN-short-name"
+      title: "{Phase 1 Title}"
+      objective: "{What this phase accomplishes}"
+      order: 1
+      dependencies: []
+      status: pending
+      estimated_duration_minutes: 45
+
+      tasks:
+        - id: "T-01-01"
+          title: "{Task title}"
+          description: "{Task description}"
+          status: pending
+
+        - id: "T-01-02"
+          title: "{Second task title}"
+          status: pending
+
+      verification:
+        - type: all_tasks_pass
+          level: phase
+
+    # -------------------------------------------------------------------------
+    # P-02: Implementation (Complex phase WITH sub-phases)
+    # -------------------------------------------------------------------------
+    - id: "P-02"
+      parent_mp: "MP-NNNN-short-name"
+      title: "{Phase 2 Title - Complex}"
+      objective: "{Overall objective for this phase}"
+      order: 2
+      dependencies: ["P-01"]
+      parallel_with: ["P-03"]
+      status: pending
+      estimated_duration_minutes: 90  # Total for all sub-phases
+
+      # Sub-phases are children of this phase
+      sub_phases:
+        - id: "P-02-A"
+          parent_phase: "P-02"
+          title: "{Sub-Phase 2-A Title}"
+          objective: "{Sub-phase A objective}"
+          order: 1
+          dependencies: []
+          status: pending
+          estimated_duration_minutes: 30
+
+          tasks:
+            - id: "T-02-A-01"
+              title: "{Task title}"
+              status: pending
+
+          verification:
+            - type: all_tasks_pass
+              level: sub_phase
+
+        - id: "P-02-B"
+          parent_phase: "P-02"
+          title: "{Sub-Phase 2-B Title}"
+          objective: "{Sub-phase B objective}"
+          order: 2
+          dependencies: ["P-02-A"]
+          status: pending
+          estimated_duration_minutes: 30
+
+          tasks:
+            - id: "T-02-B-01"
+              title: "{Task with micro-tasks}"
+              description: "{Complex task requiring granular tracking}"
+              status: pending
+              estimated_duration_minutes: 20
+
+              # Micro-tasks for granular tracking (optional)
+              micro_tasks:
+                - id: "MT-001"
+                  action: create_file
+                  description: "{What this micro-task does}"
+                  active_form: "Creating file X"
+                  inputs:
+                    file_path: "{path/to/file}"
+                  on_failure: block
+                  max_retries: 3
+
+                - id: "MT-002"
+                  action: modify_file
+                  description: "{Modify existing file}"
+                  active_form: "Modifying file Y"
+                  inputs:
+                    file_path: "{path/to/existing/file}"
+                  on_failure: block
+
+              verification:
+                - type: all_micro_tasks_pass
+                  level: task
+
+          verification:
+            - type: all_tasks_pass
+              level: sub_phase
+
+        - id: "P-02-C"
+          parent_phase: "P-02"
+          title: "{Sub-Phase 2-C Title}"
+          objective: "{Complete P-02 work}"
+          order: 3
+          dependencies: ["P-02-B"]
+          status: pending
+          estimated_duration_minutes: 30
+
+          tasks:
+            - id: "T-02-C-01"
+              title: "{Final task for P-02}"
+              status: pending
+
+          verification:
+            - type: all_tasks_pass
+              level: sub_phase
+
+      # Phase-level verification (all sub-phases must pass)
+      verification:
+        - type: all_sub_phases_pass
+          level: phase
+
+    # -------------------------------------------------------------------------
+    # P-03: Another Track (Can run parallel with P-02)
+    # -------------------------------------------------------------------------
+    - id: "P-03"
+      parent_mp: "MP-NNNN-short-name"
+      title: "{Phase 3 Title}"
+      objective: "{Phase 3 objective}"
+      order: 3
+      dependencies: ["P-01"]
+      parallel_with: ["P-02"]
+      status: pending
+      estimated_duration_minutes: 45
+
+      tasks:
+        - id: "T-03-01"
+          title: "{Task title}"
+          status: pending
+
+      verification:
+        - type: all_tasks_pass
+          level: phase
+
+    # -------------------------------------------------------------------------
+    # AUDIT: Post-Implementation Audit (Special phase)
+    # -------------------------------------------------------------------------
+    - id: "AUDIT"
+      parent_mp: "MP-NNNN-short-name"
+      title: "Post-Implementation Audit"
+      objective: "Verify all prior work meets quality standards"
+      order: 4
+      dependencies: ["P-02", "P-03"]
+      status: pending
+      estimated_duration_minutes: 30
+      is_audit: true
+
+      tasks:
+        - id: "T-AUD-01"
+          title: "Consider running all tests"
+          status: pending
+
+        - id: "T-AUD-02"
+          title: "Consider verifying all deliverables"
+          status: pending
+
+        - id: "T-AUD-03"
+          title: "Consider creating audit report"
+          status: pending
+
+      audit_requirements:
+        - "Consider running all tests"
+        - "Consider running all builds"
+        - "Consider reviewing all phases from P-01 through P-03"
+        - "Consider verifying all expected results were achieved"
+        - "Document any deviations from plan"
+
+      verification:
+        - type: command_succeeds
+          level: phase
+          parameters:
+            command: "# Consider running: pnpm test && pnpm build"
+
+    # -------------------------------------------------------------------------
+    # P-04: Final Phase (With sub-phases)
+    # -------------------------------------------------------------------------
+    - id: "P-04"
+      parent_mp: "MP-NNNN-short-name"
+      title: "{Final Phase Title}"
+      objective: "{Final documentation and cleanup}"
+      order: 5
+      dependencies: ["AUDIT"]
+      status: pending
+      is_final: true
+      estimated_duration_minutes: 60
+
+      sub_phases:
+        - id: "P-04-A"
+          parent_phase: "P-04"
+          title: "{Documentation Sub-Phase}"
+          objective: "{Update documentation}"
+          order: 1
+          dependencies: []
+          status: pending
+          estimated_duration_minutes: 30
+
+          tasks:
+            - id: "T-04-A-01"
+              title: "Consider updating documentation"
+              status: pending
+
+            - id: "T-04-A-02"
+              title: "Consider updating package README"
+              status: pending
+
+          verification:
+            - type: all_tasks_pass
+              level: sub_phase
+
+        - id: "P-04-B"
+          parent_phase: "P-04"
+          title: "{FINAL.md Creation}"
+          objective: "{Create final summary}"
+          order: 2
+          dependencies: ["P-04-A"]
+          status: pending
+          estimated_duration_minutes: 30
+
+          tasks:
+            - id: "T-04-B-01"
+              title: "Consider creating FINAL.md"
+              status: pending
+
+          audit_requirements:
+            - "Consider completing final security audit"
+            - "Consider verifying all documentation is complete"
+            - "Consider running all tests"
+            - "Consider verifying build succeeds"
+
+          verification:
+            - type: all_tasks_pass
+              level: sub_phase
+
+      verification:
+        - type: all_sub_phases_pass
+          level: phase
+
+  # =============================================================================
+  # PLAN-LEVEL VERIFICATION
+  # =============================================================================
+  verification:
+    - type: all_phases_pass
+      level: mp
+
+# =============================================================================
+# TASK SCHEMA REFERENCE
+# =============================================================================
+# Tasks can contain optional micro-tasks for granular tracking:
+#
+#   tasks:
+#     - id: "T-XX-YY"
+#       title: "{Task title}"
+#       description: "{Task description}"
+#       status: pending
+#       estimated_duration_minutes: 60
+#
+#       micro_tasks:
+#         - id: "MT-001"
+#           action: create_file | modify_file | delete_file | run_command | run_test | type_check | lint | custom
+#           description: "{What this micro-task does}"
+#           active_form: "{Text for progress spinner}"
+#           inputs:
+#             file_path: "{path/to/file}"
+#             template: "{template content or reference}"
+#           verification:
+#             - type: file_exists
+#               path: "{path/to/file}"
+#           on_failure: block | retry | skip_with_warning
+#           max_retries: 3
+#
+#       verification:
+#         - type: all_micro_tasks_pass
+#           level: task
+
+---
+Produced: {{TIMESTAMP}}
+By: Rhumb Protocol™ Contributors - https://rhumbprotocol.dev
+Copyright: Copyright © 2026 Rhumb Protocol Contributors. All Rights Reserved.

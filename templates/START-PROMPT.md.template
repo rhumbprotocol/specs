@@ -1,0 +1,50 @@
+═══════════════════════════════════════════════════════════════════════════════
+                        INITIALIZING NEW PLAN
+═══════════════════════════════════════════════════════════════════════════════
+
+I'll gather information to create a new plan. Please provide:
+
+PLAN DETAILS
+
+  Title:
+    {{USER_ENTERS_TITLE}}
+    (e.g., "Database Migration to PostgreSQL", "Mobile App Redesign")
+
+  Objective:
+    {{USER_ENTERS_OBJECTIVE}}
+    (1-2 sentence goal of the plan)
+
+  Scope:
+    {{USER_ENTERS_SCOPE}}
+    (e.g., "5 major phases", "3-week timeline", "single-service refactor")
+
+────────────────────────────────────────────────────────────────────────────
+
+Based on your input, I'll create:
+
+WORKFLOW STRUCTURE
+
+  Plan ID:     {{AUTO_PLAN_ID}}
+  Location:    .meridian/.private/plans/processing/{{AUTO_PLAN_ID}}/
+
+  Files:
+    ✓ PLAN.md - Full phase breakdown
+    ✓ MASTERPLAN.yaml - Hierarchical structure
+    ✓ INTAKE.yaml - Requirements
+    ✓ PLAN-STATE.yaml - Tracking
+    ✓ DEPENDENCIES.yaml - Phase graph
+    ✓ MANIFEST-PLAN.yaml - File inventory
+
+  First Phase:  {{AUTO_FIRST_PHASE_TITLE}} (~{{AUTO_FIRST_PHASE_DURATION}} min)
+
+────────────────────────────────────────────────────────────────────────────
+
+Ready to create this plan officially?
+
+  → Say 'yes' or 'create it' and I'll commit to the workflow
+  → Or ask me to adjust anything before creating
+
+───────────────────────────────────────────────────────────────────────────────
+Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}
+Homepage: https://rhumbprotocol.dev
+───────────────────────────────────────────────────────────────────────────────

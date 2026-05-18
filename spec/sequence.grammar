@@ -1,0 +1,99 @@
+; Rhumb Workflow Protocol (RWP) - Sequence Format Grammar
+; ABNF Specification for Phase Sequence Notation
+; RFC 5234 Augmented Backus-Naur Form
+;
+; This grammar defines the formal syntax for phase sequence strings,
+; which are used to describe the execution ordering and dependencies
+; of RWP phases.
+
+; === Top-level sequence expression ===
+sequence           = logical-expr
+
+; === Logical operators (precedence: AND > OR) ===
+logical-expr       = or-expr
+
+or-expr            = and-expr *( "," and-expr )
+
+and-expr           = primary-expr *( "+" primary-expr )
+
+; === Primary expressions ===
+primary-expr       = phase-group
+                   / phase-id
+                   / "(" logical-expr ")"
+
+; === Phase groups (for parallel/serial organization) ===
+phase-group        = "[" logical-expr "]"
+
+; === Phase identifiers ===
+phase-id           = phase-number [ "-" sub-phase ]
+
+phase-number       = "P-" 2DIGIT     ; e.g., P-01, P-02, ..., P-99
+
+sub-phase          = %x41-5A          ; uppercase A-Z in validators/parsers
+
+; === Comments (informational, not parsed) ===
+comment            = ";" *( %x20-7E )  ; semicolon to end of line
+
+; === Whitespace (ignored) ===
+WSP                = %x20 / %x09      ; space or tab
+CRLF               = %x0D %x0A        ; carriage return, line feed
+LF                 = %x0A             ; line feed
+
+DIGIT              = %x30-39          ; 0-9
+ALPHA              = %x41-5A / %x61-7A ; A-Z / a-z
+
+; === Examples of valid sequences ===
+;
+; P-01                          Single phase
+; P-01, P-02                    Sequential phases (P-01 OR P-02)
+; P-01 + P-02                   Parallel phases (P-01 AND P-02)
+; P-01, (P-02 + P-03), P-04     P-01 first, then P-02 and P-03 in parallel, then P-04
+; [P-01-A, P-01-B, P-01-C]      All sub-phases of P-01 (logical grouping)
+; P-01 + [P-02-A, P-02-B]       P-01 in parallel with sub-phases P-02-A and P-02-B
+;
+; === Interpretation Rules ===
+;
+; 1. Comma (,) represents OR / sequential execution
+;    Phases separated by commas execute one after another
+;    P-01, P-02 means: complete P-01, then start P-02
+;
+; 2. Plus (+) represents AND / parallel execution
+;    Phases separated by plus execute concurrently
+;    P-01 + P-02 means: start P-01 and P-02 simultaneously
+;
+; 3. Parentheses group expressions
+;    (P-01, P-02) + P-03 means: complete P-01 and P-02 in sequence, then start P-03 in parallel
+;
+; 4. Square brackets denote logical grouping
+;    [P-01-A, P-01-B] groups sub-phases for readability
+;
+; === Precedence (high to low) ===
+;
+; 1. Parentheses & brackets: (expr) [expr]
+; 2. AND (plus): expr1 + expr2
+; 3. OR (comma): expr1, expr2
+;
+; Note: AND binds tighter than OR
+; P-01, P-02 + P-03 = P-01, (P-02 + P-03)
+;
+; === Phase ID Constraints ===
+;
+; Valid examples:
+; - P-01, P-02, P-03, ..., P-99 (two-digit phase numbers)
+; - P-01-A, P-01-B, P-01-C, P-01-Z (sub-phases)
+; - Mixed: P-01, P-02-A, P-03
+;
+; Invalid examples:
+; - P-1 (must use two digits)
+; - P-01-a (sub-phase letters must be uppercase)
+; - p-01 (lowercase not allowed)
+; - P-100 (only two-digit phase numbers)
+;
+; === Grammar Extensions ===
+;
+; Future versions may support:
+; - Duration annotations: P-01{45} (45-minute phase)
+; - Conditional branches: P-01 ? P-02-A : P-02-B (if/else)
+; - Quantifiers: P-01* (zero or more), P-01+ (one or more)
+;
+; These are reserved for future use and not yet supported in RWP.
