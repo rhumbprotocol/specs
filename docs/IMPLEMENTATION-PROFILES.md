@@ -192,7 +192,7 @@ Use this decision table:
 
 ## 6. Current Reconciliation Findings
 
-The repository previously showed real drift that must not be hidden. RWP 0.28.1
+The repository previously showed real drift that must not be hidden. RWP 0.29.0
 resolves the protocol-side pieces and leaves remaining implementation-profile
 work explicit:
 

@@ -255,7 +255,7 @@ The validator's report distinguishes two versions:
 
 - `rhumb_validate_version` — the validator's own crate version, e.g. `0.1.0`.
 - `rwp_version` — the protocol version this build of the validator was
-  compiled against, e.g. `0.28.1`.
+  compiled against, e.g. `0.29.0`.
 
 A change to `rwp_version` means the protocol itself moved; a change to
 `rhumb_validate_version` means only the tool moved (e.g., a bug fix
