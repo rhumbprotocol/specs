@@ -6,6 +6,9 @@
 # Copy to your project root as .gitignore
 # =============================================================================
 
+# This folder is used to store evidence of the work done during the audit.
+evidence/
+
 # =============================================================================
 # RUST / WASM / TAURI (CRITICAL - prevents 100MB+ push failures!)
 # =============================================================================
