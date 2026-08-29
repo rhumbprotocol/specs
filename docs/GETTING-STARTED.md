@@ -245,7 +245,7 @@ Use profiles to be explicit about storage layout:
 | Custom Profile | Your tool has its own storage model | Any layout that preserves RWP artifacts and validation behavior |
 
 In the Meridian Reference Profile, plan artifacts live under lifecycle buckets
-such as `.meridian/.private/knowledge/plans/planning/` and
+such as `.meridian/.private/knowledge/plans/draft/` and
 `.meridian/.private/knowledge/plans/processing/`. The plan-level `state.yaml`
 inside a plan directory is not the same artifact as Meridian's workspace-level
 `.meridian/.private/runtime/STATE.yaml`.
