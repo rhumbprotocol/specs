@@ -68,7 +68,7 @@ Reference Profile compatibility.
   `dependencies.yaml`, handoffs, prompts, audits, IDEA, AVD, ACS.
 - Distinction between protocol artifacts and implementation runtime state.
 - Core File-Tree Profile versus Meridian Reference Profile.
-- Plan-level `state.yaml` versus `.meridian/.private/runtime/STATE.yaml`.
+- Plan-level `state.yaml` versus `.yakkl/.private/runtime/STATE.yaml`.
 - Conformance categories: schema, template, workflow, adapter, grammar.
 - Exit codes and why multi-category failure is reported as exit `6`.
 - RWP 0.31.0 reconciliation decisions: canonical template names,

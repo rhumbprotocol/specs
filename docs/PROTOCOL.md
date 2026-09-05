@@ -1693,7 +1693,7 @@ This section provides recommendations for tools and organizations implementing R
 2. **Directory Structure**: Organize artifacts in a consistent directory layout
    ```
    my-project/
-   ├── .meridian/
+   ├── .yakkl/
    │   ├── plans/
    │   │   ├── PLAN.md
    │   │   ├── INTAKE.yaml

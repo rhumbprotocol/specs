@@ -126,7 +126,7 @@ the run.
 use rhumb_validate::{validate, Category};
 use std::path::Path;
 
-let report = validate(Path::new(".meridian/"), &[])?;
+let report = validate(Path::new(".yakkl/"), &[])?;
 if !report.overall_passed {
     // walk report.categories[*].failures for details
 }
@@ -155,7 +155,7 @@ before parsing.
 
 ```text
 rhumb-validate 0.1.0 (RWP 0.31.0)
-target: .meridian/
+target: .yakkl/
 started: 2026-05-01T12:34:56.789012Z    completed: 2026-05-01T12:34:57.012345Z    duration: 223 ms
 
 Category    Passed  Failed  Skipped  Duration(ms)
@@ -186,7 +186,7 @@ Top-level fields: `rhumb_validate_version`, `rwp_version`, `started_at`,
   "rwp_version": "0.31.0",
   "started_at": "2026-05-01T12:34:56.789012Z",
   "completed_at": "2026-05-01T12:34:57.012345Z",
-  "target_path": ".meridian/",
+  "target_path": ".yakkl/",
   "categories": [
     {
       "category": "schema",
@@ -246,7 +246,7 @@ cargo clippy --all-targets -- -D warnings  # zero warnings tolerated
 cargo run -- --all --target fixtures/valid/
 
 # Run validator against itself (Target 0 — Meridian artifact tree):
-cargo run -- --all --target ../../../.meridian/
+cargo run -- --all --target ../../../.yakkl/
 ```
 
 The `fixtures/` tree is the canonical fixture set. Every category has paired

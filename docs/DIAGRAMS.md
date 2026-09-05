@@ -73,7 +73,7 @@ RWP:
 | Profile | Diagram Emphasis |
 |---|---|
 | Core File-Tree | `rwp/plans/<plan-id>/` with all plan artifacts together |
-| Meridian Reference | `.meridian/.private/{runtime,data,knowledge}` split, with plan artifacts under `knowledge/plans/<lifecycle>/` |
+| Meridian Reference | `.yakkl/.private/{runtime,data,knowledge}` split, with plan artifacts under `knowledge/plans/<lifecycle>/` |
 | Custom | Any layout that preserves artifact semantics and validation behavior |
 
 The Meridian profile view must label plan-level `state.yaml` separately from

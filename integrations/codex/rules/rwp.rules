@@ -11,7 +11,7 @@ prefix_rule(
     pattern = ["rm", ["-rf", "-fr", "-r"]],
     decision = "prompt",
     justification = "Deleting plan directories may remove RWP™ artifacts and handoff documents.",
-    match = ["rm -rf .meridian", "rm -r plans/"],
+    match = ["rm -rf .yakkl", "rm -r plans/"],
 )
 
 # Prompt before git operations that could affect plan state

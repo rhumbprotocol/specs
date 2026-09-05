@@ -14,7 +14,7 @@ The **Rhumb Workflow Protocol™** (RWP™) is a formal, open-source protocol fo
 
 RWP is protocol-level - it defines *what* artifacts look like and *how* they relate, not *how* your tool implements them internally.
 Directory trees are implementation profiles. A tool can store RWP artifacts in
-`rwp/`, `.workflow/`, `.meridian/`, a database-backed workspace, or another
+`rwp/`, `.workflow/`, `.yakkl/`, a database-backed workspace, or another
 layout if it can preserve and validate the same artifact contract.
 
 For the full specification, see [PROTOCOL.md](./PROTOCOL.md).
@@ -77,7 +77,7 @@ For the full grammar, see [spec/sequence.grammar](../spec/sequence.grammar).
 
 This walkthrough uses the Core File-Tree Profile: a simple plan directory with
 the protocol artifacts together. Meridian uses a richer reference profile under
-`.meridian/.private/knowledge/plans/<lifecycle>/`, but that layout is not
+`.yakkl/.private/knowledge/plans/<lifecycle>/`, but that layout is not
 required for every RWP adopter.
 
 ### Step 1: Capture Requirements
@@ -241,14 +241,14 @@ Use profiles to be explicit about storage layout:
 | Profile | Use When | Root Shape |
 |---------|----------|------------|
 | Core File-Tree Profile | You want the simplest portable RWP project layout | `rwp/plans/<plan-id>/...` |
-| Meridian Reference Profile | You want compatibility with the reference implementation | `.meridian/.private/{runtime,data,knowledge}` |
+| Meridian Reference Profile | You want compatibility with the reference implementation | `.yakkl/.private/{runtime,data,knowledge}` |
 | Custom Profile | Your tool has its own storage model | Any layout that preserves RWP artifacts and validation behavior |
 
 In the Meridian Reference Profile, plan artifacts live under lifecycle buckets
-such as `.meridian/.private/knowledge/plans/draft/` and
-`.meridian/.private/knowledge/plans/processing/`. The plan-level `state.yaml`
+such as `.yakkl/.private/knowledge/plans/draft/` and
+`.yakkl/.private/knowledge/plans/processing/`. The plan-level `state.yaml`
 inside a plan directory is not the same artifact as Meridian's workspace-level
-`.meridian/.private/runtime/STATE.yaml`.
+`.yakkl/.private/runtime/STATE.yaml`.
 
 Read: [Implementation Profiles](./IMPLEMENTATION-PROFILES.md)
 

@@ -10,7 +10,7 @@ CREATED AT
   {{CREATED_TIMESTAMP}}
 
 PLAN LOCATION
-  .meridian/.private/plans/processing/{{PLAN_ID}}/
+  .yakkl/.private/plans/processing/{{PLAN_ID}}/
 
 FILES CREATED
   ✓ PLAN.md - Full plan document with all phases
@@ -35,7 +35,7 @@ Ready to begin?
   → Type 'next phase' to start {{FIRST_PHASE_ID}}
 
 Or review files first:
-  → Run: cat .meridian/.private/plans/processing/{{PLAN_ID}}/PLAN.md
+  → Run: cat .yakkl/.private/plans/processing/{{PLAN_ID}}/PLAN.md
 
 ───────────────────────────────────────────────────────────────────────────────
 Protocol: Rhumb Workflow Protocol™ (RWP) v{{RWP_VERSION}}

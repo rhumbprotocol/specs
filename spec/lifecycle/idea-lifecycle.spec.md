@@ -34,7 +34,7 @@ idea.schema.json.
 **Schema $id**: `https://rhumbprotocol.dev/schemas/v0.31.0/lifecycle.schema.json`
 **Status enum source of truth**: [`idea.schema.json#/properties/status`](../schemas/idea.schema.json)
 **Lifecycle schema**: [`lifecycle.schema.json`](../schemas/lifecycle.schema.json)
-**Component spec**: ACS-0038 (`.meridian/.private/knowledge/components/ACS-0038-rwp-idea-template-and-lifecycle/`)
+**Component spec**: ACS-0038 (`.yakkl/.private/knowledge/components/ACS-0038-rwp-idea-template-and-lifecycle/`)
 
 ---
 
@@ -218,8 +218,8 @@ All lifecycle timestamp fields (`created`, `updated`, `approved_at`, `promoted_a
 - [`idea.schema.json`](../schemas/idea.schema.json) — IDEA frontmatter shape; canonical source for the seven-state enum.
 - [`lifecycle.schema.json`](../schemas/lifecycle.schema.json) — lifecycle state-machine shape; consumes the seven-state enum via `$ref`.
 - [IDEA template](../../templates/IDEA.md.template) — paste-and-go template for new IDEAs.
-- ACS-0038 — RWP IDEA Template + Lifecycle component specification (`.meridian/.private/knowledge/components/ACS-0038-rwp-idea-template-and-lifecycle/`).
-- AVD-0009 — Rhumb Workflow Protocol architecture vision (`.meridian/.private/knowledge/visions/AVD-0009-rwp/`).
+- ACS-0038 — RWP IDEA Template + Lifecycle component specification (`.yakkl/.private/knowledge/components/ACS-0038-rwp-idea-template-and-lifecycle/`).
+- AVD-0009 — Rhumb Workflow Protocol architecture vision (`.yakkl/.private/knowledge/visions/AVD-0009-rwp/`).
 
 ---
 

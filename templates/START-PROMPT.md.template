@@ -25,7 +25,7 @@ Based on your input, I'll create:
 WORKFLOW STRUCTURE
 
   Plan ID:     {{AUTO_PLAN_ID}}
-  Location:    .meridian/.private/plans/processing/{{AUTO_PLAN_ID}}/
+  Location:    .yakkl/.private/plans/processing/{{AUTO_PLAN_ID}}/
 
   Files:
     ✓ PLAN.md - Full phase breakdown

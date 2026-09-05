@@ -104,7 +104,7 @@ struct Cli {
     #[arg(long, value_name = "DIR")]
     fixtures: Option<PathBuf>,
 
-    /// Artifact directory to validate (e.g. .meridian/, packages/foo/artifacts/).
+    /// Artifact directory to validate (e.g. .yakkl/, packages/foo/artifacts/).
     #[arg(long, value_name = "PATH")]
     target: Option<PathBuf>,
 

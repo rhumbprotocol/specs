@@ -100,7 +100,7 @@ property that protects downstream consumers of compliance claims.
 ## 4. Why the canonical reference run currently exits non-zero
 
 The canonical reference run for v0.1.0 — `rhumb-validate --all
---target .meridian/` against YAKKL's internal Meridian artifact tree —
+--target .yakkl/` against YAKKL's internal Meridian artifact tree —
 **currently exits `6`** (multi-category failure). This is the honest
 v1 baseline, and the project explicitly contemplated and budgeted for
 this state in the architecture spec (ACS-0015 §8 R5).

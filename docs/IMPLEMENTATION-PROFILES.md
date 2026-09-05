@@ -23,7 +23,7 @@ Core RWP defines:
 
 Core RWP does **not** require:
 
-- `.meridian/` as the root directory (if you setup the Free version of Meridian it will create all of that for you);
+- `.yakkl/` as the root directory (if you setup the Free version of Meridian it will create all of that for you);
 - `.private/` as a privacy boundary;
 - SQLite, a daemon, a desktop app, or a CLI runtime;
 - a specific repository layout;
@@ -80,10 +80,10 @@ used without Meridian, a database, or a hidden private tree.
 ## 4. Meridian Reference Profile
 
 Meridian is the reference implementation. Current Meridian code and runtime
-state use a split private tree under `.meridian/.private/`:
+state use a split private tree under `.yakkl/.private/`:
 
 ```text
-.meridian/
+.yakkl/
   .private/
     runtime/
       STATE.yaml
@@ -92,7 +92,7 @@ state use a split private tree under `.meridian/.private/`:
       config.yaml
       locks/
     data/
-      meridian.db
+      yakkl.db
     knowledge/
       architecture/
       plans/
@@ -113,7 +113,7 @@ state use a split private tree under `.meridian/.private/`:
   schemas/
   templates/
   MANIFEST.yaml
-  MERIDIAN.yaml
+  YAKKL.yaml
   others...
 ```
 
@@ -124,7 +124,7 @@ The important point for RWP is the split:
 | `.private/knowledge/` | Durable human and AI-authored knowledge | Long-lived protocol artifacts and architecture records |
 | `.private/knowledge/plans/<lifecycle>/` | Plan directories organized by lifecycle | RWP plan-level artifacts grouped by execution state |
 | `.private/runtime/` | Session/runtime coordination files | Meridian runtime control plane, not the same thing as plan `state.yaml` |
-| `.private/data/meridian.db` | SQLite operational index | Meridian implementation detail, not a required RWP artifact |
+| `.private/data/yakkl.db` | SQLite operational index | Meridian implementation detail, not a required RWP artifact |
 
 ### 4.1 Plan Directory Shape
 
@@ -132,7 +132,7 @@ Within a Meridian plan directory, RWP-compatible artifacts should be grouped
 like this:
 
 ```text
-.meridian/.private/knowledge/plans/processing/MP-0001-example/
+.yakkl/.private/knowledge/plans/processing/MP-0001-example/
   INTAKE.yaml
   PLAN.md
   MASTERPLAN.yaml
@@ -148,7 +148,7 @@ like this:
 `state.yaml` here is a **plan execution artifact**. It records the state of one
 plan or workflow.
 
-`.meridian/.private/runtime/STATE.yaml` is a **Meridian runtime/session index**.
+`.yakkl/.private/runtime/STATE.yaml` is a **Meridian runtime/session index**.
 It may summarize active work, claims, session state, and workspace-level
 runtime coordination. It is related to RWP execution, but it is not the same
 artifact as plan-level `state.yaml`.
@@ -162,7 +162,7 @@ state.
 Meridian also has project-aware path helpers for a newer layout:
 
 ```text
-.meridian/.private/projects/<project-slug>/
+.yakkl/.private/projects/<project-slug>/
   knowledge/
     plans/
     ideas/
@@ -183,7 +183,7 @@ Use this decision table:
 
 | Question | Protocol answer |
 |---|---|
-| Must all adopters use `.meridian/.private/knowledge/plans/`? | No. That is Meridian's reference profile, not core RWP. |
+| Must all adopters use `.yakkl/.private/knowledge/plans/`? | No. That is Meridian's reference profile, not core RWP. |
 | Should Rhumb document the Meridian tree? | Yes. Meridian is the reference implementation and its current layout must be legible. |
 | Can a tool store artifacts somewhere else? | Yes, if it preserves artifact formats, identifiers, lifecycle semantics, and validation behavior. |
 | Can a tool keep runtime indexes in a database? | Yes. Databases are implementation details if the tool can still emit or validate protocol artifacts. |
@@ -240,7 +240,7 @@ Use precise claims:
 - "RWP Core File-Tree Profile compatible" means the implementation uses or can
   emit the generic `rwp/plans/...` layout.
 - "RWP Meridian Reference Profile compatible" means the implementation can read
-  or emit the current `.meridian/.private/{runtime,data,knowledge}` layout
+  or emit the current `.yakkl/.private/{runtime,data,knowledge}` layout
   without confusing runtime `STATE.yaml` with plan-level `state.yaml`.
 - "Rhumb-compliant" remains a public claim governed by the validator and
   trademark policy described in `docs/CONFORMANCE.md`.

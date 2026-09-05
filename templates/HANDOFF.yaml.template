@@ -51,7 +51,7 @@ files:
 
   deleted:
     - path: "{{ORIGINAL_PATH}}"
-      moved_to: ".meridian/deadcode/{{DATE}}/{{FILENAME}}" # {{DATE}} and {{FILENAME}} are template variables
+      moved_to: ".yakkl/deadcode/{{DATE}}/{{FILENAME}}" # {{DATE}} and {{FILENAME}} are template variables
       reason: "{{WHY}}"
 
 # ============================================================================
